@@ -6,7 +6,7 @@
 #    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/03/27 11:05:53 by npaolett         ###   ########.fr        #
+#    Updated: 2024/04/02 16:34:40 by npaolett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ INCL = -I ./libft
 MLXFLAGS = -lX11 -lXext -lm
 INCL = -I -I./libft -I./mlx_linux
 
-SRC = main.c
+SRC = 	src/main.c \
+		src/get_map.c \
   
 OBJ = $(SRC:.c=.o)
 # OBJ_BONUS = $(SRC_BONUS:.c=.o)
