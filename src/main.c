@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/02 16:40:51 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:57:13 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,28 @@ void	print_map(char **map)
 	printf("\n");
 }
 
+void	init_game(t_cube *game)
+{
+	game->img = NULL;
+	game->map = NULL;
+	game->mlx_ptr = NULL;
+	game->rows = 0;
+	game->type = NULL;
+}
+
+
 int	main(int ac, char **av)
 {
 	t_cube	*game = NULL;
 	int		fd;
-	// char	*line = NULL;
 
-	// (void)av;
 	game = (t_cube *)malloc(sizeof(t_cube));
 	if (!game || ft_gbg(ADD, game, PARS))
 		return (-1);
 	if (ac != 2)
-		return (ft_gbg(FLUSH, NULL, ALL),ft_putstr_fd("Bad numbers of arguments\n", 2), 1);
-	// game = init_play();
+		return (ft_gbg(FLUSH, NULL, ALL),
+			ft_putstr_fd("Bad numbers of arguments\n", 2), 1);
+	init_game(game);
 	fd = check_file_open(av);
 	if (fd == -1)
 		return (ft_gbg(FLUSH, NULL, ALL), 1);
@@ -54,7 +63,5 @@ int	main(int ac, char **av)
 	// fd = 0;
 	get_map(game, fd, av);
 	print_map(game->map);
-	// game->rows = ft_count_rows(game, fd, );
-	// cpy_map_from_file(game, av, game->rows);
 	return (ft_gbg(FLUSH, NULL, ALL), 0);
 }

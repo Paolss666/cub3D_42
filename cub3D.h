@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/02 15:04:57 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:58:17 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,26 @@ typedef struct s_cube
 	char	**type;
 	int		rows;
 	t_img	*img;
+	t_img	*no;
+	t_img	*so;
+	t_img	*we;
+	t_img	*ea;
+	unsigned int	f_color;
+	unsigned int	c_color;
+
 }               t_cube;
 
 
-int	check_file_open(char **av);
-int	get_types(t_cube *game, char **av);
-int	cpy_map_from_file(t_cube *game, char **argv, int rows);
+int		check_file_open(char **av);
+int		get_types(t_cube *game, char **av);
+int		cpy_map_from_file(t_cube *game, char **argv, int rows);
 void	ft_count_rows(t_cube *game, int fd, int *rows);
-int	get_map(t_cube *game, int fd, char **av);
+int		get_map(t_cube *game, int fd, char **av);
+int		is_wspc_excl_nl(char c);
+void	swap_ptrs(char **s1, char **s2);
+int		check_types(char **new);
+int		ptr_to_swap(char *s);
+int		search_type(char *type, char **new);
+int		reorder_new(char **new);
+
 #endif

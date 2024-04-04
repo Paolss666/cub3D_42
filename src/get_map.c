@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/02 17:30:47 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:53:16 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ int	cpy_map_from_file(t_cube *game, char **argv, int rows)
 	int		fd;
 	int		i;
 	int		j;
-	char	*line = NULL;
+	char	*line;
 
 	i = game->rows + 1;
 	j = 0;
@@ -212,11 +212,11 @@ int	cpy_map_from_file(t_cube *game, char **argv, int rows)
 	while (i > 0)
 	{
 		game->map[j] = get_next_line(fd);
+		ft_gbg(ADD, game->map[j], PARS);
 		i--;
 		j++;
 	}
-	get_next_line(fd);
-	close(fd);
+	(get_next_line(fd), close(fd));
 	return (0);
 }
 
