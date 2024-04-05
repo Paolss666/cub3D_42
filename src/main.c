@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/04 13:57:13 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:55:51 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 void	print_map(char **map)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (map[i])
 	{
-		printf("%s", map[i]);
+		printf("%s\n", map[i]);
 		i++;
 	}
 	printf("\n");
@@ -36,7 +38,7 @@ void	init_game(t_cube *game)
 
 int	main(int ac, char **av)
 {
-	t_cube	*game = NULL;
+	t_cube	*game;
 	int		fd;
 
 	game = (t_cube *)malloc(sizeof(t_cube));
@@ -49,19 +51,11 @@ int	main(int ac, char **av)
 	fd = check_file_open(av);
 	if (fd == -1)
 		return (ft_gbg(FLUSH, NULL, ALL), 1);
-	// if ( fd == -1)
-	// 	return (ft_putstr_fd("Not valide\n", 2), 1);
-	// while(1)
-	// {
-	// 	line = get_next_line(fd);
-	// 	printf("%s\n", line);
-	// 	if (!line)
-	// 		break ;
-	// }
-	// if (get_types(game, av) == - 1)
-		// return (printf("FAIL\n"));
-	// fd = 0;
 	get_map(game, fd, av);
-	print_map(game->map);
+	get_file_content(game, av);
+	// print_map(game->map);
+	found_redif_type(game);
+	printf("===================================\n");
+	print_map(game->type);
 	return (ft_gbg(FLUSH, NULL, ALL), 0);
 }

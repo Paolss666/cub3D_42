@@ -1,7 +1,7 @@
 NO ./img/blackandwhite_theme/ronds.xpm
 SO ./img/blackandwhite_theme/des.xpm
 WE ./img/blackandwhite_theme/losanges.xpm
-EA  ./img/blackandwhite_theme/briques.xpm
+EA ./img/blackandwhite_theme/briques.xpm
 
 F 220,100,0
 C 225,30,0

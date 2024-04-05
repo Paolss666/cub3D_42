@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:00:27 by npaolett          #+#    #+#             */
-/*   Updated: 2024/03/12 11:23:05 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:08:48 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	ft_free_tab(char **tab)
 
 	i = -1;
 	while (tab[++i])
-		free(tab[i]);
-	free(tab);
+		ft_gbg(FREE, tab[i], PARS);
+	ft_gbg(FREE, tab, PARS);
 }

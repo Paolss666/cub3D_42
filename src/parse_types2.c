@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:54:40 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/04 15:31:00 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:53:24 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int	reorder_new(char **new)
 			return (ft_putstr_fd("Error, invalid type\n", 2), -1);
 		if (swap_val != -1)
 			swap_ptrs(&new[i], &new[swap_val]);
-		else
-			i++;
+		i++;
 	}
 	if (check_types(new) == -1)
 			return (ft_putstr_fd("Error, invalid type\n", 2), -1);

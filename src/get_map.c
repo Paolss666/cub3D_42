@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/04 13:53:16 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:55:38 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,15 @@ int	check_file_open(char **av)
 	if (fd == -1)
 	{
 		ft_putstr_fd("Error\n", 2);
-		perror("open failed");
+		perror("Wrong extension");
 		return (-1);
 	}
 	if (check_if_exection(av) == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
-		ft_putstr_fd("Wrong extension\n", 2);
+		ft_putstr_fd("Open failed\n", 2);
 		return (-1);
 	}
-	// close(fd);
 	return (fd);
 }
 
@@ -69,7 +68,6 @@ int	get_types(t_cube *game, char **av)
 	int		count;
 
 	count = 0;
-	game->type = NULL;
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		return (perror("open failed"), -1);
@@ -87,7 +85,7 @@ int	get_types(t_cube *game, char **av)
 	if (count == 6)
 		return (fd);
 	else
-		return (close(fd), ft_gbg(FLUSH, NULL, ALL),
+		return (close(fd),
 				ft_putstr_fd("Error\nInvalid numbers of types\n", 2), -1);
 }
 
@@ -104,13 +102,13 @@ void	is_newline(char *line, int *ln, int *rows)
 	if (ft_strlen(line) == 0)
 	{
 		*ln = 0;
-		free(line);
+		ft_gbg(FREE, line, PARS);
 	}
 	else if ((ft_strlen(line) == 1) && !ft_strncmp(line, "\n", 1))
 	{
 		*ln = 1;
 		*rows += 1;
-		free(line);
+		ft_gbg(FREE, line, PARS);
 	}
 	else
 		*ln = 0;
@@ -191,7 +189,7 @@ void	delete_types_nl(t_cube *game)
 	}
 }
 
-int	cpy_map_from_file(t_cube *game, char **argv, int rows)
+int cpy_map_from_file(t_cube *game, char **argv, int rows)
 {
 	int		fd;
 	int		i;
@@ -252,7 +250,7 @@ int	sort_content(t_cube *game, char **av)
  * First, checks errors related to the source file of the map
  * Second, sorts the file content: split the types from the map
  * 
- */
+*/
 
 int	get_file_content(t_cube *game, char **argv)
 {
