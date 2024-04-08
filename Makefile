@@ -6,7 +6,7 @@
 #    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/04/05 17:18:55 by npaolett         ###   ########.fr        #
+#    Updated: 2024/04/08 10:37:46 by npaolett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC = 	src/main.c \
 		src/parse_types2.c \
 		src/parse_type_err.c \
 		src/ft_split_grb.c \
+		src/parse_type_err_check.c \
   
 OBJ = $(SRC:.c=.o)
 # OBJ_BONUS = $(SRC_BONUS:.c=.o)

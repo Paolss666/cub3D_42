@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/05 17:20:22 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:41:36 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	get_nb(char *color)
 	while (color[i] && color[i] != '\n')
 	{
 		if (!(color[i] >= '0' && color[i] <= '9'))
-			return (ft_putstr_fd("Error Bad RGB color\n", 2), -1);
+			return (ft_putstr_fd("Error\nBad RGB color\n", 2), -1);
 		i++;
 	}
 	color[i] = '\0';
 	n = ft_atoi(color);
 	if (n < 0 || n > 255)
-		return (ft_putstr_fd("Error Bad RGB color\n", 2), -1);
+		return (ft_putstr_fd("Error\nBad RGB color\n", 2), -1);
 	return (n);
 }
 
@@ -60,7 +60,7 @@ t_img	*xpm_img(t_cube *game, char *img_path, int w, int h)
 	new_img->w = w;
 	new_img->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, img_path, &(new_img->w), &(new_img->h));
 	if (!new_img->img_ptr)
-		return (ft_putstr_fd("Error wrong texture path\n", 2),
+		return (ft_putstr_fd("Error\nwrong texture path\n", 2),
 				ft_gbg(FREE, new_img, EX), NULL);
 	new_img->full_buf = (int *)mlx_get_data_addr(game->mlx_ptr,
 			&new_img->bpp, &new_img->line_len,
@@ -69,7 +69,7 @@ t_img	*xpm_img(t_cube *game, char *img_path, int w, int h)
 	{
 		mlx_destroy_image(game->mlx_ptr, new_img->img_ptr);
 		new_img->img_ptr = NULL;
-		return (ft_putstr_fd("Bad xpm adress\n", 2), NULL);
+		return (ft_putstr_fd("Error\nBad xpm adress\n", 2), NULL);
 	}
 	return (new_img);
 }
@@ -97,7 +97,7 @@ int	*ft_parse_for_color(char *identi)
 	if (!colours)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), NULL);
 	if (tab_size(colours) != 3)
-		return (ft_putstr_fd("Error Wrong colours\n", 2), ft_gbg(FLUSH, NULL,
+		return (ft_putstr_fd("Error\nWrong colours\n", 2), ft_gbg(FLUSH, NULL,
 				ALL), exit(0), NULL);
 	rgb[0] = get_nb(colours[0]);
 	if (rgb[0] == -1)

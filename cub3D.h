@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/05 17:18:30 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:40:05 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,14 @@ typedef struct s_cube
 	t_img	*so;
 	t_img	*we;
 	t_img	*ea;
+	t_img	*door;
 	unsigned int	f_color;
 	unsigned int	c_color;
+	int				*f;
+	int				*c;
+	unsigned int	**tex;
+	int				tex_h;
+	int				tex_w;
 
 }               t_cube;
 
@@ -70,7 +76,10 @@ int		search_type(char *type, char **new);
 int		reorder_new(char **new);
 int		found_redif_type(t_cube *game);
 int		get_file_content(t_cube *game, char **argv);
-
+t_img	*xpm_img(t_cube *game, char *img_path, int w, int h);
 int     get_color(int *tab_c);
+int	*ft_parse_for_color(char *identi);
+int	check_chars(char *s, char c);
+int	check_err_types(t_cube *game);
 
 #endif

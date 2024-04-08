@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/05 14:55:38 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:41:09 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int	get_map(t_cube *game, int fd, char **av)
 	game->rows = 0;
 	ft_count_rows(game, fd, &rows);
 	if (game->rows <= 0)
-		return (ft_putstr_fd("Invalid map\n", 2), -1);
+		return (ft_putstr_fd("Error\nInvalid map\n", 2), -1);
 	game->map = ft_calloc(game->rows + 2, sizeof(char *));
 	if (!game->map || ft_gbg(ADD, game->map, PARS))
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
@@ -152,13 +152,12 @@ void	ft_count_rows(t_cube *game, int fd, int *rows)
 	while (ln)
 	{
 		line = get_next_line(fd);
-		if (!line)
+		if (!line || ft_gbg(ADD, line, PARS))
 			break ;
 		is_newline(line, &ln, rows);
 	}
 	if (line)
 	{
-		free(line);
 		game->rows++;
 		while (1)
 		{
