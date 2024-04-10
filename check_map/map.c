@@ -6,11 +6,11 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/04 17:42:56 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:17:38 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D2.h"
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -54,22 +54,9 @@ char	*ft_check_gnl(char *result, char *line, t_data *data, int fd)
 			result = get_next_line(fd);
 		if (!line)
 			line = get_next_line(fd);
-		if (line == NULL || result == NULL || i < 0)
-		{
-			if (result == NULL)
-				ft_putstr_fd("Error\nEMPTYY Y A R\n", 2);
-			else if (result && line && i < 0)
-				result = ft_clean_gnl(line, result, fd);
-			break ;
-		}
-		temp = result;
-		result = ft_strjoin(result, line);
-		(free(temp), free(line));
-		line = NULL;
-	}
-	return (result);
-}
-
+		if (line == NULL || result == NULL || i < 0))
+		return ;
+	if (map[x][y] == '0' && (x == 0 || y == 0 || x == data->col_x - 1 || y == data->lin_y - 1 || (map[x - 1]
 char	*ft_ber_on_line(int fd, t_data *data)
 {
 	char	*line;
@@ -106,12 +93,12 @@ int	ft_map_on_tab(int fd, t_data *data)
 
 //creer un boleen de comparaison de +ieurs caracteres
 
-bool multi_char_comp(char a, char b, char c)
-{
-	if(a == b || a == c)
-		return TRUE;
-	return FALSE;
-}
+//bool multi_char_comp(char a, char b, char c)
+//{}
+//	if(a == b || a == c)
+//		return TRUE;
+//	return FALSE;
+//}
 
 void	ft_check_frontier(char **map, t_data *data, int x, int y)
 {
@@ -133,9 +120,11 @@ void	ft_check_frontier(char **map, t_data *data, int x, int y)
 	}
 	else
 	{
-		printf("TEST du else\n");
+		//printf("TEST du else\n");
 		if (map[x][y] != ' ')
-			map[x][y] = 'F';	
+			map[x][y] = 'F';
+		//if (map[x][y] == ' ')
+		//	map[x][y] = 'X';
 		//ft_check_frontier(map, data, x - 1, y);
 		ft_check_frontier(map, data, x, y + 1);
 		ft_check_frontier(map, data, x + 1, y);

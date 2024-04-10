@@ -6,11 +6,11 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:32:38 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/04 17:34:35 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:17:29 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D2.h"
 
 int	main(int argc, char **argv)
 {
