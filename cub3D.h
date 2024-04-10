@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/08 10:40:05 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:43:31 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ typedef struct s_cube
 	unsigned int	**tex;
 	int				tex_h;
 	int				tex_w;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			pos_x;
+	double			pos_y;
 
 }               t_cube;
 
