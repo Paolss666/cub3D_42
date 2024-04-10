@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/10 12:43:31 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:39:05 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_cube
 	void	*win_ptr;
 	char	**type;
 	int		rows;
+	int		line;
 	t_img	*img;
 	t_img	*no;
 	t_img	*so;
