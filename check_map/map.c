@@ -6,88 +6,16 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/10 14:17:38 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:49:00 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D2.h"
+//#include "../cub3D.h"
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-// --------------------------------------------- POUR TESTER LA MAP --------------------------------------------
-void	ft_clean_sl(char **result)
-{
-	int	nw;
-
-	nw = 0;
-	while (result[nw])
-	{
-		free(result[nw]);
-		nw++;
-	}
-	free(result);
-}
-
-char	*ft_clean_gnl(char *line, char *result, int fd)
-{
-	while (line != NULL)
-	{
-		free(line);
-		line = NULL;
-		line = get_next_line(fd);
-	}
-	free (result);
-	result = NULL;
-	return (result);
-}
-
-char	*ft_check_gnl(char *result, char *line, t_data *data, int fd)
-{
-	char	*temp;
-	int		i;
-
-	temp = NULL;
-	while (1)
-	{
-		if (!result)
-			result = get_next_line(fd);
-		if (!line)
-			line = get_next_line(fd);
-		if (line == NULL || result == NULL || i < 0))
-		return ;
-	if (map[x][y] == '0' && (x == 0 || y == 0 || x == data->col_x - 1 || y == data->lin_y - 1 || (map[x - 1]
-char	*ft_ber_on_line(int fd, t_data *data)
-{
-	char	*line;
-	char	*result;
-
-	result = NULL;
-	line = NULL;
-	result = ft_check_gnl(result, line, data, fd);
-	return (result);
-}
-
-int	ft_map_on_tab(int fd, t_data *data)
-{
-	char	*result;
-
-	result = ft_ber_on_line(fd, data);
-	if (!result)
-		return (1);
-	data->map = ft_split(result, '\n');
-	data->check_map = ft_split(result, '\n');
-	if (!data->map || !data->check_map)
-	{
-		if (data->map)
-			ft_clean_sl(data->map);
-		if (data->check_map)
-			ft_clean_sl(data->check_map);
-		return (1);
-	}
-	free (result);
-	return (0);
-}
 
 // --------------------------------------------- POUR CHECKER LA MAP --------------------------------------------
 
@@ -100,127 +28,126 @@ int	ft_map_on_tab(int fd, t_data *data)
 //	return FALSE;
 //}
 
-void	ft_check_frontier(char **map, t_data *data, int x, int y)
+int		ft_countrows(t_cube *game)
 {
-	int a = 0;
+	int i;
+
+	i = 0;
+	while (game->map && game->map[0][i])
+		i++;
+	return (i);
+}
+
+int		ft_countline(t_cube *game)
+{
+	int i;
+
+	i = 0;
+	while(game->map && game->map[i])
+		i++;
+	return(j);
+}
+
+void	ft_check_frontier(t_cube *game, t_checkmap *checkmap, int x, int y)
+{
+	//int a = 0;
 	int b = 0;
 	//int y = 0;
+	char **map;
+	map = game->map;
 	printf("TEST : x = %d et y = %d\n", x, y);
-	while (b < data->col_x)
+	while (b < game->line)
 	{
 		printf("%s\n", map[b]);
 		b++;
 	}
-	if (x < 0 || y < 0 || x == data->col_x || y == data->lin_y || map[x][y] == 'F' || data->not_valid == 1)
+	if (x < 0 || y < 0 || x == game->line || y == game->line || map[x][y] == 'F' || checkmap->not_valid == 1)
 		return ;
-	if (map[x][y] == '0' && (x == 0 || y == 0 || x == data->col_x - 1 || y == data->lin_y - 1 || (map[x - 1][y] == ' ' || map[x][y + 1] == ' ' || map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
+	if (map[x][y] == '0' && (x == 0 || y == 0 || x == game->line - 1 || y == game->rows - 1 || (map[x - 1][y] == ' ' || map[x][y + 1] == ' ' || map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
 	{
-		data->not_valid = 1;
+		checkmap->not_valid = 1;
 		return ;
 	}
 	else
 	{
-		//printf("TEST du else\n");
 		if (map[x][y] != ' ')
 			map[x][y] = 'F';
 		//if (map[x][y] == ' ')
 		//	map[x][y] = 'X';
-		//ft_check_frontier(map, data, x - 1, y);
-		ft_check_frontier(map, data, x, y + 1);
-		ft_check_frontier(map, data, x + 1, y);
-		//ft_check_frontier(map, data, x, y - 1);
+		//ft_check_frontier(map, game, x - 1, y);
+		ft_check_frontier(game, checkmap, x, y + 1);
+		ft_check_frontier(game, checkmap, x + 1, y);
+		//ft_check_frontier(map, game, x, y - 1);
 	}
 }
 
-//void	ft_check_frontier(char **map, t_data *data, int x, int y)
-//{
-//	int a = 0;
-//	int b = 0;
-//	//int y = 0;
-//	printf("TEST : x = %d et y = %d\n", x, y);
-//	while (b < data->col_x)
-//	{
-//		printf("%s\n", map[b]);
-//		b++;
-//	}
-//	if (x < 0 || y < 0 || x == data->col_x || y == data->lin_y || map[x][y] == '\0' || map[x][y] == 'F')
-//		return ;
-//	if ((map[x][y] == '1' && (x == 0 || y == 0 || x == data->col_x - 1 || y == data->lin_y - 1 || (map[x - 1][y] == ' ' || map[x][y + 1] == ' ' || map[x][y - 1] == ' ' || map[x + 1][y] == ' '))))
-//	{
-//		printf("TESTSEGFAULT\n");
-//		map[x][y] = 'F';
-//		printf("TESTSEGFAULT\n");		
-//		if (x > 0 && map[x - 1][y] == 'F')
-//			a++;
-//		printf("TESTSEGFAULT\n");
-//		if (y + 1 < data->lin_y && map[x][y + 1] == 'F')
-//			a++;
-//		printf("TESTSEGFAULT\n");
-//		if (y > 0 && map[x][y - 1] == 'F')
-//			a++;
-//		printf("TESTSEGFAULT\n");
-//		if (x + 1 < data->col_x && map[x + 1][y] == 'F')
-//			a++;
-//		printf("TESTSEGFAULT\n");
-//		if (a == 2)
-//		{
-//			data->not_valid = 2;
-//			return ;
-//		}
-//		printf("TESTSEGFAULT\n");
-//		ft_check_frontier(map, data, x - 1, y);
-//		ft_check_frontier(map, data, x, y + 1);
-//		ft_check_frontier(map, data, x + 1, y);
-//		ft_check_frontier(map, data, x, y - 1);
-//	}
-//}
-
-int ft_check_char(t_data *data)
+int ft_check_char(t_cube *game, t_checkmap *checkmap)
 {
 	int x = 0;
 	int y = 0;
 
 	while(1)
 	{
-		if (data->map[x][y] == '\0')
+		if (game->map[x][y] == '\0')
 		{
+		printf("CECI EST UN TEST 2.1\n");			
 			x++;
-			if (x == data->col_x)
+			if (x == game->rows)
 				break ;
 			y = 0;
 			continue ;
 		}
-		if (data->map[x][y] == 'N' || data->map[x][y] == 'E' || data->map[x][y] == 'S' || data->map[x][y] == 'W')
+		if (game->map[x][y] == 'N' || game->map[x][y] == 'E' || game->map[x][y] == 'S' || game->map[x][y] == 'W')
 		{
-			data->check_map[x][y] = '0'; //permet de voir apres si bien dans la map et pas dehors
-			data->perso--;
+			checkmap->check_map[x][y] = '0'; //permet de voir apres si bien dans la map et pas dehors
+			checkmap->perso--;
 		}
-		else if (data->map[x][y] != '1' && data->map[x][y] != '0' && data->map[x][y] != ' ')
+		else if (game->map[x][y] != '1' && game->map[x][y] != '0' && game->map[x][y] != ' ')
 			return(write(1, "map not valid : char not valid on map\n", 39), 1);
 		y++;
 	}
 	return 0;
 }
 
-int ft_check_map(t_data *data)
+int ft_check_map(t_cube *game)
 {
-	data->perso = 1;
-	data->not_valid = 0;
+	t_checkmap *checkmap;
+
+	printf("rowz = %d\n",game->rows);
+	printf("line = %d\n",game->line);
+
+	game->rows = ft_countrows(game);
+	
+	game->line = ft_countline(game);
+	printf("rowz = %d\n",game->rows);
+	printf("line = %d\n",game->line);
+	checkmap = (t_checkmap *)malloc(sizeof(t_checkmap));
+	//checkmap->check_map = malloc
+	//a proteger
+	printf("CECI EST UN TEST 0\n");
+	checkmap->perso = 1;
+	printf("CECI EST UN TEST 0.1\n");
+	checkmap->not_valid = 0;
+	printf("CECI EST UN TEST 1\n");
+	checkmap->check_map = game->map;
 	printf("CECI EST UN TEST 2\n");
-	if (ft_check_char(data) == 1 || data->perso < 0)
+	if (ft_check_char(game, checkmap) == 1 || checkmap->perso < 0)
 	{
-		data->not_valid = 1;
-		if (data->perso < 0)
+		printf("CECI EST UN TEST 3\n");
+		checkmap->not_valid = 1;
+		if (checkmap->perso < 0)
 			write(1, "map not valid : to much perso\n", 31);
+		//free checkmap
 		return 1;		
 	}
 	else
 		write(1, "first check : map valid\n", 25);
-	ft_check_frontier(data->check_map, data, 0, 0);
-	if (data->not_valid == 0)
+	ft_check_frontier(game, checkmap, 0, 0);
+	if (checkmap->not_valid == 0)
 		write(1, "second check : map valid\n", 26);
 	else 
 		write(1, "second check : map not valid\n", 30);
+	//free checkmap
 	return 0;
 }
 
@@ -273,103 +200,89 @@ int ft_check_map(t_data *data)
 
 
 
-//void	ft_check_where_is_p(t_data *data)
+//void	ft_check_where_is_p(t_game *game)
 //{
 //	int	i;
 //	int	j;
 
 //	i = 0;
 //	j = 0;
-//	while (data->map[i][j] != 'N' || data->map[i][j] != 'S' || data->map[i][j] != 'E' || data->map[i][j] != 'W')
+//	while (game->map[i][j] != 'N' || game->map[i][j] != 'S' || game->map[i][j] != 'E' || game->map[i][j] != 'W')
 //	{
 //		j++;
-//		if (data->map[i][j] == '\0')
+//		if (game->map[i][j] == '\0')
 //		{
 //			i++;
 //			j = 0;
 //		}
 //	}
-//	data->play_x = i;
-//	data->play_y = j;
+//	game->play_x = i;
+//	game->play_y = j;
 //}
 
-//void	*ft_check_map(t_data *data)
+//void	*ft_check_map(t_game *game)
 //{
 //	int	i;
 
-//	i = ft_check_frontier(data);
+//	i = ft_check_frontier(game);
 //	if (i < 0)
 //	{
 //		ft_putstr_fd("Error\nWE'RE FREE THE WALL HAS FALLEN\n", 2);
-//		ft_clean_sl(data->map);
-//		ft_clean_sl(data->check_map);
+//		ft_clean_sl(game->map);
+//		ft_clean_sl(game->check_map);
 //		return (NULL);
 //	}
-//	ft_ok_to_go_out(data);
-//	if (data->count_exit != 0 || data->check_collect != 0)
+//	ft_ok_to_go_out(game);
+//	if (game->count_exit != 0 || game->check_collect != 0)
 //	{
 //		ft_putstr_fd("Error\nOH NAAAAN I CAN T PLAY WITH MY TEAM :(\n", 2);
-//		ft_clean_sl(data->map);
-//		ft_clean_sl(data->check_map);
+//		ft_clean_sl(game->map);
+//		ft_clean_sl(game->check_map);
 //		return (NULL);
 //	}
-//	ft_clean_sl(data->check_map);
-//	return (data->map);
+//	ft_clean_sl(game->check_map);
+//	return (game->map);
 //}
 
 ////check les frontieres / mur + element + cree la map.
-//char	**ft_map_on_tab(int fd, t_data *data)
+//char	**ft_map_on_tab(int fd, t_game *game)
 //{
 //	char	*result;
 
-//	result = ft_ber_on_line(fd, data);
+//	result = ft_ber_on_line(fd, game);
 //	if (!result)
 //		return (NULL);
-//	if (ft_check_el_online(result, data) <= 0)
+//	if (ft_check_el_online(result, game) <= 0)
 //	{
 //		ft_putstr_fd("Error\nWTF WE NEED MORE/LESS STUFFS ON THIS CARD\n", 2);
 //		return (free(result), NULL);
 //	}
-//	data->map = ft_split(result, '\n');
-//	data->check_map = ft_split(result, '\n');
-//	if (!data->map || !data->check_map)
+//	game->map = ft_split(result, '\n');
+//	game->check_map = ft_split(result, '\n');
+//	if (!game->map || !game->check_map)
 //	{
-//		if (data->map)
-//			ft_clean_sl(data->map);
-//		if (data->check_map)
-//			ft_clean_sl(data->check_map);
+//		if (game->map)
+//			ft_clean_sl(game->map);
+//		if (game->check_map)
+//			ft_clean_sl(game->check_map);
 //		return (NULL);
 //	}
 //	free (result);
-//	data->map = ft_check_map(data);
-//	if (data->map == NULL)
+//	game->map = ft_check_map(game);
+//	if (game->map == NULL)
 //		return (NULL);
-//	return (data->map);
+//	return (game->map);
 //}
 
-//void	ft_ok_to_go_out(t_data *data)
+//void	ft_ok_to_go_out(t_game *game)
 //{
 //	int		x;
 //	int		y;
 //	char	**map;
 
-//	ft_check_where_is_p(data);
-//	x = data->play_x;
-//	y = data->play_y;
-//	data->check_collect = data->to_collect;
-//	data->count_exit = 1;
-//	map = data->map;
-//	ft_fill_map(data->check_map, data, x, y);
-//}
-
-////check les elements a collecter la sortie et la position perso
-//int	ft_check_el_online(char *result, t_data *data)
-//{
-//	int	perso;
-//	int	exit;
-//	int	i;
-
-//	data->to_collect = 0;
+//	ft_check_where_is_p(game);
+//	x = game->plgame
+//	game->to_collect = 0;
 //	perso = 0;
 //	exit = 0;
 //	i = 0;
@@ -380,13 +293,13 @@ int ft_check_map(t_data *data)
 //		else if (result[i] == 'E')
 //			exit++;
 //		else if (result[i] == 'C')
-//			data->to_collect++;
+//			game->to_collect++;
 //		else if (result[i] != '1' && result[i] != '0'
 //			&& result[i] != '\n' && result[i] != 'Y')
 //			return (-1);
 //		i++;
 //	}
-//	if (perso == 1 && exit == 1 && data->to_collect >= 1)
-//		return (data->to_collect);
+//	if (perso == 1 && exit == 1 && game->to_collect >= 1)
+//		return (game->to_collect);
 //	return (-1);
 //}
