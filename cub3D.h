@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/10 15:39:05 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:37:40 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ typedef struct s_cube
 	double			plane_y;
 	double			pos_x;
 	double			pos_y;
+	int				screen_w;
+	int				screen_h;
+	unsigned int	**buf;
 
 }               t_cube;
 
@@ -86,7 +89,10 @@ int		get_file_content(t_cube *game, char **argv);
 t_img	*xpm_img(t_cube *game, char *img_path, int w, int h);
 int     get_color(int *tab_c);
 int	*ft_parse_for_color(char *identi);
-int	check_chars(char *s, char c);
-int	check_err_types(t_cube *game);
-
+int		check_chars(char *s, char c);
+int		check_err_types(t_cube *game);
+void	init_mlx(t_cube *game);
+int		init_buf(t_cube *game);
+int		get_imgs_data_err(t_cube *game);
+void	get_pos(t_cube *game);
 #endif

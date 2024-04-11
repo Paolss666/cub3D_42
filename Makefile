@@ -6,7 +6,7 @@
 #    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/04/10 14:19:04 by npaolett         ###   ########.fr        #
+#    Updated: 2024/04/11 14:28:40 by npaolett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = 	src/get_map.c \
 		src/ft_split_grb.c \
 		src/parse_type_err_check.c \
 		src/get_pos.c  \
+		src/get_pos2.c  \
 		src/main.c  \
   
 OBJ = $(SRC:.c=.o)

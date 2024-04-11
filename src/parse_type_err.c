@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/08 11:41:36 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:26:15 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_img	*xpm_img(t_cube *game, char *img_path, int w, int h)
 	new_img->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, img_path, &(new_img->w), &(new_img->h));
 	if (!new_img->img_ptr)
 		return (ft_putstr_fd("Error\nwrong texture path\n", 2),
-				ft_gbg(FREE, new_img, EX), NULL);
+				ft_gbg(FREE, new_img, EX), exit(99), NULL);
 	new_img->full_buf = (int *)mlx_get_data_addr(game->mlx_ptr,
 			&new_img->bpp, &new_img->line_len,
 			&new_img->endian);
