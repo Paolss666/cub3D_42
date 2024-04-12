@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/10 14:52:29 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:04:12 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*ft_clean_gnl(char *line, char *result, int fd)
 // 		if (line == NULL || result == NULL || i < 0))
 // 		return ;
 // 	if (map[x][y] == '0' && (x == 0 || y == 0 || x == data->col_x - 1 || y == data->lin_y - 1 || (map[x - 1]
+
 char	*ft_ber_on_line(int fd, t_data *data)
 {
 	char	*line;

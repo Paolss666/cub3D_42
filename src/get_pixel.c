@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:58:04 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/04 14:33:51 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:45:37 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,19 @@ int     get_color(int *tab_c)
 	return (hexa_color);
 }
 
+unsigned int	get_pixel_img(t_img src, int x, int y)
+{
+	return (*(unsigned int *)((src.addr
+			+ (y * src.line_len) + (x * src.bpp / 8))));
+}
+
+void	put_pixel_img_anims(t_img dst, int x, int y, int color)
+{
+	char	*img;
+
+	if (x >= 0 && y >= 0 && x < dst.w && y < dst.h)
+	{
+		img = dst.addr + (y * dst.line_len + x * (dst.bpp / 8));
+		*(unsigned int *) img = color;
+	}
+}
