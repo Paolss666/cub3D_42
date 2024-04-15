@@ -6,300 +6,219 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/10 17:49:00 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:46:29 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D2.h"
-//#include "../cub3D.h"
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 
 // --------------------------------------------- POUR CHECKER LA MAP --------------------------------------------
-
-//creer un boleen de comparaison de +ieurs caracteres
-
-//bool multi_char_comp(char a, char b, char c)
-//{}
-//	if(a == b || a == c)
-//		return TRUE;
-//	return FALSE;
-//}
-
-int		ft_countrows(t_cube *game)
+/*
+void	ft_print_maperror(t_cube *game, char **map, int x, int y) //a supprimer
 {
-	int i;
-
-	i = 0;
-	while (game->map && game->map[0][i])
-		i++;
-	return (i);
-}
-
-int		ft_countline(t_cube *game)
-{
-	int i;
-
-	i = 0;
-	while(game->map && game->map[i])
-		i++;
-	return(j);
-}
-
-void	ft_check_frontier(t_cube *game, t_checkmap *checkmap, int x, int y)
-{
-	//int a = 0;
 	int b = 0;
-	//int y = 0;
-	char **map;
-	map = game->map;
-	printf("TEST : x = %d et y = %d\n", x, y);
+	printf("%c = %d, %d\n", map[x][y], x, y);
+	printf("gamerow = %d\n", game->rows);
 	while (b < game->line)
 	{
 		printf("%s\n", map[b]);
 		b++;
 	}
-	if (x < 0 || y < 0 || x == game->line || y == game->line || map[x][y] == 'F' || checkmap->not_valid == 1)
-		return ;
-	if (map[x][y] == '0' && (x == 0 || y == 0 || x == game->line - 1 || y == game->rows - 1 || (map[x - 1][y] == ' ' || map[x][y + 1] == ' ' || map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
+}
+*/
+
+void	ft_add_space(t_cube *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i != game->line)
 	{
-		checkmap->not_valid = 1;
-		return ;
-	}
-	else
-	{
-		if (map[x][y] != ' ')
-			map[x][y] = 'F';
-		//if (map[x][y] == ' ')
-		//	map[x][y] = 'X';
-		//ft_check_frontier(map, game, x - 1, y);
-		ft_check_frontier(game, checkmap, x, y + 1);
-		ft_check_frontier(game, checkmap, x + 1, y);
-		//ft_check_frontier(map, game, x, y - 1);
+		if (game->map_game[i][j] == '\n' || (game->map_game[i][j] == '\0'
+			&& j <= game->rows))
+			game->map_game[i][j] = ' ';
+		if (j == game->rows)
+		{
+			i++;
+			j = 0;
+		}
+		j++;
 	}
 }
 
-int ft_check_char(t_cube *game, t_checkmap *checkmap)
+int	ft_countrows(t_cube *game)
 {
-	int x = 0;
-	int y = 0;
+	int	i;
 
-	while(1)
+	i = 0;
+	while (game->map && game->map[0][i])
+		i++;
+	return (++i);
+}
+
+int	ft_countline(t_cube *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->map && game->map[i])
+		i++;
+	return (i);
+}
+
+int	ft_adjust_row(t_cube *game)
+{
+	int	crow;
+	int	i;
+
+	crow = 0;
+	i = ft_countline(game);
+	while (game->map && game->map[i - 1][0] == '\n')
 	{
-		if (game->map[x][y] == '\0')
+		i--;
+		while (game->map[i - 1][crow] != '\0')
+			crow++;
+		if (crow > game->rows)
+			game->rows = crow;
+	}
+	return (i);
+}
+
+void	ft_stock_map(t_cube *game)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	k = 0;
+	j = ft_adjust_row(game);
+	i = j;
+	while (game->map && game->map[i - 1][0] != '\n')
+		i--;
+	game->line = j - i;
+	game->map_game = NULL;
+	game->map_game = (char **)malloc((sizeof(char *)) * (j - i + 1));
+	if (!game->map_game || ft_gbg(ADD, game->map_game, PARS))
+		return (ft_gbg(FLUSH, NULL, ALL), exit (99), (void)0);
+	game->line = j - i;
+	while (k < game->line)
+	{
+		game->map_game[k] = ft_calloc(sizeof(char), game->rows + 2);
+		if (!game->map_game[k] || ft_gbg(ADD, game->map_game[k], PARS))
+			return (ft_gbg(FLUSH, NULL, ALL), exit (99), (void)0);
+		ft_strlcpy(game->map_game[k], game->map[i], game->rows + 2);
+		i++;
+		k++;
+	}
+	ft_add_space(game);
+}
+
+bool	is_perso(char **map, int x, int y)
+{
+	if (map[x][y] == 'N' || map[x][y] == 'E'
+		|| map[x][y] == 'S' || map[x][y] == 'W')
+		return (TRUE);
+	return (FALSE);
+}
+
+void	ft_check_frontier(t_cube *game, int x, int y)
+{
+	char	**map;
+
+	map = game->map_game;
+	while (1)
+	{
+		if ((map[x][y] == '0' || is_perso(map, x, y) == TRUE) && (x == 0
+			|| y == 0 || x == game->line - 1 || y == game->rows
+			|| (map[x - 1][y] == ' ' || map[x][y + 1] == ' '
+			|| map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
 		{
-		printf("CECI EST UN TEST 2.1\n");			
+			write(1, "map not valid : walls incorrect\n", 33);
+			return (ft_gbg(FLUSH, NULL, ALL), exit(99), (void)0);
+	//	ft_print_maperror(game, map, x, y); //a supprimer
+		}	
+		if (x == game->line - 1 && y == game->rows)
+			break ;
+		if (y == game->rows)
+		{
+			y = 0;
 			x++;
-			if (x == game->rows)
+		}
+		y++;
+	}
+}
+
+int	ft_check_char(t_cube *game, int x, int y)
+{
+	int	perso;
+
+	perso = 1;
+	while (1)
+	{
+		if (game->map_game[x][y] == '\0')
+		{	
+			x++;
+			if (x == game->line)
 				break ;
 			y = 0;
 			continue ;
 		}
-		if (game->map[x][y] == 'N' || game->map[x][y] == 'E' || game->map[x][y] == 'S' || game->map[x][y] == 'W')
-		{
-			checkmap->check_map[x][y] = '0'; //permet de voir apres si bien dans la map et pas dehors
-			checkmap->perso--;
-		}
-		else if (game->map[x][y] != '1' && game->map[x][y] != '0' && game->map[x][y] != ' ')
-			return(write(1, "map not valid : char not valid on map\n", 39), 1);
+		if (game->map_game[x][y] == 'N' || game->map_game[x][y] == 'E'
+			|| game->map_game[x][y] == 'S' || game->map_game[x][y] == 'W')
+			perso--;
+		else if (game->map_game[x][y] != '1' && game->map_game[x][y] != '0'
+			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n')
+			return (write(1, "map not valid : char not valid on map\n", 39), 1);
 		y++;
 	}
-	return 0;
+	if (perso != 0)
+		return (write(1, "map not valid : invalid number of perso\n", 41), 1);
+	return (0);
 }
 
-int ft_check_map(t_cube *game)
+void	ft_add_wall(t_cube *game)
 {
-	t_checkmap *checkmap;
+	int	x;
+	int	y;
 
-	printf("rowz = %d\n",game->rows);
-	printf("line = %d\n",game->line);
-
-	game->rows = ft_countrows(game);
-	
-	game->line = ft_countline(game);
-	printf("rowz = %d\n",game->rows);
-	printf("line = %d\n",game->line);
-	checkmap = (t_checkmap *)malloc(sizeof(t_checkmap));
-	//checkmap->check_map = malloc
-	//a proteger
-	printf("CECI EST UN TEST 0\n");
-	checkmap->perso = 1;
-	printf("CECI EST UN TEST 0.1\n");
-	checkmap->not_valid = 0;
-	printf("CECI EST UN TEST 1\n");
-	checkmap->check_map = game->map;
-	printf("CECI EST UN TEST 2\n");
-	if (ft_check_char(game, checkmap) == 1 || checkmap->perso < 0)
+	x = 0;
+	y = 0;
+	while (1)
 	{
-		printf("CECI EST UN TEST 3\n");
-		checkmap->not_valid = 1;
-		if (checkmap->perso < 0)
-			write(1, "map not valid : to much perso\n", 31);
-		//free checkmap
-		return 1;		
+		if (game->map_game[x][y] == '\0')
+		{	
+			x++;
+			if (x == game->line)
+				break ;
+			y = 0;
+			continue ;
+		}
+		if (game->map_game[x][y] == ' ')
+			game->map_game[x][y] = '1';
+		y++;
 	}
-	else
-		write(1, "first check : map valid\n", 25);
-	ft_check_frontier(game, checkmap, 0, 0);
-	if (checkmap->not_valid == 0)
-		write(1, "second check : map valid\n", 26);
-	else 
-		write(1, "second check : map not valid\n", 30);
-	//free checkmap
-	return 0;
 }
 
-//structure pour stoquer la place du perso
-//1. ouvrir le fichier map et reperer si les infos demandees sont presentes : faire un tableau 
-//avec des pointeurs sur fonction,qui vont check chaque element pour voir si c est conforme et stocker 
-//dans la structure les infos souhaitees en donnant l adresse de la structure
-//2. la map : check s'il y a bien qu un perso et qu il y a des murs tout autour de la map
-//3. 
-
-
-//structure : 
-// NO
-// SO
-// WE
-// EA
-// F
-// C
-// ou est le perso + vu : x, y, vision
-// la map
-
-
-//Votre programme doit prendre en premier argument un fichier de description de
-//scène avec pour extension .cub
-//◦ La map doit être composée d’uniquement ces 6 caractères : 0 pour les espaces
-//vides, 1 pour les murs, et N,S,E ou W qui représentent la position de départ
-//du joueur et son orientation.
-//Cette simple map doit être valide :
-//111111222222
-//1001011222222
-//101000111111
-//1100N1222222
-//111111222222
-//◦ La map doit être fermée/entourée de murs, sinon le programme doit renvoyer
-//une erreur.
-//◦ Mis à part la description de la map, chaque type d’élément peut être séparée
-//par une ou plusieurs lignes vides.
-//◦ La description de la carte sera toujours en dernier dans le fichier, le reste des
-//éléments peut être dans n’importe quel ordre.
-//◦ Sauf pour la map elle-même, les informations de chaque élément peuvent être
-//séparées par un ou plusieurs espace(s).
-//◦ La carte doit être parsée en accord avec ce qui est présenté dans le fichier. Les
-//espaces sont une partie valable de la carte, c’est à vous de les gérer correcte-
-//ment. Vous devez pouvoir parser n’importe quelle sorte de carte, tant qu’elle
-//respecte les règles de carte.
-
-
-//floodfill qui cheque les murs
-//flood fill qui cheque le contenu
-
-
-
-//void	ft_check_where_is_p(t_game *game)
-//{
-//	int	i;
-//	int	j;
-
-//	i = 0;
-//	j = 0;
-//	while (game->map[i][j] != 'N' || game->map[i][j] != 'S' || game->map[i][j] != 'E' || game->map[i][j] != 'W')
+int	ft_check_map(t_cube *game)
+{
+	game->rows = ft_countrows(game);
+	game->line = ft_countline(game);
+	ft_stock_map(game);
+//	int i = 0;
+//	while (i < game->line)
 //	{
-//		j++;
-//		if (game->map[i][j] == '\0')
-//		{
-//			i++;
-//			j = 0;
-//		}
-//	}
-//	game->play_x = i;
-//	game->play_y = j;
-//}
-
-//void	*ft_check_map(t_game *game)
-//{
-//	int	i;
-
-//	i = ft_check_frontier(game);
-//	if (i < 0)
-//	{
-//		ft_putstr_fd("Error\nWE'RE FREE THE WALL HAS FALLEN\n", 2);
-//		ft_clean_sl(game->map);
-//		ft_clean_sl(game->check_map);
-//		return (NULL);
-//	}
-//	ft_ok_to_go_out(game);
-//	if (game->count_exit != 0 || game->check_collect != 0)
-//	{
-//		ft_putstr_fd("Error\nOH NAAAAN I CAN T PLAY WITH MY TEAM :(\n", 2);
-//		ft_clean_sl(game->map);
-//		ft_clean_sl(game->check_map);
-//		return (NULL);
-//	}
-//	ft_clean_sl(game->check_map);
-//	return (game->map);
-//}
-
-////check les frontieres / mur + element + cree la map.
-//char	**ft_map_on_tab(int fd, t_game *game)
-//{
-//	char	*result;
-
-//	result = ft_ber_on_line(fd, game);
-//	if (!result)
-//		return (NULL);
-//	if (ft_check_el_online(result, game) <= 0)
-//	{
-//		ft_putstr_fd("Error\nWTF WE NEED MORE/LESS STUFFS ON THIS CARD\n", 2);
-//		return (free(result), NULL);
-//	}
-//	game->map = ft_split(result, '\n');
-//	game->check_map = ft_split(result, '\n');
-//	if (!game->map || !game->check_map)
-//	{
-//		if (game->map)
-//			ft_clean_sl(game->map);
-//		if (game->check_map)
-//			ft_clean_sl(game->check_map);
-//		return (NULL);
-//	}
-//	free (result);
-//	game->map = ft_check_map(game);
-//	if (game->map == NULL)
-//		return (NULL);
-//	return (game->map);
-//}
-
-//void	ft_ok_to_go_out(t_game *game)
-//{
-//	int		x;
-//	int		y;
-//	char	**map;
-
-//	ft_check_where_is_p(game);
-//	x = game->plgame
-//	game->to_collect = 0;
-//	perso = 0;
-//	exit = 0;
-//	i = 0;
-//	while (result[i] != '\0')
-//	{
-//		if (result[i] == 'P')
-//			perso++;
-//		else if (result[i] == 'E')
-//			exit++;
-//		else if (result[i] == 'C')
-//			game->to_collect++;
-//		else if (result[i] != '1' && result[i] != '0'
-//			&& result[i] != '\n' && result[i] != 'Y')
-//			return (-1);
+//		printf("la map stockee finale est celle ci : %s\n", game->map_game[i]);
 //		i++;
 //	}
-//	if (perso == 1 && exit == 1 && game->to_collect >= 1)
-//		return (game->to_collect);
-//	return (-1);
-//}
+	if (ft_check_char(game, 0, 0) == 1)
+		return (ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
+	ft_check_frontier(game, 0, 0);
+	ft_add_wall(game);
+	return (0);
+}

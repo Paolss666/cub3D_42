@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/11 15:00:32 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:38:58 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@
 # include <math.h>
 #include <stdbool.h>
 
-
-typedef struct s_checkmap
-{
-	int	not_valid;
-	int	perso;
-	char	**check_map;
-}		t_checkmap;
-
-
 // pour checker la map
+void	ft_add_space(t_cube *game);
+int		ft_countrows(t_cube *game);
+int		ft_countline(t_cube *game);
+int		ft_adjust_row(t_cube *game);
+void	ft_stock_map(t_cube *game);
+bool	is_perso(char **map, int x, int y);
+void	ft_check_frontier(t_cube *game, int x, int y);
+int ft_check_char(t_cube *game, int x, int y);
+void ft_add_wall(t_cube *game);
 int ft_check_map(t_cube *game);
 
 # define MLX_ERROR 1
