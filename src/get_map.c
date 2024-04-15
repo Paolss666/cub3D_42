@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/10 15:52:02 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:56:26 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ int cpy_map_from_file(t_cube *game, char **argv, int rows)
 
 	i = game->rows + 1;
 	fd = open(argv[1], O_RDONLY);
-	game->line = 1;
+	game->line = 0;
 	if (fd < 0)
 		return (perror("open failed"), -1);
 	while (rows > 0)

@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/12 17:01:06 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:18:54 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ typedef struct s_cube
 	t_img			*we;
 	t_img			*door;
 	t_img			*spr;
-	t_anim			*anim;
+	// t_anim			*anim;
 	int				anim_flag;
 	int				*f;
 	int				*c;
+	int				line;
 	unsigned int	f_color;
 	unsigned int	c_color;
 	char			**map;
@@ -60,7 +61,7 @@ typedef struct s_cube
 	int				rows;
 	int				cols;
 	unsigned int	**buf;
-	t_img			*image;
+	t_img			*img;
 
 	int				key_w;
 	int				key_s;
@@ -184,5 +185,7 @@ void	draw(t_cube *game);
 int     get_color(int *tab_c);
 unsigned int	get_pixel_img(t_img src, int x, int y);
 void	put_pixel_img_anims(t_img dst, int x, int y, int color);
+int		display(t_cube *game, int x);
+void	texture(t_cube *game, int x);
 
 #endif

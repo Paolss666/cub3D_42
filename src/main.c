@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/12 17:26:53 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:07:55 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,51 @@ void	init_game(t_cube *game)
 	game->screen_h = 480;
 	game->tex_w = 64;
 	game->tex_h = 64;
+	game->anim_flag = 0;
+	game->f = 0;
+	game->c = 0;
+	game->line = 0;
+	game->f_color = 0;
+	game->c_color  = 0;
+	game->cols = 0;
+	game->key_a = 0;
+	game->key_d = 0;
+	game->key_s = 0;
+	game->key_w = 0;
+	game->key_right = 0;
+	game->key_left = 0;
+	game->key_q = 0;
+	game->key_e = 0;
+	game->pos_x = 0;
+	game->pos_y = 0;
+	game->dir_x = 0;
+	game->dir_y = 0;
+	game->plane_x = 0 ;
+	game->plane_y = 0 ;
+	game->camera_x = 0;
+	game->raydir_x = 0;
+	game->raydir_y = 0;
+	game->map_x = 0;
+	game->map_y = 0;
+	game->side_dist_x = 0;
+	game->side_dist_y = 0;
+	game->delta_dist_x = 0;
+	game->delta_dist_y = 0;
+	game->perp_wall_dist = 0;
+	game->step_x = 0;
+	game->step_y = 0;
+	game->hit = 0;
+	game->side = 0;
+	game->line_height = 0;
+	game->pitch = 0;
+	game->draw_start = 0;
+	game->draw_end = 0;
+	game->tex_num = 0;
+	game->wall_x = 0;
+	game->tex_x = 0;
+	game->tex_y = 0;
+	game->step = 0;
+	game->tex_pos = 0;
 }
 
 
@@ -86,18 +131,16 @@ int	main(int ac, char **av)
 	if (fd == -1)
 		return (ft_gbg(FLUSH, NULL, ALL), 1);
 	get_map(game, fd, av);
+		// check_err_types(game);
 	get_file_content(game, av);
 	init_mlx(game);
 	init_buf(game);
-	// get_imgs_data_err(game);
-	print_map(game->map);
 	found_redif_type(game);
 	get_pos(game);
-	// draw(game);
+	display(game, 0);
 	init_loop(game);
 	// printf("===================================\n");
 	// mlx_loop(game->mlx_ptr);
 	// ERROR TYPES ----////////
-	// check_err_types(game);
 	return (0);
 }
