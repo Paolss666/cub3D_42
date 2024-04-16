@@ -6,45 +6,61 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/16 15:03:44 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:09:44 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D2.h"
-#include "../cub3D.h"
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 
 // --------------------------------------------- POUR CHECKER LA MAP --------------------------------------------
-
+/*
 void	ft_print_maperror(t_cube *game, char **map, int x, int y) //a supprimer
 {
-	int	nw;
-
-	nw = 0;
-	while (result[nw])
+	int b = 0;
+	printf("%c = %d, %d\n", map[x][y], x, y);
+	printf("gamerow = %d\n", game->rows);
+	while (b < game->line)
 	{
-		free(result[nw]);
-		nw++;
+		printf("%s\n", map[b]);
+		b++;
 	}
-	free(result);
+}
+*/
+
+void	ft_add_space(t_cube *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i != game->line)
+	{
+		if (game->map_game[i][j] == '\n' || (game->map_game[i][j] == '\0'
+			&& j <= game->rows))
+			game->map_game[i][j] = ' ';
+		if (j == game->rows)
+		{
+			i++;
+			j = 0;
+		}
+		j++;
+	}
 }
 
-// char	*ft_clean_gnl(char *line, char *result, int fd)
-// {
-// 	while (line != NULL)
-// 	{
-// 		free(line);
-// 		line = NULL;
-// 		line = get_next_line(fd);
-// 	}
-// 	free (result);
-// 	result = NULL;
-// 	return (result);
-// }
+int	ft_countrows(t_cube *game)
+{
+	int	i;
 
+	i = 0;
+	while (game->map && game->map[0][i])
+		i++;
+	return (++i);
+}
 
 int	ft_countline(t_cube *game)
 {
@@ -205,3 +221,4 @@ int	ft_check_map(t_cube *game)
 	ft_add_wall(game);
 	return (0);
 }
+
