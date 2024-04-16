@@ -6,18 +6,19 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/16 14:53:09 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:03:44 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D2.h"
+#include "../cub3D.h"
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 
 // --------------------------------------------- POUR CHECKER LA MAP --------------------------------------------
-/*
+
 void	ft_print_maperror(t_cube *game, char **map, int x, int y) //a supprimer
 {
 	int	nw;
@@ -31,43 +32,19 @@ void	ft_print_maperror(t_cube *game, char **map, int x, int y) //a supprimer
 	free(result);
 }
 
-char	*ft_clean_gnl(char *line, char *result, int fd)
-{
-	while (line != NULL)
-	{
-		free(line);
-		line = NULL;
-		line = get_next_line(fd);
-	}
-	free (result);
-	result = NULL;
-	return (result);
-}
+// char	*ft_clean_gnl(char *line, char *result, int fd)
+// {
+// 	while (line != NULL)
+// 	{
+// 		free(line);
+// 		line = NULL;
+// 		line = get_next_line(fd);
+// 	}
+// 	free (result);
+// 	result = NULL;
+// 	return (result);
+// }
 
-char	*ft_check_gnl(char *result, char *line, t_data *data, int fd)
-{
-	char	*temp;
-	int		i;
-
-	temp = NULL;
-	while (1)
-	{
-		if (!result)
-			result = get_next_line(fd);
-		if (!line)
-			line = get_next_line(fd);
-		if (line == NULL || result == NULL || i < 0))
-		return ;
-	if (map[x][y] == '0' && (x == 0 || y == 0 || x == data->col_x - 1 || y == data->lin_y - 1 || (map[x - 1]
-char	*ft_ber_on_line(int fd, t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (game->map && game->map[0][i])
-		i++;
-	return (++i);
-}
 
 int	ft_countline(t_cube *game)
 {
@@ -176,8 +153,7 @@ int	ft_check_char(t_cube *game, int x, int y)
 			y = 0;
 			continue ;
 		}
-		if (game->map_game[x][y] == 'N' || game->map_game[x][y] == 'E'
-			|| game->map_game[x][y] == 'S' || game->map_game[x][y] == 'W')
+		if (is_perso(game->map_game, x, y) == TRUE)
 			perso--;
 		else if (game->map_game[x][y] != '1' && game->map_game[x][y] != '0'
 			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n')
