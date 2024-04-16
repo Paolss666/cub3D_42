@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/15 15:46:29 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:47:45 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,8 +169,7 @@ int	ft_check_char(t_cube *game, int x, int y)
 			y = 0;
 			continue ;
 		}
-		if (game->map_game[x][y] == 'N' || game->map_game[x][y] == 'E'
-			|| game->map_game[x][y] == 'S' || game->map_game[x][y] == 'W')
+		if (is_perso(game->map_game, x, y) == TRUE)
 			perso--;
 		else if (game->map_game[x][y] != '1' && game->map_game[x][y] != '0'
 			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n')
