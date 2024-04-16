@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/10 12:43:31 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:59:57 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ typedef struct s_img
 typedef struct s_cube
 {
     char    **map;
+	char	**map_game;
     void	*mlx_ptr;
 	void	*win_ptr;
 	char	**type;
 	int		rows;
+	int		line;
 	t_img	*img;
 	t_img	*no;
 	t_img	*so;

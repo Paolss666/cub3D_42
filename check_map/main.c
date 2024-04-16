@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:32:38 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/10 16:56:55 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:57:11 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,13 @@ int	main(int ac, char **av)
 	//print_map(game->type);
 	//check_err_types(game);
 	printf("TESTCHECKMAP\n");
-	printf("rowz = %d\n",game->rows);
-	printf("line = %d\n",game->line);
-	printf("map ligne 1 = %s\n", game->map[1]);
 	ft_check_map(game);
+	int b = 0;
+	printf("FINAL MAP = \n");
+			while (b < game->line)
+		{
+			printf("%s\n", game->map_game[b]);
+			b++;
+		}
 	return (ft_gbg(FLUSH, NULL, ALL), 0);
 }
