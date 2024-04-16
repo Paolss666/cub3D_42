@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/16 15:41:39 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/16 18:13:22 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,5 +201,14 @@ int				handle_keypress(int keysym, t_cube *game);
 
 // ----------------- check map --------------------- // 
 
-int	ft_check_map(t_cube *game);
+void	ft_add_space(t_cube *game);
+int		ft_countrows(t_cube *game);
+int		ft_countline(t_cube *game);
+void	ft_stock_map(t_cube *game);
+bool	is_perso(char **map, int x, int y);
+void	ft_check_frontier(t_cube *game, int x, int y);
+int		ft_check_char(t_cube *game, int x, int y);
+void	ft_add_wall(t_cube *game);
+int		ft_check_map(t_cube *game);
+void	ft_print_maperror(t_cube *game, char **map, int x, int y); //a supprimer
 #endif
