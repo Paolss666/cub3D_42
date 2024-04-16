@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/16 10:58:02 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:41:39 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "./libft/libft.h"
 # include "mlx_linux/mlx.h"
+#include <stdbool.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -54,11 +55,14 @@ typedef struct s_cube
 	int				*f;
 	int				*c;
 	int				line;
+	int				l;
 	unsigned int	f_color;
 	unsigned int	c_color;
 	char			**map;
+	char			**map_game;
 	char			**type;
 	int				rows;
+	int				crow;
 	int				cols;
 	unsigned int	**buf;
 	t_img			*img;
@@ -156,6 +160,9 @@ typedef struct s_cube
 	int				click;
 }               t_cube;
 
+
+void	print_map(char **map);
+
 char			**ft_split_gbg(char const *s, char c);
 int				check_file_open(char **av);
 int				get_types(t_cube *game, char **av);
@@ -191,4 +198,8 @@ int				handle_no_event(t_cube *game);
 int	handle_keyrelease(int keysym, t_cube *game);
 // int				handle_keypress(int keysym, t_cube *game);
 int				handle_keypress(int keysym, t_cube *game);
+
+// ----------------- check map --------------------- // 
+
+int	ft_check_map(t_cube *game);
 #endif

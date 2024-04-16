@@ -6,11 +6,11 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/16 15:09:44 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:59:53 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D2.h"
+#include "../cub3D.h"
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -22,8 +22,8 @@ void	ft_print_maperror(t_cube *game, char **map, int x, int y) //a supprimer
 {
 	int b = 0;
 	printf("%c = %d, %d\n", map[x][y], x, y);
-	printf("gamerow = %d\n", game->rows);
-	while (b < game->line)
+	printf("gamerow = %d\n", game->crow); 
+	while (b < game->l)
 	{
 		printf("%s\n", map[b]);
 		b++;
@@ -38,12 +38,12 @@ void	ft_add_space(t_cube *game)
 
 	i = 0;
 	j = 0;
-	while (i != game->line)
+	while (i != game->l)
 	{
 		if (game->map_game[i][j] == '\n' || (game->map_game[i][j] == '\0'
-			&& j <= game->rows))
+			&& j <= game->crow))
 			game->map_game[i][j] = ' ';
-		if (j == game->rows)
+		if (j == game->crow)
 		{
 			i++;
 			j = 0;
@@ -57,7 +57,7 @@ int	ft_countrows(t_cube *game)
 	int	i;
 
 	i = 0;
-	while (game->map && game->map[0][i])
+	while (game->map[0][i] && game->map[0][i])
 		i++;
 	return (++i);
 }
@@ -84,8 +84,8 @@ int	ft_adjust_row(t_cube *game)
 		i--;
 		while (game->map[i - 1][crow] != '\0')
 			crow++;
-		if (crow > game->rows)
-			game->rows = crow;
+		if (crow > game->crow)
+			game->crow = crow;
 	}
 	return (i);
 }
@@ -101,18 +101,18 @@ void	ft_stock_map(t_cube *game)
 	i = j;
 	while (game->map && game->map[i - 1][0] != '\n')
 		i--;
-	game->line = j - i;
+	game->l = j - i;
 	game->map_game = NULL;
 	game->map_game = (char **)malloc((sizeof(char *)) * (j - i + 1));
 	if (!game->map_game || ft_gbg(ADD, game->map_game, PARS))
 		return (ft_gbg(FLUSH, NULL, ALL), exit (99), (void)0);
-	game->line = j - i;
-	while (k < game->line)
+	game->l = j - i;
+	while (k < game->l)
 	{
-		game->map_game[k] = ft_calloc(sizeof(char), game->rows + 2);
+		game->map_game[k] = ft_calloc(sizeof(char), game->crow + 2);
 		if (!game->map_game[k] || ft_gbg(ADD, game->map_game[k], PARS))
 			return (ft_gbg(FLUSH, NULL, ALL), exit (99), (void)0);
-		ft_strlcpy(game->map_game[k], game->map[i], game->rows + 2);
+		ft_strlcpy(game->map_game[k], game->map[i], game->crow + 2);
 		i++;
 		k++;
 	}
@@ -135,7 +135,7 @@ void	ft_check_frontier(t_cube *game, int x, int y)
 	while (1)
 	{
 		if ((map[x][y] == '0' || is_perso(map, x, y) == TRUE) && (x == 0
-			|| y == 0 || x == game->line - 1 || y == game->rows
+			|| y == 0 || x == game->l - 1 || y == game->crow
 			|| (map[x - 1][y] == ' ' || map[x][y + 1] == ' '
 			|| map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
 		{
@@ -143,9 +143,9 @@ void	ft_check_frontier(t_cube *game, int x, int y)
 			return (ft_gbg(FLUSH, NULL, ALL), exit(99), (void)0);
 	//	ft_print_maperror(game, map, x, y); //a supprimer
 		}	
-		if (x == game->line - 1 && y == game->rows)
+		if (x == game->l - 1 && y == game->crow)
 			break ;
-		if (y == game->rows)
+		if (y == game->crow)
 		{
 			y = 0;
 			x++;
@@ -164,7 +164,7 @@ int	ft_check_char(t_cube *game, int x, int y)
 		if (game->map_game[x][y] == '\0')
 		{	
 			x++;
-			if (x == game->line)
+			if (x == game->l)
 				break ;
 			y = 0;
 			continue ;
@@ -193,7 +193,7 @@ void	ft_add_wall(t_cube *game)
 		if (game->map_game[x][y] == '\0')
 		{	
 			x++;
-			if (x == game->line)
+			if (x == game->l)
 				break ;
 			y = 0;
 			continue ;
@@ -206,11 +206,11 @@ void	ft_add_wall(t_cube *game)
 
 int	ft_check_map(t_cube *game)
 {
-	game->rows = ft_countrows(game);
-	game->line = ft_countline(game);
+	game->crow = ft_countrows(game);
+	game->l = ft_countline(game);
 	ft_stock_map(game);
 //	int i = 0;
-//	while (i < game->line)
+//	while (i < game->l)
 //	{
 //		printf("la map stockee finale est celle ci : %s\n", game->map_game[i]);
 //		i++;

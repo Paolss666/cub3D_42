@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/16 14:48:47 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:04:21 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ int	main(int ac, char **av)
 	if (fd == -1)
 		return (ft_gbg(FLUSH, NULL, ALL), 1);
 		// check_err_types(game);
+// VAZY MA GEUELE
+	// get_map(game,fd,  av);
+	// ft_check_map(game);
+	// print_map(game->map_game);	
+	// print_map(game->map);
 	if (get_file_content(game, av) == 1)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
 	init_mlx(game);
@@ -102,7 +107,7 @@ int	main(int ac, char **av)
 	printf("%f\n", game->dir_y);
 	printf("%f\n", game->plane_x);
 	printf("%f\n", game->plane_y);
-	display(game, 0);
+	// display(game, 0);
 	init_loop(game);
 	// printf("===================================\n");
 	// mlx_loop(game->mlx_ptr);
