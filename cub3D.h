@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/15 16:18:54 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/16 10:58:02 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,36 +156,39 @@ typedef struct s_cube
 	int				click;
 }               t_cube;
 
-char	**ft_split_gbg(char const *s, char c);
-int		check_file_open(char **av);
-int		get_types(t_cube *game, char **av);
-int		cpy_map_from_file(t_cube *game, char **argv, int rows);
-void	ft_count_rows(t_cube *game, int fd, int *rows);
-int		get_map(t_cube *game, int fd, char **av);
-int		is_wspc_excl_nl(char c);
-void	swap_ptrs(char **s1, char **s2);
-int		check_types(char **new);
-int		ptr_to_swap(char *s);
-int		search_type(char *type, char **new);
-int		reorder_new(char **new);
-int		found_redif_type(t_cube *game);
-int		get_file_content(t_cube *game, char **argv);
-t_img	*xpm_img(t_cube *game, char *img_path, int w, int h);
-int     get_color(int *tab_c);
-int		*ft_parse_for_color(char *identi);
-int		check_chars(char *s, char c);
-int		check_err_types(t_cube *game);
-void	init_mlx(t_cube *game);
-int		init_buf(t_cube *game);
-int		get_imgs_data_err(t_cube *game);
-void	get_pos(t_cube *game);
-int		esc_close(int key, t_cube *game);
-int		close_win(t_cube *game);
-void	draw(t_cube *game);
-int     get_color(int *tab_c);
+char			**ft_split_gbg(char const *s, char c);
+int				check_file_open(char **av);
+int				get_types(t_cube *game, char **av);
+int				cpy_map_from_file(t_cube *game, char **argv, int rows);
+void			ft_count_rows(t_cube *game, int fd, int *rows);
+int				get_map(t_cube *game, int fd, char **av);
+int				is_wspc_excl_nl(char c);
+void			swap_ptrs(char **s1, char **s2);
+int				check_types(char **new);
+int				ptr_to_swap(char *s);
+int				search_type(char *type, char **new);
+int				reorder_new(char **new);
+int				found_redif_type(t_cube *game);
+int				get_file_content(t_cube *game, char **av);
+t_img			*xpm_img(t_cube *game, char *img_path, int w, int h);
+int     		get_color(int *tab_c);
+int				*ft_parse_for_color(char *identi);
+int				check_chars(char *s, char c);
+int				check_err_types(t_cube *game);
+void			init_mlx(t_cube *game);
+int				init_buf(t_cube *game);
+int				get_imgs_data_err(t_cube *game);
+void			get_pos(t_cube *game);
+int				esc_close(int key, t_cube *game);
+int				close_win(t_cube *game);
+void			draw(t_cube *game);
+int     		get_color(int *tab_c);
 unsigned int	get_pixel_img(t_img src, int x, int y);
-void	put_pixel_img_anims(t_img dst, int x, int y, int color);
-int		display(t_cube *game, int x);
-void	texture(t_cube *game, int x);
-
+void			put_pixel_img_anims(t_img dst, int x, int y, int color);
+int				display(t_cube *game, int x);
+void			texture(t_cube *game, int x);
+int				handle_no_event(t_cube *game);
+int	handle_keyrelease(int keysym, t_cube *game);
+// int				handle_keypress(int keysym, t_cube *game);
+int				handle_keypress(int keysym, t_cube *game);
 #endif

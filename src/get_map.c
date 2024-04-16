@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/15 16:56:26 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/16 10:39:45 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,13 +250,13 @@ int	sort_content(t_cube *game, char **av)
  * 
 */
 
-int	get_file_content(t_cube *game, char **argv)
+int	get_file_content(t_cube *game, char **av)
 {
-	if (!argv || !argv[1])
+	if (!av || !av[1])
 		return (1);
-	if (check_file_open(argv) == -1)
+	if (check_file_open(av) == -1)
 		return (1);
-	if (sort_content(game, argv) == -1)
+	if (sort_content(game, av) == -1)
 		return (1);
 	return (0);
 }

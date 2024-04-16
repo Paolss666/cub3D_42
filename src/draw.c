@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/15 16:20:29 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:16:34 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,8 @@ void	texture_wall_orientation(t_cube *game)
 * game->step = 1.0 * game->tex_h / game->line_height Calcule le pas de texture par ligne de pizel pour eviter la distorsion
 * game->tex_pos = (game->draw_start - game->screen_h / 2 + game->line_height / 2) * game->step
    initialise la posit de texture in fonction de la hauteur de la ligne actuel;
-* 
- */
+*
+*/
 
 void	texture(t_cube *game, int x)
 {

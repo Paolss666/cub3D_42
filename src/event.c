@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/12 17:29:09 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/16 10:57:01 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,59 @@ int	close_win(t_cube *game)
 	mlx_destroy_display(game->mlx_ptr);
 	ft_gbg(FLUSH, NULL, ALL);
 	exit(0);
+}
+
+// int	handle_no_event(t_cube *game)
+// {
+// 	if (game->key_w)
+// 		move_up(game);
+// 	if (game->key_s)
+// 		move_down(game);
+// 	if (game->key_d)
+// 		move_right(game);
+// 	if (game->key_a)
+// 		move_left(game);
+// 	if (game->key_right)
+// 		rotate_right(game, -0.3);
+// 	if (game->key_left)
+// 		rotate_left(game, 0.3);
+// 	mlx_clear_window(game->mlx_ptr, game->win_ptr);
+// 	display(game, 0);
+// 	return (0);
+// }
+
+int	handle_keypress(int keysym, t_cube *game)
+{
+	if (keysym == XK_w)
+		game->key_w = 1;
+	if (keysym == XK_s)
+		game->key_s = 1;
+	if (keysym == XK_d)
+		game->key_d = 1;
+	if (keysym == XK_a)
+		game->key_a = 1;
+	if (keysym == 65363)
+		game->key_right = 1;
+	if (keysym == 65361)
+		game->key_left = 1;
+	if (keysym == XK_Escape)
+		close_win(game);
+	return (0);
+}
+
+int	handle_keyrelease(int keysym, t_cube *game)
+{
+	if (keysym == XK_w)
+		game->key_w = 0;
+	if (keysym == XK_s)
+		game->key_s = 0;
+	if (keysym == XK_d)
+		game->key_d = 0;
+	if (keysym == XK_a)
+		game->key_a = 0;
+	if (keysym == 65363)
+		game->key_right = 0;
+	if (keysym == 65361)
+		game->key_left = 0;
+	return (0);
 }
