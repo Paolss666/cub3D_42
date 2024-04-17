@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/16 15:59:53 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/17 11:26:35 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_countrows(t_cube *game)
 	int	i;
 
 	i = 0;
-	while (game->map[0][i] && game->map[0][i])
+	while (game->map && game->map[0][i])
 		i++;
 	return (++i);
 }

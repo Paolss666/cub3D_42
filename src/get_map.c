@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/16 16:06:01 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:31:40 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,8 @@ int	get_file_content(t_cube *game, char **av)
 		return (1);
 	if (sort_content(game, av) == -1)
 		return (1);
+	if (check_err_types(game) == -1)
+		return(1);
 	// ON LA MET ICI //
 	return (0);
 }

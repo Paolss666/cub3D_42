@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/16 15:41:39 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/17 11:58:16 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <stdlib.h>
 # include <time.h>
 # include <unistd.h>
-# include "X11/X.h"      // verifier
+# include "X11/X.h"
 # include "X11/keysym.h"
 
-
+# define SCREEN_W  480
 # define MLX_ERROR 1
 
 typedef struct s_img
@@ -123,7 +123,7 @@ typedef struct s_cube
 
 	// t_sprite		*sprite;
 	int				num_sprites;
-	// double			z_buffer[SCREEN_W];
+	double			z_buffer[SCREEN_W];
 	int				*sprite_order;
 	double			*sprite_distance;
 	double			sprite_x;
@@ -161,7 +161,7 @@ typedef struct s_cube
 }               t_cube;
 
 
-void	print_map(char **map);
+void			print_map(char **map);
 
 char			**ft_split_gbg(char const *s, char c);
 int				check_file_open(char **av);
@@ -194,8 +194,8 @@ unsigned int	get_pixel_img(t_img src, int x, int y);
 void			put_pixel_img_anims(t_img dst, int x, int y, int color);
 int				display(t_cube *game, int x);
 void			texture(t_cube *game, int x);
-int				handle_no_event(t_cube *game);
-int	handle_keyrelease(int keysym, t_cube *game);
+// int				handle_no_event(t_cube *game);
+int				handle_keyrelease(int keysym, t_cube *game);
 // int				handle_keypress(int keysym, t_cube *game);
 int				handle_keypress(int keysym, t_cube *game);
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_texture.c                                      :+:      :+:    :+:   */
+/*   get_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:58:04 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/12 14:45:37 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:13:31 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ int     get_color(int *tab_c)
 
 	hexa_color = ((unsigned int)tab_c[0] << 16 | \
 	(unsigned int)tab_c[1] << 8 | (unsigned int)tab_c[2]);
+	// printf("rgb == > %d\n", tab_c[0]);
+	// printf("rgb == > %d\n", tab_c[1]);
+	// printf("rgb == > %d\n", tab_c[2]);
 	return (hexa_color);
 }
 

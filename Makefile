@@ -6,7 +6,7 @@
 #    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/04/16 15:21:11 by npaolett         ###   ########.fr        #
+#    Updated: 2024/04/17 15:47:45 by npaolett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC = 	src/get_map.c \
 		src/get_pixel.c  \
 		src/draw.c  \
 		check_map/map.c \
-		src/main.c  \
+		main.c  \
   
 OBJ = $(SRC:.c=.o)
 # OBJ_BONUS = $(SRC_BONUS:.c=.o)

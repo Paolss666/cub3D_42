@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:56:26 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/16 13:51:15 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:08:15 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	wall_size(t_cube *game)
 		game->draw_start = 0;
 	game->draw_end = game->line_height / 2 + game->screen_h / 2;
 	if (game->draw_end >= game->screen_h)
-		game->draw_end = game->screen_h;
+		game->draw_end = game->screen_h - 1;
 }
 
-void	dda_algo(t_cube *game)
+void	dry_da_algo(t_cube *game)
 {
 	while (game->hit == 0)
 	{
@@ -49,7 +49,7 @@ void	dda_algo(t_cube *game)
 	}
 }
 
-void	init_side(t_cube *game)
+void	hit_init_side(t_cube *game)
 {
 	game->hit = 0;
 	if (game->raydir_x < 0)
@@ -95,7 +95,8 @@ int	display(t_cube *game, int x)
 			game->delta_dist_y = pow(10, 30);
 		else
 			game->delta_dist_y = fabs(1 / game->raydir_y);
-		(init_side(game), dda_algo(game), wall_size(game), texture(game, x));
+		(hit_init_side(game), dry_da_algo(game),
+			wall_size(game), texture(game, x ));
 		x++;
 	}
 	draw(game);
