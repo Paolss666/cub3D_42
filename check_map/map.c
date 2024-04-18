@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/18 14:48:03 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:57:28 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	ft_check_frontier(t_cube *game, int x, int y)
 			|| (map[x - 1][y] == ' ' || map[x][y + 1] == ' '
 			|| map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
 		{
+			ft_print_maperror(game, game->map, x, y);
 			write(1, "map not valid : walls incorrect\n", 33);
 			mlx_destroy_display(game->mlx_ptr);
 			return (ft_gbg(FLUSH, NULL, ALL), exit(99), (void)0);
