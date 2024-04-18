@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/18 14:57:28 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:21:24 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,26 @@ void	ft_add_space(t_cube *game)
 int	ft_countrows(t_cube *game)
 {
 	int	i;
+	int y;
+	int x;
 
+	y = 0;
+	x = 0;
 	i = 0;
-	while (game->map[0][i] && game->map[0][i])
-		i++;
+	while (1)
+	{
+		if (!(game->map[x][y]))
+		{
+			if (!game->map[x + 1])
+				break;
+			x++;
+			if (i < y)
+				i = y;
+			y = 0;
+		}
+		else
+			y++;
+	}
 	return (i);
 }
 
@@ -118,8 +134,8 @@ void	ft_check_frontier(t_cube *game, int x, int y)
 			|| (map[x - 1][y] == ' ' || map[x][y + 1] == ' '
 			|| map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
 		{
-			ft_print_maperror(game, game->map, x, y);
-			write(1, "map not valid : walls incorrect\n", 33);
+			ft_print_maperror(game, game->map_game, x, y);
+			write(1, "Error\nmap not valid : walls incorrect\n", 39);
 			mlx_destroy_display(game->mlx_ptr);
 			return (ft_gbg(FLUSH, NULL, ALL), exit(99), (void)0);
 		}	
@@ -153,11 +169,11 @@ int	ft_check_char(t_cube *game, int x, int y)
 			perso--;
 		else if (game->map_game[x][y] != '1' && game->map_game[x][y] != '0'
 			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n')
-			return (write(1, "map not valid : char not valid on map\n", 39), 1);
+			return (write(1, "Error\nmap not valid : char not valid on map\n", 45), 1);
 		y++;
 	}
 	if (perso != 0)
-		return (write(1, "map not valid : invalid number of perso\n", 41), 1);
+		return (write(1, "Error\nmap not valid : invalid number of perso\n", 47), 1);
 	return (0);
 }
 
