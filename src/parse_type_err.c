@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/18 14:44:03 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:40:02 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	*ft_parse_for_color(char *identi)
 	if (tab_size(colours) != 3)
 		return (ft_putstr_fd("Error\nWrong colours\n", 2), ft_gbg(FLUSH, NULL,
 				ALL), exit(0), NULL);
-	rgb[0] = get_nb(crt_color_parse(colours[0]));
+	rgb[0] = get_nb(colours[0]);
 	if (rgb[0] == -1)
 		return (ft_free_tab(colours), ft_gbg(FREE, rgb, EX), NULL);
 	rgb[1] = get_nb(colours[1]);

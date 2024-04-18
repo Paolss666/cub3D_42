@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/18 14:50:28 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:21:56 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "./libft/libft.h"
 # include "mlx_linux/mlx.h"
-#include <stdbool.h>
+# include <stdbool.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -66,7 +66,6 @@ typedef struct s_cube
 	int				cols;
 	unsigned int	**buf;
 	t_img			*img;
-
 	int				key_w;
 	int				key_s;
 	int				key_a;

@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/18 13:42:22 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:40:01 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ void draw(t_cube *game)
         }
         y++;
     }
-    mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img->img_ptr, 0 , 0);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img->img_ptr, 0, 0);
 }
-
-
 
 /*
 * pixel color ceiling floor : Cette fonction est chargée de colorer les pixels
@@ -98,7 +96,7 @@ void	pxl_color_wll(t_cube *game, int x)
 		// printf("game->tex_y == > %d\n", game->tex_y);
 		// printf("game->tex_pos == > %f\n", game->tex_pos);
 		// text diff mais il faut test ptn //
-		color = game->tex[game->tex_num][game->tex_h * game->tex_y + game->tex_x + 1];
+		color = game->tex[game->tex_num][game->tex_h * game->tex_y + game->tex_x];
 		game->buf[y][x] = color;
 		y++;
 	}
@@ -170,18 +168,12 @@ void	texture(t_cube *game, int x)
 	else
 		game->wall_x = game->pos_x + game->perp_wall_dist * game->raydir_x;
 	game->wall_x = floor(game->wall_x);
-	// printf("wall_x == > %f\n ", game->wall_x);
 	game->tex_x = (int)(game->wall_x * (double)(game->tex_w));
-	// printf("game->line_height == > %d\n ", game->line_height);
-	// printf("game->screen_h == > %d\n ", game->screen_h);
-	// printf("game->draw_start == > %d\n ", game->draw_start);
 	if (game->side == 0 && game->raydir_x > 0)
 		game->tex_x = game->tex_w - game->tex_x - 1;
 	game->step = 1.0 * game->tex_h / game->line_height;
-	// printf("game->step == > %f\n ", game->step);
 	game->tex_pos = (game->draw_start - game->screen_h  / 2
 			+ game->line_height / 2) * game->step;
-	// printf("game->tex_pos == > %f\n ", game->tex_pos);
 	texture_wall_orientation(game);
 	pxl_color_wll(game, x);
 	pixel_color_ceiling_floor(game, x);

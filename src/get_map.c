@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/18 14:49:48 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:43:24 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,12 +235,13 @@ int	sort_content(t_cube *game, char **av)
 	if (!game->type || ft_gbg(ADD, game->type, PARS))
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
 	fd = get_types(game, av);
+	if (found_redif_type(game) != 0)
+		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
 	delete_types_nl(game);
 	if (fd < 0)
 		return (-1);
 	if (get_map(game, fd, av) == -1)
 		return (-1);
-	// print_map(game->map);
 	return (0);
 }
 

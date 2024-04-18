@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/18 14:57:28 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:27:28 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ft_stock_map(t_cube *game)
 		game->map_game[k] = ft_calloc(sizeof(char), game->crow + 2);
 		if (!game->map_game[k] || ft_gbg(ADD, game->map_game[k], PARS))
 			return (ft_gbg(FLUSH, NULL, ALL), exit (99), (void)0);	
-		ft_strlcpy(game->map_game[k], game->map[i], game->crow + 1);
+		ft_strlcpy(game->map_game[k], game->map[i], game->crow + 2);
 		i++;
 		k++;
 	}

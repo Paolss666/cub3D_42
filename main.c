@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/17 15:47:38 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:35:13 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_game(t_cube *game)
 	game->tex_w = 64;
 	game->tex_h = 64;
 	game->nb_tex = 5;
-	game->move_speed = 0.05;
+	game->move_speed = 0.01;
 	game->key_w = 0;
 	game->key_s = 0;
 	game->key_a = 0;
@@ -60,7 +60,7 @@ void	init_game(t_cube *game)
 	game->key_right = 0;
 	game->key_q = 0;
 	game->key_e = 0;
-	game->tex  = 0;
+	// game->tex  = 0;
 }
 
 
