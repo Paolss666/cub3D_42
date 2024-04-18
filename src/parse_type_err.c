@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/17 17:02:11 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:44:03 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	get_nb(char *color)
 	int	i;
 
 	i = 0;
-	
 	while (color[i] && color[i] != '\n')
 	{
 		if (!(color[i] >= '0' && color[i] <= '9'))
@@ -59,9 +58,6 @@ t_img	*xpm_img(t_cube *game, char *img_path, int w, int h)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), NULL);
 	new_img->h = h;
 	new_img->w = w;
-	// printf("========>   %d\n" 	,new_img->h);
-	// printf("========>   %d\n" 	,new_img->w);
-	// printf("========> img path = %s\n", img_path);
 	new_img->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			img_path, &(new_img->w), &(new_img->h));
 	if (!new_img->img_ptr)
@@ -89,6 +85,17 @@ int	tab_size(char **tab)
 	return (i);
 }
 
+
+char	*crt_color_parse(char *color)
+{
+	char	*parse_color;
+
+	parse_color = ft_substr(color, 2, ft_strlen(color));
+	if (!parse_color || ft_gbg(ADD, parse_color, PARS))
+		return (ft_gbg(FLUSH, NULL, ALL), exit(99), NULL);
+	return (parse_color);
+}
+
 int	*ft_parse_for_color(char *identi)
 {
 	int		*rgb;
@@ -104,13 +111,13 @@ int	*ft_parse_for_color(char *identi)
 	if (tab_size(colours) != 3)
 		return (ft_putstr_fd("Error\nWrong colours\n", 2), ft_gbg(FLUSH, NULL,
 				ALL), exit(0), NULL);
-	rgb[0] = get_nb((colours[0] + 2));
+	rgb[0] = get_nb(crt_color_parse(colours[0]));
 	if (rgb[0] == -1)
 		return (ft_free_tab(colours), ft_gbg(FREE, rgb, EX), NULL);
-	rgb[1] = get_nb((colours[1] + 2));
+	rgb[1] = get_nb(colours[1]);
 	if (rgb[1] == -1)
 		return (ft_free_tab(colours), ft_gbg(FREE, rgb, EX), NULL);
-	rgb[2] = get_nb((colours[2] + 2));
+	rgb[2] = get_nb(colours[2]);
 	if (rgb[2] == -1)
 		return (ft_free_tab(colours), ft_gbg(FREE, rgb, EX), NULL);
 	return (ft_free_tab(colours), rgb);
