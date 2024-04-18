@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/17 11:26:35 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:48:03 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,22 @@
 # include <stdio.h>
 
 // --------------------------------------------- POUR CHECKER LA MAP --------------------------------------------
-/*
+
 void	ft_print_maperror(t_cube *game, char **map, int x, int y) //a supprimer
 {
 	int b = 0;
 	printf("%c = %d, %d\n", map[x][y], x, y);
-	printf("gamerow = %d\n", game->crow); 
+	printf("gamecrow = %d\n", game->crow);
+	printf("gamel = %d\n", game->l);
+	printf("gamerownico = %d\n", game->rows);
+	printf("gamelinenico = %d\n", game->line);
 	while (b < game->l)
 	{
 		printf("%s\n", map[b]);
 		b++;
 	}
 }
-*/
+
 
 void	ft_add_space(t_cube *game)
 {
@@ -57,9 +60,9 @@ int	ft_countrows(t_cube *game)
 	int	i;
 
 	i = 0;
-	while (game->map && game->map[0][i])
+	while (game->map[0][i] && game->map[0][i])
 		i++;
-	return (++i);
+	return (i);
 }
 
 int	ft_countline(t_cube *game)
@@ -72,47 +75,23 @@ int	ft_countline(t_cube *game)
 	return (i);
 }
 
-int	ft_adjust_row(t_cube *game)
-{
-	int	crow;
-	int	i;
-
-	crow = 0;
-	i = ft_countline(game);
-	while (game->map && game->map[i - 1][0] == '\n')
-	{
-		i--;
-		while (game->map[i - 1][crow] != '\0')
-			crow++;
-		if (crow > game->crow)
-			game->crow = crow;
-	}
-	return (i);
-}
-
 void	ft_stock_map(t_cube *game)
 {
 	int	i;
-	int	j;
 	int	k;
 
 	k = 0;
-	j = ft_adjust_row(game);
-	i = j;
-	while (game->map && game->map[i - 1][0] != '\n')
-		i--;
-	game->l = j - i;
+	i = 0;
 	game->map_game = NULL;
-	game->map_game = (char **)malloc((sizeof(char *)) * (j - i + 1));
+	game->map_game = ft_calloc((sizeof(char *)), (game->line));
 	if (!game->map_game || ft_gbg(ADD, game->map_game, PARS))
 		return (ft_gbg(FLUSH, NULL, ALL), exit (99), (void)0);
-	game->l = j - i;
 	while (k < game->l)
 	{
 		game->map_game[k] = ft_calloc(sizeof(char), game->crow + 2);
 		if (!game->map_game[k] || ft_gbg(ADD, game->map_game[k], PARS))
-			return (ft_gbg(FLUSH, NULL, ALL), exit (99), (void)0);
-		ft_strlcpy(game->map_game[k], game->map[i], game->crow + 2);
+			return (ft_gbg(FLUSH, NULL, ALL), exit (99), (void)0);	
+		ft_strlcpy(game->map_game[k], game->map[i], game->crow + 1);
 		i++;
 		k++;
 	}
@@ -140,8 +119,8 @@ void	ft_check_frontier(t_cube *game, int x, int y)
 			|| map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
 		{
 			write(1, "map not valid : walls incorrect\n", 33);
+			mlx_destroy_display(game->mlx_ptr);
 			return (ft_gbg(FLUSH, NULL, ALL), exit(99), (void)0);
-	//	ft_print_maperror(game, map, x, y); //a supprimer
 		}	
 		if (x == game->l - 1 && y == game->crow)
 			break ;
@@ -207,18 +186,16 @@ void	ft_add_wall(t_cube *game)
 int	ft_check_map(t_cube *game)
 {
 	game->crow = ft_countrows(game);
-	game->l = ft_countline(game);
+	game->l = ft_countline(game);	
 	ft_stock_map(game);
-//	int i = 0;
-//	while (i < game->l)
-//	{
-//		printf("la map stockee finale est celle ci : %s\n", game->map_game[i]);
-//		i++;
-//	}
 	if (ft_check_char(game, 0, 0) == 1)
+	{
+		mlx_destroy_display(game->mlx_ptr);
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
+	}
 	ft_check_frontier(game, 0, 0);
 	ft_add_wall(game);
+	game->map = game->map_game;
 	return (0);
 }
 
