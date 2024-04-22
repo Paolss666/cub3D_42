@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/22 12:24:17 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:11:25 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	pxl_color_wll(t_cube *game, int x)
 	unsigned int	color;
 
 	y = game->draw_start;
-	while (y <= game->draw_end)
+	while (y < game->draw_end)
 	{
 		game->tex_y = (int)game->tex_pos & (game->tex_h - 1);
 		game->tex_pos += game->step;

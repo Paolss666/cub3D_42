@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/22 12:34:07 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:10:51 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	main(int ac, char **av)
 		return (ft_gbg(FLUSH, NULL, ALL), 1);
 	if (get_file_content(game, av) == 1)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
+	print_map(game->map);
 	// init_mlx(game);
 	init_mlx(game);
 	get_pos(game);

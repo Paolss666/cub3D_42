@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/22 12:43:07 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:37:33 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ t_img	*xpm_img(t_cube *game, char *img_path, int w, int h)
 	new_img->full_buf = (int *)mlx_get_data_addr(new_img->img_ptr,
 			&new_img->bpp, &new_img->line_len,
 			&new_img->endian);
-	// printf("img len %d\n", new_img->line_len);
-	// printf("new_img->bpp %d\n", new_img->bpp);
-	// printf("new_img->endian%d\n", new_img->endian);
 	if (!new_img->full_buf)
 	{
 		mlx_destroy_image(game->mlx_ptr, new_img->img_ptr);
