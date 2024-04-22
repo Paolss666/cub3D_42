@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
+#    By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/04/17 15:47:45 by npaolett         ###   ########.fr        #
+#    Updated: 2024/04/22 15:28:21 by elcesped         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC = 	src/get_map.c \
 		src/get_pixel.c  \
 		src/draw.c  \
 		check_map/map.c \
+		minimap/minimap.c \
 		main.c  \
   
 OBJ = $(SRC:.c=.o)
