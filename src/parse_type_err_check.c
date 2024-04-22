@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:14:53 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/18 18:41:31 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/22 12:01:02 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	get_each_img_data(t_cube *game, t_img *img, int i)
 	int	x;
 	int	y;
 
-	printf("index ==> %d\n", i);
-	printf("game-> * game->h ===> %d\n", game->tex_w * game->tex_h);
 	game->tex[i] = ft_calloc((game->tex_w * game->tex_h), sizeof(int));
 	if (!game->tex[i] || ft_gbg(ADD, game->tex[i], EX))
         return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
@@ -37,24 +35,23 @@ int	get_each_img_data(t_cube *game, t_img *img, int i)
 	return (0);
 }
 
-    // if (get_each_img_data(game, game->door, 4) != 0)
+	// if (get_each_img_data(game, game->door, 4)!= 0)
     //     return (-1);
-
 
 int get_imgs_data_err(t_cube *game)
 {
-    game->tex = ft_calloc(4, sizeof(int *));
-    if (!game->tex || ft_gbg(ADD, game->tex, EX))
-        return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
-    if (get_each_img_data(game, game->no, 0) != 0)
-        return (-1);
-    if (get_each_img_data(game, game->so, 1) != 0)
-        return (-1);
-    if (get_each_img_data(game, game->ea, 2) != 0)
-        return (-1);
-    if (get_each_img_data(game, game->we, 3) != 0)
-        return (-1);
-    return (0);
+	game->tex = ft_calloc(4, sizeof(int *));
+	if (!game->tex || ft_gbg(ADD, game->tex, EX))
+		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
+	if (get_each_img_data(game, game->no, 0) != 0)
+		return (-1);
+	if (get_each_img_data(game, game->so, 1) != 0)
+		return (-1);
+	if (get_each_img_data(game, game->ea, 2) != 0)
+		return (-1);
+	if (get_each_img_data(game, game->we, 3) != 0)
+		return (-1);
+	return (0);
 }
 
 int	check_err_types_bis_color(t_cube *game)
@@ -76,7 +73,7 @@ int	check_err_types_bis_color(t_cube *game)
 int	check_err_types(t_cube *game)
 {
 	game->no = xpm_img(game, game->type[0], 64, 64);
-	if (!game->no)
+	if (!game->no)	
 		return (-1);
 	game->so = xpm_img(game, game->type[1], 64, 64);
 	if (!game->so)

@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:16:40 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/18 17:41:04 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/22 12:00:02 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_mlx(t_cube *game)
 			game->screen_h, "cub3d");
 	if (!game->win_ptr)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), (void)0);
-	game->img = ft_calloc(1, sizeof(t_img));
+	game->img = ft_calloc(sizeof(t_img), 1);
 	if (!game->img || ft_gbg(ADD, game->img, PARS))
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), (void)0);
 	game->img->img_ptr = mlx_new_image(game->mlx_ptr, game->screen_w,

@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/18 17:40:01 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/22 12:24:17 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void draw(t_cube *game)
 {
-    int x;
-    int y;
+	int x;
+	int y;
 
-    y = 0;
-    while (y < game->screen_h)
-    {
-        x = 0;
-        while (x < game->screen_w)
-        {
-            game->img->full_buf[y * game->screen_w + x] = game->buf[y][x];
-            x++;
-        }
-        y++;
-    }
+	y = 0;
+	while (y < game->screen_h)
+	{
+		x = 0;
+		while (x < game->screen_w)
+		{
+			game->img->full_buf[y * game->screen_w + x] = game->buf[y][x];
+			x++;
+		}
+		y++;
+	}
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img->img_ptr, 0, 0);
 }
 
@@ -84,18 +84,10 @@ void	pxl_color_wll(t_cube *game, int x)
 	unsigned int	color;
 
 	y = game->draw_start;
-	while (y < game->draw_end)
+	while (y <= game->draw_end)
 	{
-		// printf("y == > %d\n", y);
-		// printf("teh_h== > %d\n", game->tex_h);
-		// printf("====== > %f\n", game->tex_pos);
-		// printf("game->tex_num == > %d\n", game->tex_num);
-		// printf("game->tex_x == > %d\n", game->tex_x);
 		game->tex_y = (int)game->tex_pos & (game->tex_h - 1);
 		game->tex_pos += game->step;
-		// printf("game->tex_y == > %d\n", game->tex_y);
-		// printf("game->tex_pos == > %f\n", game->tex_pos);
-		// text diff mais il faut test ptn //
 		color = game->tex[game->tex_num][game->tex_h * game->tex_y + game->tex_x];
 		game->buf[y][x] = color;
 		y++;
@@ -167,13 +159,15 @@ void	texture(t_cube *game, int x)
 		game->wall_x = game->pos_y + game->perp_wall_dist * game->raydir_y;
 	else
 		game->wall_x = game->pos_x + game->perp_wall_dist * game->raydir_x;
-	game->wall_x = floor(game->wall_x);
+	game->wall_x -= floor(game->wall_x);
 	game->tex_x = (int)(game->wall_x * (double)(game->tex_w));
 	if (game->side == 0 && game->raydir_x > 0)
 		game->tex_x = game->tex_w - game->tex_x - 1;
+	if (game->side == 1 && game->raydir_y < 0)
+		game->tex_x = game->tex_w - game->tex_x - 1;
 	game->step = 1.0 * game->tex_h / game->line_height;
-	game->tex_pos = (game->draw_start - game->screen_h  / 2
-			+ game->line_height / 2) * game->step;
+	game->tex_pos = (game->draw_start
+			- game->screen_h / 2 + game->line_height / 2) * game->step;
 	texture_wall_orientation(game);
 	pxl_color_wll(game, x);
 	pixel_color_ceiling_floor(game, x);

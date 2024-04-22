@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/18 16:35:13 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/22 12:34:07 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,10 @@ int	main(int ac, char **av)
 	fd = check_file_open(av);
 	if (fd == -1)
 		return (ft_gbg(FLUSH, NULL, ALL), 1);
-	init_mlx(game);
-	// check_err_types(game);
-	// VAZY MA GEUELE
-	// get_map(game,fd,  av);
-	// ft_check_map(game);
-	// print_map(game->map_game);	
-	// print_map(game->map);
 	if (get_file_content(game, av) == 1)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
 	// init_mlx(game);
+	init_mlx(game);
 	get_pos(game);
 	printf("%f\n", game->pos_x);
 	printf("%f\n", game->pos_y);

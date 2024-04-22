@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/18 18:43:24 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:57:13 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,8 @@ int	get_map(t_cube *game, int fd, char **av)
  * Una volta raggiunta una riga non vuota, significa che è la prima riga
  * 	della mappa; quindi contiamo tutte le righe della mappa, incrementando
  * 	game->rows
- */ 
+*/
+
 
 void	ft_count_rows(t_cube *game, int fd, int *rows)
 {
@@ -218,20 +219,20 @@ int cpy_map_from_file(t_cube *game, char **argv, int rows)
 
 
 /*
- * sort_content
- * Calls get_types: we want exactly 6 types so we open the file
+ * 	sort_content
+ * 	Calls get_types: we want exactly 6 types so we open the file
  * 	and get the 6 first non-empty char* ; the fd is returned
  * 	so that we can read what's next (the map)
- * Calls get_map: the first is alread_y open and the head for read is
+ * 	Calls get_map: the first is alread_y open and the head for read is
  * 	stopped after the 6 types ; we then get all the rows that come
  * 	after, which correspond supposedly to the map
- */
+*/
 
 int	sort_content(t_cube *game, char **av)
 {
 	int	fd;
 
-	game->type = ft_calloc(7, sizeof(char *));
+	game->type = ft_calloc(7, sizeof(char **));
 	if (!game->type || ft_gbg(ADD, game->type, PARS))
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
 	fd = get_types(game, av);
@@ -261,7 +262,7 @@ int	get_file_content(t_cube *game, char **av)
 	if (sort_content(game, av) == -1)
 		return (1);
 	if (check_err_types(game) == -1)
-		return(1);
+		return (1);
 	if (ft_check_map(game) == 1)
 		return (1);
 	return (0);
