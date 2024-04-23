@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:14:53 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/22 12:01:02 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:39:29 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	check_err_types(t_cube *game)
 		return (-1);
 	if (check_chars((game->type[4] + 2), ',') != 2
 		|| check_chars((game->type[5] + 2), ',') != 2)
-		return (ft_putstr_fd("ERROR\nInvalid type of format\n", 2), -1);
+		return (ft_putstr_fd("ERROR\nInvalid type of format\n", 2),
+			ft_gbg(FLUSH, NULL, ALL), exit(99),-1);
 	return (check_err_types_bis_color(game));
 }

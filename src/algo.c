@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:56:26 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/22 12:32:16 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:07:13 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,8 @@ int	display(t_cube *game, int x)
 		(hit_init_side(game), dry_da_algo(game),
 			wall_size(game), texture(game, x));
 		x++;
-		printf("x === %d\n", x);
 	}
 	draw(game);
-	// ft_free_tab(game->buf);
 	return (0);
 }
 

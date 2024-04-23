@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/22 14:11:25 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:21:48 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	texture_wall_orientation(t_cube *game)
 	}
 }
 
-/* 
+/*
 * si le cote de la collision avec le mur est horizontal(game->side == 0)
 	calcule la position du mur sur l 'axe des x (game->wll_x) en utilisant la position actuelle
 	du jueur (game->pos_y) plus la distance perpendiculaire qu mur multipliee par la direction du rayon(game->raydir_y)
