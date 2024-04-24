@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 12:39:32 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:54:59 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ int	handle_no_event(t_cube *game)
 		move_right(game);
 	if (game->key_a)
 		move_left(game);
-	// if (game->key_right)
-		// rotate_right(game, -0.3);
-	// if (game->key_left)
-		// rotate_left(game, 0.3);
+	if (game->key_right)
+		m_rotate_right(game, 0.3);
+	if (game->key_left)
+		m_rotate_left(game, 0.3);
 	mlx_clear_window(game->mlx_ptr, game->win_ptr);
 	display(game, 0);
+	ft_put_minimap(game);
 	return (0);
 }
 
@@ -86,15 +87,9 @@ int	handle_keypress(int keysym, t_cube *game)
 	if (keysym == XK_a)
 		game->key_a = 1;
 	if (keysym == XK_Right)
-	{
 		game->key_right = 1;
-		printf("%d\n", game->key_right);
-	}
 	if (keysym == XK_Left)
-	{
 		game->key_left = 2;
-		printf("%d\n", game->key_left);
-	}
 	if (keysym == XK_Escape)
 		close_win(game);
 	return (0);

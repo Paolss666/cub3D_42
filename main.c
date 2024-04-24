@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/23 15:56:45 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:50:00 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_game(t_cube *game)
 	game->tex_w = 64;
 	game->tex_h = 64;
 	game->nb_tex = 5;
-	game->move_speed = 0.01;
+	game->move_speed = 0.5;
 	game->key_w = 0;
 	game->key_s = 0;
 	game->key_a = 0;
@@ -60,7 +60,6 @@ void	init_game(t_cube *game)
 	game->key_right = 0;
 	game->key_q = 0;
 	game->key_e = 0;
-	// game->tex  = 0;
 }
 
 
@@ -68,7 +67,7 @@ void	init_game(t_cube *game)
 
 void	init_loop(t_cube *game)
 {
-	mlx_hook(game->win_ptr, 2,  KeyPressMask, &esc_close, game);
+	mlx_hook(game->win_ptr, 2, KeyPressMask, &esc_close, game);
 	mlx_hook(game->win_ptr, 17, NoEventMask, &close_win, game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);
 	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask,
@@ -105,8 +104,5 @@ int	main(int ac, char **av)
 	printf("%f\n", game->plane_y);
 	display(game, 0);
 	init_loop(game);
-	// printf("===================================\n");
-	// mlx_loop(game->mlx_ptr);
-	// ERROR TYPES ----////////
 	return (0);
 }
