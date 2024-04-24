@@ -6,24 +6,11 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 16:50:00 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:41:12 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-/* 
-	// game->nb_tex = 5;
-	// game->move_speed = 0.01;
-	// game->key_w = 0;
-	// game->key_s = 0;
-	// game->key_a = 0;
-	// game->key_d = 0;
-	// game->key_left = 0;
-	// game->key_right = 0;
-	// game->key_q = 0;
-	// game->key_e = 0;
- */
 
 void	print_map(char **map)
 {
@@ -87,21 +74,21 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (ft_gbg(FLUSH, NULL, ALL),
 			ft_putstr_fd("Bad numbers of arguments\n", 2), 1);
-	init_game(game);
 	fd = check_file_open(av);
 	if (fd == -1)
 		return (ft_gbg(FLUSH, NULL, ALL), 1);
+	init_game(game);
 	if (get_file_content(game, av) == 1)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
-	print_map(game->map);
+	// print_map(game->map);
 	init_mlx(game);
 	get_pos(game);
-	printf("%f\n", game->pos_x);
-	printf("%f\n", game->pos_y);
-	printf("%f\n", game->dir_x);
-	printf("%f\n", game->dir_y);
-	printf("%f\n", game->plane_x);
-	printf("%f\n", game->plane_y);
+	// printf("%f\n", game->pos_x);
+	// printf("%f\n", game->pos_y);
+	// printf("%f\n", game->dir_x);
+	// printf("%f\n", game->dir_y);
+	// printf("%f\n", game->plane_x);
+	// printf("%f\n", game->plane_y);
 	display(game, 0);
 	init_loop(game);
 	return (0);

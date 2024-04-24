@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 15:54:59 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:11:00 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	handle_keypress(int keysym, t_cube *game)
 	if (keysym == XK_Right)
 		game->key_right = 1;
 	if (keysym == XK_Left)
-		game->key_left = 2;
+		game->key_left = 1;
 	if (keysym == XK_Escape)
 		close_win(game);
 	return (0);

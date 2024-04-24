@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/23 11:21:48 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:33:15 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void    pixel_color_ceiling_floor(t_cube *game, int x)
 	}
 }
 
-/* 
+/*
 * pixel_color_walls ==> colorie les pixels des murs
 * Utilise une boucle et parcourt les lignes verticales de la fenêtre de visualisation,
 * de la coordonnée y game->draw_start jusqu'à game->draw_end

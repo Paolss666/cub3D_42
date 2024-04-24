@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:38:49 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 15:54:36 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:30:39 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,4 @@ void    m_rotate_left(t_cube *game, float move_speed)
     old_plane_x = game->plane_x;
     game->plane_x = game->plane_x * cos(move_speed) - game->plane_y * sin(move_speed);
     game->plane_y = old_plane_x * sin(move_speed) + game->plane_y * cos(move_speed);
- 
-    
 }
