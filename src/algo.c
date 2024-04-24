@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:56:26 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/22 17:07:13 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:49:42 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,3 @@ int	display(t_cube *game, int x)
 	return (0);
 }
 
-void free_2d_array(int **array, int rows)
-{
-    int i;
-
-	i = 0;
-    while (i < rows)
-	{
-        free(array[i]);
-        i++;
-    }
-    free(array);
-}

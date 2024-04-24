@@ -6,11 +6,12 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/23 16:20:55 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:39:32 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
 
 int	esc_close(int key, t_cube *game)
 {
@@ -77,48 +78,25 @@ int	handle_no_event(t_cube *game)
 int	handle_keypress(int keysym, t_cube *game)
 {
 	if (keysym == XK_w)
-	{
 		game->key_w = 1;
-		// printf("%f\n", game->pos_x);
-		// printf("%f\n", game->pos_y);
-		// draw(game);
-	}
 	if (keysym == XK_s)
-	{
 		game->key_s = 1;
-		// printf("%f\n", game->pos_x);
-		// printf("%f\n", game->pos_y);
-		// game->pos_x++;
-		// game->pos_y++;
-
-	}
 	if (keysym == XK_d)
-	{
 		game->key_d = 1;
-		// printf("%f\n", game->pos_x);
-		// printf("%f\n", game->pos_y);
-
-	}
 	if (keysym == XK_a)
-	{
 		game->key_a = 1;
-		// printf("%f\n", game->pos_x);
-		// printf("%f\n", game->pos_y);
-
-	}
-	if (keysym == 65363)
+	if (keysym == XK_Right)
 	{
 		game->key_right = 1;
-		// printf("%d\n", game->key_right);
+		printf("%d\n", game->key_right);
 	}
-	if (keysym == 65361)
+	if (keysym == XK_Left)
 	{
-		game->key_left = 1;
-		// printf("%d\n", game->key_left);
+		game->key_left = 2;
+		printf("%d\n", game->key_left);
 	}
 	if (keysym == XK_Escape)
 		close_win(game);
-	// draw(game);
 	return (0);
 }
 
@@ -132,9 +110,9 @@ int	handle_keyrelease(int keysym, t_cube *game)
 		game->key_d = 0;
 	if (keysym == XK_a)
 		game->key_a = 0;
-	if (keysym == 65363)
+	if (keysym == XK_Right)
 		game->key_right = 0;
-	if (keysym == 65361)
+	if (keysym ==XK_Left)
 		game->key_left = 0;
 	return (0);
 }

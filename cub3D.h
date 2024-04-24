@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/23 16:21:11 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:38:45 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <unistd.h>
 # include "X11/X.h"
 # include "X11/keysym.h"
+# include <X11/keysymdef.h>
 
 # define SCREEN_W  480
 # define MLX_ERROR 1
