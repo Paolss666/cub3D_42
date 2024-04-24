@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 13:53:03 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:54:05 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <unistd.h>
 # include "X11/X.h"
 # include "X11/keysym.h"
-# include <X11/keysymdef.h>
 
 # define SCREEN_W  480
 # define MLX_ERROR 1
@@ -194,16 +193,11 @@ unsigned int	get_pixel_img(t_img src, int x, int y);
 void			put_pixel_img_anims(t_img dst, int x, int y, int color);
 int				display(t_cube *game, int x);
 void			texture(t_cube *game, int x);
-int				handle_no_event(t_cube *game);
+// int				handle_no_event(t_cube *game);
 int				handle_keyrelease(int keysym, t_cube *game);
 // int				handle_keypress(int keysym, t_cube *game);
 int				handle_keypress(int keysym, t_cube *game);
 
-// ------------------ MOVE -------------------------- // 
-void    move_up(t_cube *game);
-void    move_down(t_cube *game);
-void    move_right(t_cube *game);
-void    move_left(t_cube *game);
 // ----------------- check map --------------------- // 
 
 void	ft_add_space(t_cube *game);
