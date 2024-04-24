@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 12:38:45 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:53:03 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,4 +216,7 @@ int		ft_check_char(t_cube *game, int x, int y);
 void	ft_add_wall(t_cube *game);
 int		ft_check_map(t_cube *game);
 void	ft_print_maperror(t_cube *game, char **map, int x, int y); //a supprimer
+
+// ------------------------minimap ---------------------- //
+int ft_put_minimap(t_cube *game);
 #endif

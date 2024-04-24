@@ -6,7 +6,7 @@
 #    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/04/23 15:55:31 by npaolett         ###   ########.fr        #
+#    Updated: 2024/04/24 13:53:23 by npaolett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC = 	src/get_map.c \
 		src/draw.c  \
 		src/move_algo.c  \
 		check_map/map.c \
+		minimap/minimap.c \
 		main.c  \
   
 OBJ = $(SRC:.c=.o)
