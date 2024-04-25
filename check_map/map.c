@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/22 14:08:57 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:59:34 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,11 +169,13 @@ int	ft_check_char(t_cube *game, int x, int y)
 			perso--;
 		else if (game->map_game[x][y] != '1' && game->map_game[x][y] != '0'
 			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n')
-			return (write(1, "Error\nmap not valid : char not valid on map\n", 45), 1);
+			return (write(1, "Error\nmap not valid : char not valid on map\n", 45),
+				clear_wrong_text(game), 1);
 		y++;
 	}
 	if (perso != 0)
-		return (write(1, "Error\nmap not valid : invalid number of perso\n", 47), 1);
+		return (write(1, "Error\nmap not valid : invalid number of perso\n", 47),
+			clear_wrong_text(game), 1);
 	return (0);
 }
 

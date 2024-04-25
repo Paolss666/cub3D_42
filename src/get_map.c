@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/25 14:08:19 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:48:50 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	get_types(t_cube *game, char **av)
 	if (count == 6)
 		return (fd);
 	else
-		return (close(fd),
-			ft_putstr_fd("Error\nInvalid numbers of types\n", 2), -1);
+		return (ft_putstr_fd("Error\nInvalid numbers of types\n", 2),
+			close(fd), clear_wrong_text(game), -1);
 }
 
 
@@ -126,7 +126,8 @@ int	get_map(t_cube *game, int fd, char **av)
 			ft_gbg(FLUSH, NULL, ALL), -1);
 	game->map = ft_calloc(game->rows + 2, sizeof(char *));
 	if (!game->map || ft_gbg(ADD, game->map, PARS))
-		return (ft_putstr_fd("Bad malloc\n", 2), ft_gbg(FLUSH, NULL, ALL),-1);
+		return (ft_putstr_fd("Bad malloc\n", 2), ft_gbg(FLUSH, NULL, ALL),
+			clear_wrong_text(game), -1);
 	cpy_map_from_file(game, av, rows);
 	return (0);
 }
@@ -237,11 +238,11 @@ int	sort_content(t_cube *game, char **av)
 	if (!game->type || ft_gbg(ADD, game->type, PARS))
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
 	fd = get_types(game, av);
+	if (fd < 0)
+		return (-1);
 	if (found_redif_type(game) != 0)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
 	delete_types_nl(game);
-	if (fd < 0)
-		return (-1);
 	if (get_map(game, fd, av) == -1)
 		return (-1);
 	return (0);

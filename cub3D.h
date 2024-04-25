@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/25 12:03:27 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:50:55 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ typedef struct s_cube
 	int				click;
 }               t_cube;
 
-
+int	tab_size(char **tab);
 void			print_map(char **map);
 
 char			**ft_split_gbg(char const *s, char c);

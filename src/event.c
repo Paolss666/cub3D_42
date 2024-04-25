@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 18:11:00 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:37:57 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	handle_keyrelease(int keysym, t_cube *game)
 		game->key_a = 0;
 	if (keysym == XK_Right)
 		game->key_right = 0;
-	if (keysym ==XK_Left)
+	if (keysym == XK_Left)
 		game->key_left = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/25 12:03:00 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:16:16 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	clear_wrong_text(t_cube *game)
 {
 	if (game && game->so)
 		mlx_destroy_image(game->mlx_ptr, game->so->img_ptr);
-	if (game &&  game->we)
+	if (game && game->we)
 		mlx_destroy_image(game->mlx_ptr, game->we->img_ptr);
 	if (game && game->ea)
 		mlx_destroy_image(game->mlx_ptr, game->ea->img_ptr);
-	if (game &&  game->no)
+	if (game && game->no)
 		mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	ft_gbg(FLUSH, NULL, ALL);
@@ -126,15 +126,16 @@ int	*ft_parse_for_color(char *identi, t_cube *game)
 	if (!colours)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), NULL);
 	if (tab_size(colours) != 3)
-		return (ft_putstr_fd("Error\nWrong colours\n", 2), clear_wrong_text(game), NULL);
+		return (ft_putstr_fd("Error\nWrong colours\n", 2),
+			clear_wrong_text(game), NULL);
 	rgb[0] = get_nb(colours[0]);
 	if (rgb[0] == -1)
-		return ( clear_wrong_text(game),NULL);
+		return (clear_wrong_text(game),NULL);
 	rgb[1] = get_nb(colours[1]);
 	if (rgb[1] == -1)
-		return ( clear_wrong_text(game),NULL);
+		return (clear_wrong_text(game),NULL);
 	rgb[2] = get_nb(colours[2]);
 	if (rgb[2] == -1)
-		return ( clear_wrong_text(game), NULL);
+		return (clear_wrong_text(game), NULL);
 	return (ft_free_tab(colours), rgb);
 }
