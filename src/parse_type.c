@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:35:21 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 18:31:31 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:13:20 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,9 @@ int	found_redif_type(t_cube *game)
 		i++;
 	}
 	if (reorder_new(new) == -1)
-		return (-1);
+		return (clear_wrong_text(game), -1);
 	if (clean_for_types(new) == -1)
-		return (-1);
+		return (clear_wrong_text(game), -1);
 	ft_free_tab(game->type);
 	game->type = new;
 	// print_map(new);

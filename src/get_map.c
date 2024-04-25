@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/22 11:57:13 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:08:19 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,16 @@ int	get_types(t_cube *game, char **av)
 		return (fd);
 	else
 		return (close(fd),
-				ft_putstr_fd("Error\nInvalid numbers of types\n", 2), -1);
+			ft_putstr_fd("Error\nInvalid numbers of types\n", 2), -1);
 }
 
 
 /*
- * is_newline
- * Utils for count_rows, it compares the line content to "\n" to see
- * 	if the line is just an empty newline or not ; it updates the
- * 	int ln and int rows accordingly
- */
+* is_newline
+* Utils for count_rows, it compares the line content to "\n" to see
+* 	if the line is just an empty newline or not ; it updates the
+* 	int ln and int rows accordingly
+*/
 
 void	is_newline(char *line, int *ln, int *rows)
 {
@@ -122,10 +122,11 @@ int	get_map(t_cube *game, int fd, char **av)
 	game->rows = 0;
 	ft_count_rows(game, fd, &rows);
 	if (game->rows <= 0)
-		return (ft_putstr_fd("Error\nInvalid map\n", 2), -1);
+		return (ft_putstr_fd("Error\nInvalid map\n", 2),
+			ft_gbg(FLUSH, NULL, ALL), -1);
 	game->map = ft_calloc(game->rows + 2, sizeof(char *));
 	if (!game->map || ft_gbg(ADD, game->map, PARS))
-		return (ft_putstr_fd("Bad malloc\n", 2), -1);
+		return (ft_putstr_fd("Bad malloc\n", 2), ft_gbg(FLUSH, NULL, ALL),-1);
 	cpy_map_from_file(game, av, rows);
 	return (0);
 }
@@ -174,7 +175,7 @@ void	ft_count_rows(t_cube *game, int fd, int *rows)
 /*
  * delete_types_nl
  * Removes the useless '\n' at the end of the types char*
- */
+*/
 
 void	delete_types_nl(t_cube *game)
 {

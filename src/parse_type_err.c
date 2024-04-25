@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 16:47:03 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:03:00 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,31 @@ int	get_nb(char *color)
 	while (color[i] && color[i] != '\n')
 	{
 		if (!(color[i] >= '0' && color[i] <= '9'))
-			return (ft_putstr_fd("Error\nBad RGB color\n", 2),
-				ft_gbg(FLUSH, NULL, ALL), exit(99),-1);
+			return (ft_putstr_fd("Error\nBad RGB color\n", 2),-1);
 		i++;
 	}
 	color[i] = '\0';
 	n = ft_atoi(color);
 	if (n < 0 || n > 255)
-		return (ft_putstr_fd("Error\nBad RGB color\n", 2),
-			ft_gbg(FLUSH, NULL, ALL), exit(99),-1);
+		return (ft_putstr_fd("Error\nBad RGB color\n", 2),-1);
 	return (n);
 }
+
+
+void	clear_wrong_text(t_cube *game)
+{
+	if (game && game->so)
+		mlx_destroy_image(game->mlx_ptr, game->so->img_ptr);
+	if (game &&  game->we)
+		mlx_destroy_image(game->mlx_ptr, game->we->img_ptr);
+	if (game && game->ea)
+		mlx_destroy_image(game->mlx_ptr, game->ea->img_ptr);
+	if (game &&  game->no)
+		mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
+	mlx_destroy_display(game->mlx_ptr);
+	ft_gbg(FLUSH, NULL, ALL);
+	exit(99);
+}	
 
 t_img	*xpm_img(t_cube *game, char *img_path, int w, int h)
 {
@@ -64,7 +78,7 @@ t_img	*xpm_img(t_cube *game, char *img_path, int w, int h)
 			img_path, &new_img->w, &new_img->h);
 	if (!new_img->img_ptr)
 		return (ft_putstr_fd("Error\nwrong texture path\n", 2),
-			ft_gbg(FLUSH, NULL, ALL), exit(99), NULL);
+			clear_wrong_text(game), NULL);
 	new_img->full_buf = (int *)mlx_get_data_addr(new_img->img_ptr,
 			&new_img->bpp, &new_img->line_len,
 			&new_img->endian);
@@ -99,7 +113,7 @@ int	tab_size(char **tab)
 // // 	return (parse_color);
 // // }
 
-int	*ft_parse_for_color(char *identi)
+int	*ft_parse_for_color(char *identi, t_cube *game)
 {
 	int		*rgb;
 	char	**colours;
@@ -112,16 +126,15 @@ int	*ft_parse_for_color(char *identi)
 	if (!colours)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), NULL);
 	if (tab_size(colours) != 3)
-		return (ft_putstr_fd("Error\nWrong colours\n", 2), ft_gbg(FLUSH, NULL,
-				ALL), exit(99), NULL);
+		return (ft_putstr_fd("Error\nWrong colours\n", 2), clear_wrong_text(game), NULL);
 	rgb[0] = get_nb(colours[0]);
 	if (rgb[0] == -1)
-		return (ft_free_tab(colours), ft_gbg(FREE, rgb, EX), NULL);
+		return ( clear_wrong_text(game),NULL);
 	rgb[1] = get_nb(colours[1]);
 	if (rgb[1] == -1)
-		return (ft_free_tab(colours), ft_gbg(FREE, rgb, EX), NULL);
+		return ( clear_wrong_text(game),NULL);
 	rgb[2] = get_nb(colours[2]);
 	if (rgb[2] == -1)
-		return (ft_free_tab(colours), ft_gbg(FREE, rgb, EX), NULL);
+		return ( clear_wrong_text(game), NULL);
 	return (ft_free_tab(colours), rgb);
 }

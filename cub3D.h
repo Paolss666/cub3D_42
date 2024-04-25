@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 15:55:09 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:03:27 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ int				found_redif_type(t_cube *game);
 int				get_file_content(t_cube *game, char **av);
 t_img			*xpm_img(t_cube *game, char *img_path, int w, int h);
 int     		get_color(int *tab_c);
-int				*ft_parse_for_color(char *identi);
+int				*ft_parse_for_color(char *identi, t_cube *game);
 int				check_chars(char *s, char c);
 int				check_err_types(t_cube *game);
 void			init_mlx(t_cube *game);
@@ -198,7 +198,8 @@ int				handle_keyrelease(int keysym, t_cube *game);
 // int				handle_keypress(int keysym, t_cube *game);
 int				handle_keypress(int keysym, t_cube *game);
 
-
+// --------------- CLEAR -------------------------- // 
+void	clear_wrong_text(t_cube *game);
 
 // ---------------- MOVE ------------------------- // 
 void	move_up(t_cube *game);
@@ -207,6 +208,7 @@ void	move_left(t_cube *game);
 void	move_right(t_cube *game);
 void    m_rotate_right(t_cube *game, float move_speed);
 void    m_rotate_left(t_cube *game, float move_speed);
+
 // ----------------- check map --------------------- // 
 
 void	ft_add_space(t_cube *game);

@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 18:41:12 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:55:01 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ void	init_game(t_cube *game)
 	game->key_right = 0;
 	game->key_q = 0;
 	game->key_e = 0;
+	game->ea = NULL;
+	game->so = NULL;
+	game->no = NULL;
+	game->we = NULL;
 }
 
 
@@ -80,15 +84,8 @@ int	main(int ac, char **av)
 	init_game(game);
 	if (get_file_content(game, av) == 1)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
-	// print_map(game->map);
 	init_mlx(game);
 	get_pos(game);
-	// printf("%f\n", game->pos_x);
-	// printf("%f\n", game->pos_y);
-	// printf("%f\n", game->dir_x);
-	// printf("%f\n", game->dir_y);
-	// printf("%f\n", game->plane_x);
-	// printf("%f\n", game->plane_y);
 	display(game, 0);
 	init_loop(game);
 	return (0);
