@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 13:54:05 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:39:19 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,13 @@ typedef struct s_cube
 	int				d_x;
 
 	int				click;
+
+	int				p_c;
+	int				p_d;
+	int				pv_c;
+	int				pv_d;
+	int				p_minimap;
+	
 }               t_cube;
 
 
@@ -193,10 +200,16 @@ unsigned int	get_pixel_img(t_img src, int x, int y);
 void			put_pixel_img_anims(t_img dst, int x, int y, int color);
 int				display(t_cube *game, int x);
 void			texture(t_cube *game, int x);
-// int				handle_no_event(t_cube *game);
+ int				handle_no_event(t_cube *game);
 int				handle_keyrelease(int keysym, t_cube *game);
-// int				handle_keypress(int keysym, t_cube *game);
+ int				handle_press(int keysym, t_cube *game);
 int				handle_keypress(int keysym, t_cube *game);
+
+//------------------ move -----------------------------
+void	move_up(t_cube *game);
+void	move_down(t_cube *game);
+void	move_left(t_cube *game);
+void	move_right(t_cube *game);
 
 // ----------------- check map --------------------- // 
 

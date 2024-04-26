@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 12:39:32 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:54:13 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ int	handle_keypress(int keysym, t_cube *game)
 		game->key_d = 1;
 	if (keysym == XK_a)
 		game->key_a = 1;
+	if (keysym == XK_m && game->p_minimap == 0)
+		game->p_minimap = 1;
+	else if (keysym == XK_m && game->p_minimap == 1)
+		game->p_minimap = 0;
 	if (keysym == XK_Right)
 	{
 		game->key_right = 1;
@@ -112,7 +116,7 @@ int	handle_keyrelease(int keysym, t_cube *game)
 		game->key_a = 0;
 	if (keysym == XK_Right)
 		game->key_right = 0;
-	if (keysym ==XK_Left)
+	if (keysym == XK_Left)
 		game->key_left = 0;
 	return (0);
 }
