@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:14:53 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/25 12:06:41 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:13:12 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	check_err_types_bis_color(t_cube *game)
 int	check_err_types(t_cube *game)
 {
 	game->no = xpm_img(game, game->type[0], 64, 64);
-	if (!game->no)	
+	if (!game->no)
 		return (-1);
 	game->so = xpm_img(game, game->type[1], 64, 64);
 	if (!game->so)
@@ -89,6 +89,6 @@ int	check_err_types(t_cube *game)
 	if (check_chars((game->type[4] + 2), ',') != 2
 		|| check_chars((game->type[5] + 2), ',') != 2)
 		return (ft_putstr_fd("Error\nInvalid type of format\n", 2),
-		clear_wrong_text(game), -1);
+			clear_wrong_text(game), -1);
 	return (check_err_types_bis_color(game));
 }

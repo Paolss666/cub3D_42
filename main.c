@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/25 15:37:44 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:02:53 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_game(t_cube *game)
 	game->tex_w = 64;
 	game->tex_h = 64;
 	game->nb_tex = 5;
-	game->move_speed = 0.5;
+	game->move_speed = 0.05;
 	game->key_w = 0;
 	game->key_s = 0;
 	game->key_a = 0;
@@ -83,7 +83,7 @@ int	main(int ac, char **av)
 		return (ft_gbg(FLUSH, NULL, ALL), 1);
 	init_game(game);
 	if (get_file_content(game, av) == 1)
-		return (ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
+		return (get_next_line(fd, 1), ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
 	init_mlx(game);
 	get_pos(game);
 	display(game, 0);

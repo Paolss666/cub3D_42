@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/25 15:50:55 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 11:52:10 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ typedef struct s_cube
 	int				click;
 }               t_cube;
 
-int	tab_size(char **tab);
+int				tab_size(char **tab);
 void			print_map(char **map);
 
 char			**ft_split_gbg(char const *s, char c);
@@ -174,7 +174,7 @@ int				check_types(char **new);
 int				ptr_to_swap(char *s);
 int				search_type(char *type, char **new);
 int				reorder_new(char **new);
-int				found_redif_type(t_cube *game);
+int				found_redif_type(t_cube *game, int fd);
 int				get_file_content(t_cube *game, char **av);
 t_img			*xpm_img(t_cube *game, char *img_path, int w, int h);
 int     		get_color(int *tab_c);

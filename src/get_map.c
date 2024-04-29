@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/25 16:48:50 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:02:35 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,17 @@ int	check_file_open(char **av)
 	return (fd);
 }
 
-/* * get_types
- * La fonction récupérera les 6 premiers char* non vides qui 
- *   correspondent aux 6 types attendus.
- * Dans le processus de recherche des 6 char*, nous suivons le 
- *   nombre de lignes lues dans game->rows.
- * En cas de succès (= nous avons obtenu 6 char*), le descripteur 
- *   de fichier (fd) est retourné, de sorte que le début de la 
- *   lecture reste en place.
- * Sinon (= tous les 6 types n'ont pas été trouvés), -1 est retourné. */
+/*
+* get_types
+* La fonction récupérera les 6 premiers char* non vides qui 
+*   correspondent aux 6 types attendus.
+* Dans le processus de recherche des 6 char*, nous suivons le 
+*   nombre de lignes lues dans game->rows.
+* En cas de succès (= nous avons obtenu 6 char*), le descripteur 
+*   de fichier (fd) est retourné, de sorte que le début de la 
+*   lecture reste en place.
+* Sinon (= tous les 6 types n'ont pas été trouvés), -1 est retourné.
+*/
 
 int	get_types(t_cube *game, char **av)
 {
@@ -73,9 +75,12 @@ int	get_types(t_cube *game, char **av)
 		return (perror("open failed"), -1);
 	while (count < 6)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(fd, 0);
 		if (!line || ft_gbg(ADD, line, PARS))
+		{
+			get_next_line(fd, 1);
 			break ;
+		}
 		if (!(ft_strlen(line) == 1 && !ft_strncmp(line, "\n", 1)))
 			game->type[count++] = line;
 		else
@@ -154,7 +159,7 @@ void	ft_count_rows(t_cube *game, int fd, int *rows)
 	ln = 1;
 	while (ln)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(fd, 0);
 		if (!line || ft_gbg(ADD, line, PARS))
 			break ;
 		is_newline(line, &ln, rows);
@@ -164,14 +169,14 @@ void	ft_count_rows(t_cube *game, int fd, int *rows)
 		game->rows++;
 		while (1)
 		{
-			line = get_next_line(fd);
+			line = get_next_line(fd, 0);
 			if (!line)
 				break ;
 			free(line);
 			game->rows++;
 		}
 	}
-	(get_next_line(fd), close(fd));
+	(get_next_line(fd, 0), close(fd));
 }
 /*
  * delete_types_nl
@@ -204,18 +209,18 @@ int cpy_map_from_file(t_cube *game, char **argv, int rows)
 		return (perror("open failed"), -1);
 	while (rows > 0)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(fd, 0);
 		free(line);
 		rows--;
 	}
 	while (i > 0)
 	{
-		game->map[game->line] = get_next_line(fd);
+		game->map[game->line] = get_next_line(fd, 0);
 		ft_gbg(ADD, game->map[game->line], PARS);
 		i--;
 		game->line++;
 	}
-	(get_next_line(fd), close(fd));
+	(get_next_line(fd, 0), close(fd));
 	return (0);
 }
 
@@ -230,6 +235,23 @@ int cpy_map_from_file(t_cube *game, char **argv, int rows)
  * 	after, which correspond supposedly to the map
 */
 
+
+int	check_if_in_nl_map(t_cube *game)
+{
+	int		y;
+
+	y = 0;
+	if (!game->map)
+		return (-1);
+	while (game->map[y])
+	{
+		if (!ft_strcmp(game->map[y],"\n"))
+			return (-1);
+		y++;
+	}
+	return (0);
+}
+
 int	sort_content(t_cube *game, char **av)
 {
 	int	fd;
@@ -240,11 +262,14 @@ int	sort_content(t_cube *game, char **av)
 	fd = get_types(game, av);
 	if (fd < 0)
 		return (-1);
-	if (found_redif_type(game) != 0)
+	if (found_redif_type(game, fd) != 0)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
 	delete_types_nl(game);
 	if (get_map(game, fd, av) == -1)
 		return (-1);
+	if (check_if_in_nl_map(game) == -1)
+		return (ft_putstr_fd("Error\nNew_line in map\n", 2),
+			clear_wrong_text(game), -1);
 	return (0);
 }
 

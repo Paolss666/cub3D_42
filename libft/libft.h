@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:40:46 by npaolett          #+#    #+#             */
-/*   Updated: 2024/03/27 09:53:28 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:30:41 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_extract_line(char *line);
 int					ft_check(char *storage);
 char				*ft_line_maker(int fd, char *buf, char *storage);
-char				*get_next_line(int fd);
+char				*get_next_line(int fd, int frex);
 int					ft_strcmp(const char *s1, const char *s2);
 t_list				*ft_lstnew(void *content);
 t_list				*ft_lstlast(t_list *lst);

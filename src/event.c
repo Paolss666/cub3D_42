@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/25 15:37:57 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:29:56 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,7 @@ int	handle_no_event(t_cube *game)
 		m_rotate_right(game, 0.3);
 	if (game->key_left)
 		m_rotate_left(game, 0.3);
-	mlx_clear_window(game->mlx_ptr, game->win_ptr);
 	display(game, 0);
-	ft_put_minimap(game);
 	return (0);
 }
 

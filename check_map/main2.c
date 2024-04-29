@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:32:38 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/10 16:56:55 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:02:24 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int	main(int ac, char **av)
 	if (fd == -1)
 		return (ft_gbg(FLUSH, NULL, ALL), 1);
 	get_map(game, fd, av);
-	 print_map(game->map);	
 	//get_file_content(game, av);
 
 	//found_redif_type(game);

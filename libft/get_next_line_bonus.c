@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:59:22 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/25 16:22:13 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:08:22 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,25 @@ char	*ft_extract_line(char *line)
 	return (tmp);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int frex)
 {
-	static char	*storage[1024];
+	static char	*storage;
 	char		*buf;
 	char		*line;
 	char		*temp2;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || fd > 1024)
+	if (frex == 1)
+		return (free(storage), NULL);
+	if (fd < 0 || BUFFER_SIZE < 1 /* || fd > 1024 */)
 		return (0);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!(buf))
 		return (NULL);
-	line = ft_line_maker(fd, buf, storage[fd]);
+	line = ft_line_maker(fd, buf, storage);
 	free(buf);
 	if (!line)
 		return (NULL);
-	storage[fd] = ft_extract_line(line);
+	storage = ft_extract_line(line);
 	temp2 = ft_strdup(line);
 	free(line);
 	line = NULL;

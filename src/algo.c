@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:56:26 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 13:57:45 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 11:39:53 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	dry_da_algo(t_cube *game)
 			game->map_y += game->step_y;
 			game->side = 1;
 		}
-		if (game->map[game->map_x][game->map_y] == '1' ||
-			game->map[game->map_x][game->map_y] == 'D' )
+		if (game->map[game->map_x][game->map_y] == '1'
+			/* game->map[game->map_x][game->map_y] == 'D'  */)
 			game->hit = 1;
 	}
 }
@@ -77,6 +77,20 @@ void	hit_init_side(t_cube *game)
 	}
 }
 
+void	ft_free_bffr(t_cube *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->screen_h && game->buf && game->buf[i])
+	{
+		ft_gbg(FREE, game->buf[i], PARS);
+		i++;
+	}
+	ft_gbg(FREE, game->buf, PARS);
+	game->buf = NULL;
+}
+
 int	display(t_cube *game, int x)
 {
 	init_buf(game);
@@ -100,6 +114,7 @@ int	display(t_cube *game, int x)
 		x++;
 	}
 	draw(game);
+	ft_free_bffr(game);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/24 18:33:15 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:00:07 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,8 @@ void	texture_wall_orientation(t_cube *game)
 * This function returns the nearest integer value, which is less than or equal
 * to the floating point number (float or double) passed to it as an argument
 */
+
+
 
 void	texture(t_cube *game, int x)
 {

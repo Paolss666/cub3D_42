@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:35:21 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/25 15:52:57 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:17:43 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char *init_for_trim(void)
 }
 
 
-int	found_redif_type(t_cube *game)
+int	found_redif_type(t_cube *game, int fd)
 {
 	char	*to_trim;
 	int		i;
@@ -141,7 +141,7 @@ int	found_redif_type(t_cube *game)
 		i++;
 	}
 	if (reorder_new(new) == -1)
-		return (clear_wrong_text(game), -1);
+		return (get_next_line(fd, 1), clear_wrong_text(game), -1);
 	if (clean_for_types(new) == -1)
 		return (clear_wrong_text(game), -1);
 	ft_free_tab(game->type);
