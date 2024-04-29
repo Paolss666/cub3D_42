@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 12:23:32 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:29:53 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,6 @@ int				display(t_cube *game, int x);
 void			texture(t_cube *game, int x);
 int				handle_no_event(t_cube *game);
 int				handle_keyrelease(int keysym, t_cube *game);
-// int				handle_keypress(int keysym, t_cube *game);
 int				handle_keypress(int keysym, t_cube *game);
 
 // --------------- CLEAR -------------------------- // 
@@ -225,4 +224,5 @@ void	ft_print_maperror(t_cube *game, char **map, int x, int y); //a supprimer
 
 // ------------------------minimap ---------------------- //
 int ft_put_minimap(t_cube *game);
+
 #endif

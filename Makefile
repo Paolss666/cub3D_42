@@ -6,7 +6,7 @@
 #    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/04/24 14:48:41 by npaolett         ###   ########.fr        #
+#    Updated: 2024/04/29 14:54:25 by npaolett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,11 @@ SRC = 	src/get_map.c \
 		check_map/map.c \
 		minimap/minimap.c \
 		main.c  \
-  
+
+SRC_BONUS = 
+
 OBJ = $(SRC:.c=.o)
-# OBJ_BONUS = $(SRC_BONUS:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 
 LIBFT = ./libft/libft.a
@@ -54,9 +56,9 @@ $(NAME): $(OBJ)
 		make mlx
 		cc -o $(NAME) $(OBJ) $(LIBFT) $(LIBMLX) $(MLXFLAGS)
 
-# $(BONUS): $(OBJ_BONUS)
- # make lib
-# cc -o $(BONUS) $(OBJ_BONUS) $(LIBFT) 
+$(BONUS): $(OBJ_BONUS)
+		make lib
+		cc -o $(BONUS) $(OBJ_BONUS) $(LIBFT) 
 
 all : $(NAME)
 
@@ -86,4 +88,4 @@ re: fclean
 rebonus: fclean
 		make bonus 
 
-.PHONY: all clean fclean  
+.PHONY: all clean fclean 

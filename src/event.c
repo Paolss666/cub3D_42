@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 10:29:56 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:19:36 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,22 @@ int	handle_no_event(t_cube *game)
 	if (game->key_a)
 		move_left(game);
 	if (game->key_right)
-		m_rotate_right(game, 0.3);
+		m_rotate_right(game, 0.1);
 	if (game->key_left)
-		m_rotate_left(game, 0.3);
+		m_rotate_left(game, 0.1);
 	display(game, 0);
 	return (0);
 }
 
 int	handle_keypress(int keysym, t_cube *game)
 {
-	if (keysym == XK_w)
+	if (keysym == XK_w || keysym == XK_W)
 		game->key_w = 1;
-	if (keysym == XK_s)
+	if (keysym == XK_s || keysym == XK_S)
 		game->key_s = 1;
-	if (keysym == XK_d)
+	if (keysym == XK_d || keysym == XK_D)
 		game->key_d = 1;
-	if (keysym == XK_a)
+	if (keysym == XK_a || keysym == XK_A)
 		game->key_a = 1;
 	if (keysym == XK_Right)
 		game->key_right = 1;
@@ -95,13 +95,13 @@ int	handle_keypress(int keysym, t_cube *game)
 
 int	handle_keyrelease(int keysym, t_cube *game)
 {
-	if (keysym == XK_w)
+	if (keysym == XK_w || keysym == XK_W)
 		game->key_w = 0;
-	if (keysym == XK_s)
+	if (keysym == XK_s || keysym == XK_S)
 		game->key_s = 0;
-	if (keysym == XK_d)
+	if (keysym == XK_d || keysym == XK_D)
 		game->key_d = 0;
-	if (keysym == XK_a)
+	if (keysym == XK_a || keysym == XK_A)
 		game->key_a = 0;
 	if (keysym == XK_Right)
 		game->key_right = 0;
