@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:44:50 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 11:57:16 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:17:22 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,17 @@ void	move_down(t_cube *game)
 	if (new_pos_y != '1')
 		game->pos_y -= game->dir_y * game->move_speed;
 }
+
+/* 
+* Il motivo per cui si utilizza il valore di π (pi greco)
+* in questo codice è per calcolare la direzione della testa del giocatore
+* e determinare il movimento verso sinistra.
+* In questo caso, viene utilizzata la costante M_PI_2,
+* che rappresenta π/2,
+* per ruotare la direzione del giocatore di 90 gradi in senso antiorario.
+* Questo è utile quando si desidera spostarsi a sinistra rispetto alla direzione
+* corrente della testa del giocatore.
+ */
 
 void	move_left(t_cube *game)
 {

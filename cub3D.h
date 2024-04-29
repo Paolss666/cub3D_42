@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 11:52:10 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:23:32 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define SCREEN_W  480
 # define MLX_ERROR 1
+# define SPEED 0.05
 
 typedef struct s_img
 {
