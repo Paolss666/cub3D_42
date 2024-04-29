@@ -6,19 +6,18 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:03:10 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:45:42 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
 
 int	esc_close(int key, t_cube *game)
 {
 	int	i;
 
 	i = 4;
-	if (key ==  XK_Escape)
+	if (key == XK_Escape)
 	{
 		if (game->so)
 			mlx_destroy_image(game->mlx_ptr, game->so->img_ptr);
@@ -28,6 +27,8 @@ int	esc_close(int key, t_cube *game)
 			mlx_destroy_image(game->mlx_ptr, game->ea->img_ptr);
 		if (game->no)
 			mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
+		if (game->door)
+			mlx_destroy_image(game->mlx_ptr, game->door->img_ptr);
 		if (game->img->img_ptr)
 			mlx_destroy_image(game->mlx_ptr, game->img->img_ptr);
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
@@ -48,6 +49,8 @@ int	close_win(t_cube *game)
 		mlx_destroy_image(game->mlx_ptr, game->ea->img_ptr);
 	if (game->no)
 		mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
+	if (game->door)
+		mlx_destroy_image(game->mlx_ptr, game->door->img_ptr);
 	if (game->img->img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->img->img_ptr);
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);

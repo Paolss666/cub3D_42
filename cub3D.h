@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:06:18 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:39:25 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,8 +197,8 @@ int				esc_close(int key, t_cube *game);
 int				close_win(t_cube *game);
 void			draw(t_cube *game);
 int     		get_color(int *tab_c);
-unsigned int	get_pixel_img(t_img src, int x, int y);
-void			put_pixel_img_anims(t_img dst, int x, int y, int color);
+// unsigned int	get_pixel_img(t_img src, int x, int y);
+// void			put_pixel_img_anims(t_img dst, int x, int y, int color);
 int				display(t_cube *game, int x);
 void			texture(t_cube *game, int x);
 int				handle_no_event(t_cube *game);

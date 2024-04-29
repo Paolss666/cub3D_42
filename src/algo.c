@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:56:26 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:10:07 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:00:11 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	dry_da_algo(t_cube *game)
 			game->side = 1;
 		}
 		if (game->map[game->map_x][game->map_y] == '1'
-			/* game->map[game->map_x][game->map_y] == 'D'  */)
+			|| game->map[game->map_x][game->map_y] == 'D' )
 			game->hit = 1;
 	}
 }

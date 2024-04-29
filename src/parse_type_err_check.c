@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:14:53 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/26 12:13:12 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:43:16 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ int	get_each_img_data(t_cube *game, t_img *img, int i)
 	return (0);
 }
 
-	// if (get_each_img_data(game, game->door, 4)!= 0)
-    //     return (-1);
 
 int get_imgs_data_err(t_cube *game)
 {
-	game->tex = ft_calloc(4, sizeof(int *));
+	game->tex = ft_calloc(5, sizeof(int *));
 	if (!game->tex || ft_gbg(ADD, game->tex, EX))
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
 	if (get_each_img_data(game, game->no, 0) != 0)
@@ -51,6 +49,8 @@ int get_imgs_data_err(t_cube *game)
 		return (-1);
 	if (get_each_img_data(game, game->we, 3) != 0)
 		return (-1);
+	if (get_each_img_data(game, game->door, 4) != 0)
+        return (-1);
 	return (0);
 }
 
@@ -83,6 +83,9 @@ int	check_err_types(t_cube *game)
 		return (-1);
 	game->ea = xpm_img(game, game->type[3], 64, 64);
 	if (!game->ea)
+		return (-1);
+	game->door = xpm_img(game, game->type[4], 64, 64);
+	if (!game->door)
 		return (-1);
 	if (get_imgs_data_err(game) != 0)
 		return (ft_gbg(FLUSH, NULL, ALL),exit(99),-1);
