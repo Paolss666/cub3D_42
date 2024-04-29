@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 12:29:53 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:06:18 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define SCREEN_W  480
 # define MLX_ERROR 1
-# define SPEED 0.05
+# define SPEED 0.03
 
 typedef struct s_img
 {
@@ -158,6 +158,13 @@ typedef struct s_cube
 	int				d_x;
 
 	int				click;
+
+	int				p_c;
+	int				p_d;
+	int				pv_c;
+	int				pv_d;
+	int				p_minimap;
+	
 }               t_cube;
 
 int				tab_size(char **tab);
