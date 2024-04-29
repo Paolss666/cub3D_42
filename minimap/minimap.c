@@ -6,13 +6,11 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:38:49 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/26 17:00:52 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:58:07 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-#include "mlx.h"
 
 #define WIDTH  80
 #define HEIGHT 100
