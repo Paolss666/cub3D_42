@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:14:53 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:43:16 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:07:01 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int get_imgs_data_err(t_cube *game)
 	if (get_each_img_data(game, game->we, 3) != 0)
 		return (-1);
 	if (get_each_img_data(game, game->door, 4) != 0)
-        return (-1);
+		return (-1);
 	return (0);
 }
 
@@ -58,17 +58,13 @@ int	check_err_types_bis_color(t_cube *game)
 {
 	game->f = ft_parse_for_color(game->type[4], game);
 	if (!game->f)
-		return (-1);	
+		return (-1);
 	game->c = ft_parse_for_color(game->type[5], game);
 	if (!game->c)
 		return (-1);
 	return (0);
 }
 
-
-// game->door = xpm_img(game, "./img/door.xpm", 64, 64);
-// if (!game->door)
-// 	return (-1);
 
 int	check_err_types(t_cube *game)
 {
@@ -84,11 +80,11 @@ int	check_err_types(t_cube *game)
 	game->ea = xpm_img(game, game->type[3], 64, 64);
 	if (!game->ea)
 		return (-1);
-	game->door = xpm_img(game, game->type[4], 64, 64);
+	game->door = xpm_img(game, "./img/door2.xpm", 64, 64);
 	if (!game->door)
 		return (-1);
 	if (get_imgs_data_err(game) != 0)
-		return (ft_gbg(FLUSH, NULL, ALL),exit(99),-1);
+		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
 	if (check_chars((game->type[4] + 2), ',') != 2
 		|| check_chars((game->type[5] + 2), ',') != 2)
 		return (ft_putstr_fd("Error\nInvalid type of format\n", 2),

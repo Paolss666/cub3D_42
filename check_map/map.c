@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/26 12:29:22 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:44:19 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	ft_add_space(t_cube *game)
 int	ft_countrows(t_cube *game)
 {
 	int	i;
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	x = 0;
@@ -69,7 +69,7 @@ int	ft_countrows(t_cube *game)
 		if (!(game->map[x][y]))
 		{
 			if (!game->map[x + 1])
-				break;
+				break ;
 			x++;
 			if (i < y)
 				i = y;
@@ -167,7 +167,7 @@ int	ft_check_char(t_cube *game, int x, int y)
 		if (is_perso(game->map_game, x, y) == TRUE)
 			perso--;
 		else if (game->map_game[x][y] != '1' && game->map_game[x][y] != '0'
-			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n')
+			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n' && game->map_game[x][y] != 'D')
 			return (write(1, "Error\nmap not valid : char not valid on map\n", 45),
 				clear_wrong_text(game), 1);
 		y++;
@@ -204,7 +204,7 @@ void	ft_add_wall(t_cube *game)
 int	ft_check_map(t_cube *game)
 {
 	game->crow = ft_countrows(game);
-	game->l = ft_countline(game);	
+	game->l = ft_countline(game);
 	ft_stock_map(game);
 	if (ft_check_char(game, 0, 0) == 1)
 	{

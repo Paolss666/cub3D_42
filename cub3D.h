@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:39:25 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:57:23 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,9 @@ void	move_left(t_cube *game);
 void	move_right(t_cube *game);
 void    m_rotate_right(t_cube *game, float move_speed);
 void    m_rotate_left(t_cube *game, float move_speed);
-
+void	door_open(t_cube *game);
+void	close_door(t_cube *game);
+void	variable_door_bonus(t_cube *game);
 // ----------------- check map --------------------- // 
 
 void	ft_add_space(t_cube *game);

@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:43:56 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:18:23 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	get_nb(char *color)
 	color[i] = '\0';
 	n = ft_atoi(color);
 	if (n < 0 || n > 255)
-		return (ft_putstr_fd("Error\nBad RGB color\n", 2),-1);
+		return (ft_putstr_fd("Error\nBad RGB color\n", 2), -1);
 	return (n);
 }
 
@@ -132,10 +132,10 @@ int	*ft_parse_for_color(char *identi, t_cube *game)
 			clear_wrong_text(game), NULL);
 	rgb[0] = get_nb(colours[0]);
 	if (rgb[0] == -1)
-		return (clear_wrong_text(game),NULL);
+		return (clear_wrong_text(game), NULL);
 	rgb[1] = get_nb(colours[1]);
 	if (rgb[1] == -1)
-		return (clear_wrong_text(game),NULL);
+		return (clear_wrong_text(game), NULL);
 	rgb[2] = get_nb(colours[2]);
 	if (rgb[2] == -1)
 		return (clear_wrong_text(game), NULL);

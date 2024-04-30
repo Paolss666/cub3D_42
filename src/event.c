@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:45:42 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:13:27 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,14 @@ int	handle_no_event(t_cube *game)
 		move_right(game);
 	if (game->key_a)
 		move_left(game);
+	if (game->key_q)
+		door_open(game);
+	if (game->key_e)
+		close_door(game);
 	if (game->key_right)
-		m_rotate_right(game, 0.1);
+		m_rotate_right(game, 0.01);
 	if (game->key_left)
-		m_rotate_left(game, 0.1);
+		m_rotate_left(game, 0.01);
 	display(game, 0);
 	return (0);
 }
@@ -87,6 +91,10 @@ int	handle_keypress(int keysym, t_cube *game)
 		game->key_d = 1;
 	if (keysym == XK_a || keysym == XK_A)
 		game->key_a = 1;
+	if (keysym == XK_q || keysym == XK_Q)
+		game->key_q = 1;
+	if (keysym == XK_e || keysym == XK_E)
+		game->key_e = 1;
 	if (keysym == XK_m && game->p_minimap == 0)
 		game->p_minimap = 1;
 	else if (keysym == XK_m && game->p_minimap == 1)
@@ -110,6 +118,10 @@ int	handle_keyrelease(int keysym, t_cube *game)
 		game->key_d = 0;
 	if (keysym == XK_a || keysym == XK_A)
 		game->key_a = 0;
+	if (keysym == XK_q || keysym == XK_Q)
+		game->key_q = 0;
+	if (keysym == XK_e || keysym == XK_E)
+		game->key_e = 0;
 	if (keysym == XK_Right)
 		game->key_right = 0;
 	if (keysym == XK_Left)
