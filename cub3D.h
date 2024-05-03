@@ -6,12 +6,12 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/30 13:57:23 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:28:36 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef cub3D_H
-#define cub3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "./libft/libft.h"
 # include "mlx_linux/mlx.h"
@@ -27,6 +27,7 @@
 # define SCREEN_W  480
 # define MLX_ERROR 1
 # define SPEED 0.03
+# define DEST_MOUSE 20
 
 typedef struct s_img
 {
@@ -75,7 +76,6 @@ typedef struct s_cube
 	int				key_right;
 	int				key_q;
 	int				key_e;
-
 	int				screen_w;
 	int				screen_h;
 	double			pos_x;
@@ -84,7 +84,6 @@ typedef struct s_cube
 	double			dir_y;
 	double			plane_x;
 	double			plane_y;
-
 	double			camera_x;
 	double			raydir_x;
 	double			raydir_y;
@@ -99,7 +98,6 @@ typedef struct s_cube
 	int				step_y;
 	int				hit;
 	int				side;
-
 	int				line_height;
 	int				pitch;
 	int				draw_start;
@@ -110,17 +108,13 @@ typedef struct s_cube
 	int				tex_y;
 	double			step;
 	double			tex_pos;
-
 	double			move_speed;
-
 	double			olddir_x;
 	double			oldplane_x;
-
 	int				tex_w;
 	int				tex_h;
 	int				nb_tex;
 	unsigned int	**tex;
-
 	// t_sprite		*sprite;
 	int				num_sprites;
 	double			z_buffer[SCREEN_W];
@@ -140,7 +134,6 @@ typedef struct s_cube
 	int				draw_end_y;
 	int				draw_end_x;
 	int				vmove_screen;
-
 	double			p_x;
 	double			p_y;
 	int				col_perso;
@@ -151,14 +144,11 @@ typedef struct s_cube
 	int				x_mmap;
 	int				y_mmap;
 	int				box_size;
-
 	int				m_y;
 	int				m_x;
 	int				d_y;
 	int				d_x;
-
 	int				click;
-
 	int				p_c;
 	int				p_d;
 	int				pv_c;
@@ -197,8 +187,6 @@ int				esc_close(int key, t_cube *game);
 int				close_win(t_cube *game);
 void			draw(t_cube *game);
 int     		get_color(int *tab_c);
-// unsigned int	get_pixel_img(t_img src, int x, int y);
-// void			put_pixel_img_anims(t_img dst, int x, int y, int color);
 int				display(t_cube *game, int x);
 void			texture(t_cube *game, int x);
 int				handle_no_event(t_cube *game);
@@ -206,32 +194,34 @@ int				handle_keyrelease(int keysym, t_cube *game);
 int				handle_keypress(int keysym, t_cube *game);
 
 // --------------- CLEAR -------------------------- // 
-void	clear_wrong_text(t_cube *game);
+void			clear_wrong_text(t_cube *game);
 
 // ---------------- MOVE ------------------------- // 
-void	move_up(t_cube *game);
-void	move_down(t_cube *game);
-void	move_left(t_cube *game);
-void	move_right(t_cube *game);
-void    m_rotate_right(t_cube *game, float move_speed);
-void    m_rotate_left(t_cube *game, float move_speed);
-void	door_open(t_cube *game);
-void	close_door(t_cube *game);
-void	variable_door_bonus(t_cube *game);
+void			move_up(t_cube *game);
+void			move_down(t_cube *game);
+void			move_left(t_cube *game);
+void			move_right(t_cube *game);
+void    		m_rotate_right(t_cube *game, float move_speed);
+void    		m_rotate_left(t_cube *game, float move_speed);
+void			door_open(t_cube *game);
+void			close_door(t_cube *game);
+void			variable_door_bonus(t_cube *game);
+int				mouse_mov(int x, int y, t_cube *game);
+int				mouse_but(int button, int x, int y, t_cube *game);
 // ----------------- check map --------------------- // 
 
-void	ft_add_space(t_cube *game);
-int		ft_countrows(t_cube *game);
-int		ft_countline(t_cube *game);
-void	ft_stock_map(t_cube *game);
-bool	is_perso(char **map, int x, int y);
-void	ft_check_frontier(t_cube *game, int x, int y);
-int		ft_check_char(t_cube *game, int x, int y);
-void	ft_add_wall(t_cube *game);
-int		ft_check_map(t_cube *game);
-void	ft_print_maperror(t_cube *game, char **map, int x, int y); //a supprimer
+void			ft_add_space(t_cube *game);
+int				ft_countrows(t_cube *game);
+int				ft_countline(t_cube *game);
+void			ft_stock_map(t_cube *game);
+bool			is_perso(char **map, int x, int y);
+void			ft_check_frontier(t_cube *game, int x, int y);
+int				ft_check_char(t_cube *game, int x, int y);
+void			ft_add_wall(t_cube *game);
+int				ft_check_map(t_cube *game);
+void			ft_print_maperror(t_cube *game, char **map, int x, int y);
 
 // ------------------------minimap ---------------------- //
-int ft_put_minimap(t_cube *game);
+int				ft_put_minimap(t_cube *game);
 
 #endif

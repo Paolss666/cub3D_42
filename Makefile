@@ -6,7 +6,7 @@
 #    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/04/30 12:28:46 by npaolett         ###   ########.fr        #
+#    Updated: 2024/05/03 11:29:11 by npaolett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC = 	src/get_map.c \
 		src/move_algo.c  \
 		src/move_algo_rot.c  \
 		src/door.c  \
+		src/mouse_move.c  \
 		check_map/map.c \
 		minimap/minimap.c \
 		main.c  \

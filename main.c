@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:03:55 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:21:44 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	init_game(t_cube *game)
 	game->no = NULL;
 	game->we = NULL;
 	game->p_minimap = 0;
+	game->click = -1;
 }
 
 
@@ -59,6 +60,10 @@ void	init_game(t_cube *game)
 
 void	init_loop(t_cube *game)
 {
+	mlx_mouse_move(game->mlx_ptr, game->win_ptr,
+		game->screen_w / 2, game->screen_h / 2);
+	mlx_mouse_hook(game->win_ptr, mouse_but, game);
+	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, mouse_mov, game);
 	mlx_hook(game->win_ptr, 2, KeyPressMask, &esc_close, game);
 	mlx_hook(game->win_ptr, 17, NoEventMask, &close_win, game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);
