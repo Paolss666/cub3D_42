@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:14:53 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/03 10:58:28 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:41:57 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ int	get_each_img_data(t_cube *game, t_img *img, int i)
 
 	game->tex[i] = ft_calloc((game->tex_w * game->tex_h), sizeof(int));
 	if (!game->tex[i] || ft_gbg(ADD, game->tex[i], EX))
-        return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
+		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
 	y = 0;
 	while (y < game->tex_h)
 	{
 		x = 0;
 		while (x < game->tex_w)
 		{
-			game->tex[i][y * game->tex_w + x] = img->full_buf[y * game->tex_w + x];
+			game->tex[i][y * game->tex_w + x] =
+				img->full_buf[y * game->tex_w + x];
 			x++;
 		}
 		y++;
@@ -36,7 +37,7 @@ int	get_each_img_data(t_cube *game, t_img *img, int i)
 }
 
 
-int get_imgs_data_err(t_cube *game)
+int	get_imgs_data_err(t_cube *game)
 {
 	game->tex = ft_calloc(5, sizeof(int *));
 	if (!game->tex || ft_gbg(ADD, game->tex, EX))

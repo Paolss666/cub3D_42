@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/03 16:28:36 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:51:34 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,19 +154,22 @@ typedef struct s_cube
 	int				pv_c;
 	int				pv_d;
 	int				p_minimap;
-	
-}               t_cube;
+}					t_cube;
 
 int				tab_size(char **tab);
 void			print_map(char **map);
-
 char			**ft_split_gbg(char const *s, char c);
 int				check_file_open(char **av);
-int				get_types(t_cube *game, char **av);
+int				get_types(t_cube *game, int fd);
+int				sort_content(t_cube *game, char **av);
 int				cpy_map_from_file(t_cube *game, char **argv, int rows);
 void			ft_count_rows(t_cube *game, int fd, int *rows);
 int				get_map(t_cube *game, int fd, char **av);
 int				is_wspc_excl_nl(char c);
+void			delete_types_nl(t_cube *game);
+int				check_if_exection(char **av);
+int				check_if_in_nl_map(t_cube *game);
+void			is_newline(char *line, int *ln, int *rows);				
 void			swap_ptrs(char **s1, char **s2);
 int				check_types(char **new);
 int				ptr_to_swap(char *s);
@@ -175,7 +178,7 @@ int				reorder_new(char **new);
 int				found_redif_type(t_cube *game, int fd);
 int				get_file_content(t_cube *game, char **av);
 t_img			*xpm_img(t_cube *game, char *img_path, int w, int h);
-int     		get_color(int *tab_c);
+int		 		get_color(int *tab_c);
 int				*ft_parse_for_color(char *identi, t_cube *game);
 int				check_chars(char *s, char c);
 int				check_err_types(t_cube *game);
@@ -186,7 +189,7 @@ void			get_pos(t_cube *game);
 int				esc_close(int key, t_cube *game);
 int				close_win(t_cube *game);
 void			draw(t_cube *game);
-int     		get_color(int *tab_c);
+int				get_color(int *tab_c);
 int				display(t_cube *game, int x);
 void			texture(t_cube *game, int x);
 int				handle_no_event(t_cube *game);
@@ -201,8 +204,8 @@ void			move_up(t_cube *game);
 void			move_down(t_cube *game);
 void			move_left(t_cube *game);
 void			move_right(t_cube *game);
-void    		m_rotate_right(t_cube *game, float move_speed);
-void    		m_rotate_left(t_cube *game, float move_speed);
+void			m_rotate_right(t_cube *game, float move_speed);
+void	 		m_rotate_left(t_cube *game, float move_speed);
 void			door_open(t_cube *game);
 void			close_door(t_cube *game);
 void			variable_door_bonus(t_cube *game);

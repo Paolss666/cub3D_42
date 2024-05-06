@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/30 11:18:23 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:41:25 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,26 +94,6 @@ t_img	*xpm_img(t_cube *game, char *img_path, int w, int h)
 	return (new_img);
 }
 
-int	tab_size(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
-}
-
-
-// char	*crt_color_parse(char *color)
-// // {
-// // 	char	*parse_color;
-
-// // 	parse_color = ft_substr(color, 2, ft_strlen(color));
-// // 	if (!parse_color || ft_gbg(ADD, parse_color, PARS))
-// // 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), NULL);
-// // 	return (parse_color);
-// // }
 
 int	*ft_parse_for_color(char *identi, t_cube *game)
 {

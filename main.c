@@ -6,23 +6,39 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/03 16:21:44 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:26:02 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	print_map(char **map)
-{
-	int i;
+/*
+ * get_map:
+ * First, checks errors related to the source file of the map
+ * Second, sorts the file content: split the types from the map
+ * 
+*/
 
-	i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-	printf("\n");
+int	get_file_content(t_cube *game, char **av)
+{
+	if (!av || !av[1])
+		return (1);
+	if (check_file_open(av) == -1)
+		return (1);
+	if (sort_content(game, av) == -1)
+		return (1);
+	if (check_err_types(game) == -1)
+		return (1);
+	if (ft_check_map(game) == 1)
+		return (1);
+	return (0);
+}
+
+void	init_game_b(t_cube *game)
+{
+	game->door = NULL;
+	game->p_minimap = 0;
+	game->click = -1;
 }
 
 void	init_game(t_cube *game)
@@ -51,11 +67,8 @@ void	init_game(t_cube *game)
 	game->so = NULL;
 	game->no = NULL;
 	game->we = NULL;
-	game->p_minimap = 0;
-	game->click = -1;
+	init_game_b(game);
 }
-
-
 
 
 void	init_loop(t_cube *game)
@@ -64,6 +77,7 @@ void	init_loop(t_cube *game)
 		game->screen_w / 2, game->screen_h / 2);
 	mlx_mouse_hook(game->win_ptr, mouse_but, game);
 	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, mouse_mov, game);
+	// mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
 	mlx_hook(game->win_ptr, 2, KeyPressMask, &esc_close, game);
 	mlx_hook(game->win_ptr, 17, NoEventMask, &close_win, game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);

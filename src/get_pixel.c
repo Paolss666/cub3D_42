@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:58:04 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/19 16:13:52 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:11:00 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 * la funzione restituisce il valore esadecimale del colore.
 */
 
-int     get_color(int *tab_c)
+int	get_color(int *tab_c)
 {
 	unsigned int	hexa_color;
 

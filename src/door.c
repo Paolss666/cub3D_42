@@ -6,13 +6,13 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:11:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/30 13:58:05 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:24:55 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-int lows(double nb)
+int	lows(double nb)
 {
 	double	i;
 

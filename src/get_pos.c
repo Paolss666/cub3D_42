@@ -6,11 +6,32 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:19:32 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:46:55 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:44:05 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+
+void	get_dir_n_s(t_cube *game, char c)
+{
+	if (c == 'S')
+	{
+		game->dir_x = 1;
+		game->dir_y = 0;
+		game->plane_x = 0;
+		game->plane_y = -0.66;
+		return ;
+	}
+	if (c == 'N')
+	{
+		game->dir_x = -1;
+		game->dir_y = 0;
+		game->plane_x = 0;
+		game->plane_y = 0.66;
+		return ;
+	}
+}
 
 void	get_dir(t_cube *game, char c)
 {
@@ -30,22 +51,7 @@ void	get_dir(t_cube *game, char c)
 		game->plane_y = 0;
 		return ;
 	}
-	if (c == 'S')
-	{
-		game->dir_x = 1;
-		game->dir_y = 0;
-		game->plane_x = 0;
-		game->plane_y = -0.66;
-		return ;
-	}
-	if (c == 'N')
-	{
-		game->dir_x = -1;
-		game->dir_y = 0;
-		game->plane_x = 0;
-		game->plane_y = 0.66;
-		return ;
-	}
+	get_dir_n_s(game, c);
 }
 
 void	get_pos(t_cube *game)
