@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:06:18 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:31:14 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define SCREEN_W  480
 # define MLX_ERROR 1
-# define SPEED 0.03
+# define SPEED 0.3
 
 typedef struct s_img
 {
@@ -121,25 +121,27 @@ typedef struct s_cube
 	int				nb_tex;
 	unsigned int	**tex;
 
+	int				n_sprite;
+
 	// t_sprite		*sprite;
-	int				num_sprites;
-	double			z_buffer[SCREEN_W];
-	int				*sprite_order;
-	double			*sprite_distance;
-	double			sprite_x;
-	double			sprite_y;
-	double			inv_det;
-	double			transform_x;
-	double			transform_y;
-	int				sprite_screen_x;
-	int				sprite_height;
-	int				sprite_width;
-	int				stripe;
-	int				draw_start_y;
-	int				draw_start_x;
-	int				draw_end_y;
-	int				draw_end_x;
-	int				vmove_screen;
+	//int				num_sprites;
+	//double			z_buffer[SCREEN_W];
+	//int				*sprite_order;
+	//double			*sprite_distance;
+	//double			sprite_x;
+	//double			sprite_y;
+	//double			inv_det;
+	//double			transform_x;
+	//double			transform_y;
+	//int				sprite_screen_x;
+	//int				sprite_height;
+	//int				sprite_width;
+	//int				stripe;
+	//int				draw_start_y;
+	//int				draw_start_x;
+	//int				draw_end_y;
+	//int				draw_end_x;
+	//int				vmove_screen;
 
 	double			p_x;
 	double			p_y;
@@ -164,6 +166,26 @@ typedef struct s_cube
 	int				pv_c;
 	int				pv_d;
 	int				p_minimap;
+
+	//sprite
+	t_img			*sprite1;
+	t_img			*sprite2;
+	int				sprite;
+	int				map_x_sprite;
+	int				map_y_sprite;
+	double			side_dist_x_sprite;
+	double			side_dist_y_sprite;
+	double			perp_wall_dist_sprite;
+	double			perp_wall_dist_sprite_y;
+	int				line_height_sprite;
+	int				draw_start_sprite;
+	int				draw_end_sprite;
+	double			wall_x_sprite;
+	int				tex_x_sprite;
+	int				tex_y_sprite;
+	double			step_sprite;
+	double			tex_pos_sprite;
+
 	
 }               t_cube;
 
@@ -230,6 +252,16 @@ int		ft_check_map(t_cube *game);
 void	ft_print_maperror(t_cube *game, char **map, int x, int y); //a supprimer
 
 // ------------------------minimap ---------------------- //
+
 int ft_put_minimap(t_cube *game);
+
+// ------------------------sprite ---------------------- //
+
+int		get_each_img_data_sprite(t_cube *game, t_img *img, int i);
+void	sprite_size(t_cube *game);
+void	texture_sprite(t_cube *game);
+void	pxl_color_sprite(t_cube *game, int x);
+void	init_sprite(t_cube *game);
+
 
 #endif

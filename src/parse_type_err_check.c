@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_type_err_check.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:14:53 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/26 12:13:12 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:38:31 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_each_img_data(t_cube *game, t_img *img, int i)
 
 int get_imgs_data_err(t_cube *game)
 {
-	game->tex = ft_calloc(4, sizeof(int *));
+	game->tex = ft_calloc(6, sizeof(int *));
 	if (!game->tex || ft_gbg(ADD, game->tex, EX))
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
 	if (get_each_img_data(game, game->no, 0) != 0)
@@ -51,6 +51,13 @@ int get_imgs_data_err(t_cube *game)
 		return (-1);
 	if (get_each_img_data(game, game->we, 3) != 0)
 		return (-1);
+	if (get_each_img_data(game, game->sprite1, 4) != 0)
+		return (-1);
+	if (get_each_img_data(game, game->sprite2, 5) != 0)
+		return (-1);
+	//if (get_each_img_data_sprite(game, game->sprite1, 4) != 0)
+	//	return (-1);
+		
 	return (0);
 }
 
@@ -83,6 +90,12 @@ int	check_err_types(t_cube *game)
 		return (-1);
 	game->ea = xpm_img(game, game->type[3], 64, 64);
 	if (!game->ea)
+		return (-1);
+	game->sprite1 = xpm_img(game, "./img/lescopinessprite/lee.xpm", 64, 64);
+	if (!game->sprite1)
+		return (-1);
+	game->sprite2 = xpm_img(game, "./img/lescopinessprite/neige_1.xpm", 64, 64);
+	if (!game->sprite2)
 		return (-1);
 	if (get_imgs_data_err(game) != 0)
 		return (ft_gbg(FLUSH, NULL, ALL),exit(99),-1);

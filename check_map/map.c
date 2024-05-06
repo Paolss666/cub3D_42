@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/26 12:29:22 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:25:28 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ void	ft_check_frontier(t_cube *game, int x, int y)
 			|| (map[x - 1][y] == ' ' || map[x][y + 1] == ' '
 			|| map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
 		{
-			ft_print_maperror(game, game->map_game, x, y);
 			write(1, "Error\nmap not valid : walls incorrect\n", 39);
 			return (clear_wrong_text(game),(void)0);
 		}	
@@ -167,7 +166,7 @@ int	ft_check_char(t_cube *game, int x, int y)
 		if (is_perso(game->map_game, x, y) == TRUE)
 			perso--;
 		else if (game->map_game[x][y] != '1' && game->map_game[x][y] != '0'
-			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n')
+			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n' && game->map_game[x][y] != 'H')
 			return (write(1, "Error\nmap not valid : char not valid on map\n", 45),
 				clear_wrong_text(game), 1);
 		y++;

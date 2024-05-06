@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
+#    By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/04/29 14:54:25 by npaolett         ###   ########.fr        #
+#    Updated: 2024/04/30 15:53:56 by elcesped         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC = 	src/get_map.c \
 		src/move_algo_rot.c  \
 		check_map/map.c \
 		minimap/minimap.c \
+		sprite/sprite.c \
 		main.c  \
 
 SRC_BONUS = 

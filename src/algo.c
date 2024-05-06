@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:56:26 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:10:07 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:15:39 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	wall_size(t_cube *game)
 	game->draw_end = game->line_height / 2 + game->screen_h / 2;
 	if (game->draw_end >= game->screen_h)
 		game->draw_end = game->screen_h;
+	//sprite_size(game);
 }
 
 void	dry_da_algo(t_cube *game)
@@ -46,6 +47,16 @@ void	dry_da_algo(t_cube *game)
 		if (game->map[game->map_x][game->map_y] == '1'
 			/* game->map[game->map_x][game->map_y] == 'D'  */)
 			game->hit = 1;
+		if (game->map[game->map_x][game->map_y] == 'H')
+		{
+			game->side_dist_x_sprite = game->side_dist_x;
+			game->map_x_sprite = game->map_x;
+			game->side_dist_y_sprite = game->side_dist_y;
+			game->map_y_sprite = game->map_y;
+			game->sprite = 1;
+			//printf("TEST\n");
+		}
+		
 	}
 }
 
@@ -113,6 +124,7 @@ int	display(t_cube *game, int x)
 			wall_size(game), texture(game, x));
 		x++;
 	}
+	sprite_size(game);
 	ft_put_minimap(game);
 	draw(game);
 	ft_free_bffr(game);

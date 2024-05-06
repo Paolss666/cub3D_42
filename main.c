@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:03:55 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:34:59 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ void	init_game(t_cube *game)
 	game->no = NULL;
 	game->we = NULL;
 	game->p_minimap = 0;
+	game->sprite = 0;
+	game->n_sprite = 0;
+	init_sprite(game);
 }
 
 

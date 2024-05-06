@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:09:37 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:46:12 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,12 @@ void	pxl_color_wll(t_cube *game, int x)
 	unsigned int	color;
 
 	y = game->draw_start;
+
 	while (y < game->draw_end)
 	{
 		game->tex_y = (int)game->tex_pos & (game->tex_h - 1);
 		game->tex_pos += game->step;
+
 		color = game->tex[game->tex_num][game->tex_h * game->tex_y + game->tex_x];
 		game->buf[y][x] = color;
 		y++;
@@ -111,9 +113,7 @@ void	pxl_color_wll(t_cube *game, int x)
 
 void	texture_wall_orientation(t_cube *game)
 {
-	if (game->map[game->map_x][game->map_y] == 'D')
-		game->tex_num = 4;
-	else if (game->side == 0)
+	if (game->side == 0)
 	{
 		if (game->step_x == 1)
 			game->tex_num = 1;
@@ -170,7 +170,9 @@ void	texture(t_cube *game, int x)
 	game->step = 1.0 * game->tex_h / game->line_height;
 	game->tex_pos = (game->draw_start
 			- game->screen_h / 2 + game->line_height / 2) * game->step;
+	//texture_sprite(game);
 	texture_wall_orientation(game);
 	pxl_color_wll(game, x);
 	pixel_color_ceiling_floor(game, x);
+	//sprite_size(game);
 }

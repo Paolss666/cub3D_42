@@ -1,7 +1,7 @@
-NO ./img/blackandwhite_theme/ronds.xpm
-SO ./img/blackandwhite_theme/des.xpm
-WE ./img/blackandwhite_theme/losanges.xpm
-EA ./img/blackandwhite_theme/briques.xpm
+NO ./img/lescopines/gagao_111.xpm
+SO ./img/lescopines/neige_1.xpm
+WE ./img/blackandwhite_theme/briques.xpm
+EA ./img/lescopines/nico_1.xpm
 
 F 220,100,0
 C 17,160,242
@@ -12,7 +12,7 @@ C 17,160,242
 100000110110000010001100001
 10000110011000000011000001
 100011111111100000110000001
-100000000110000011000000001
-100000000110000111111000001
+100000000110H00011000000001
+1000000001100000111111000001
 100000000000N00000000000001
 111111111111111111111111111

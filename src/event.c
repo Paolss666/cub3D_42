@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/29 16:03:10 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:32:12 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	esc_close(int key, t_cube *game)
 			mlx_destroy_image(game->mlx_ptr, game->ea->img_ptr);
 		if (game->no)
 			mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
+		if (game->sprite1)
+			mlx_destroy_image(game->mlx_ptr, game->sprite1->img_ptr);
+		if (game->sprite2)
+			mlx_destroy_image(game->mlx_ptr, game->sprite2->img_ptr);
 		if (game->img->img_ptr)
 			mlx_destroy_image(game->mlx_ptr, game->img->img_ptr);
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
@@ -48,6 +52,8 @@ int	close_win(t_cube *game)
 		mlx_destroy_image(game->mlx_ptr, game->ea->img_ptr);
 	if (game->no)
 		mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
+	if (game->sprite1)
+		mlx_destroy_image(game->mlx_ptr, game->sprite1->img_ptr);
 	if (game->img->img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->img->img_ptr);
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
@@ -67,9 +73,9 @@ int	handle_no_event(t_cube *game)
 	if (game->key_a)
 		move_left(game);
 	if (game->key_right)
-		m_rotate_right(game, 0.1);
+		m_rotate_right(game, 0.01);
 	if (game->key_left)
-		m_rotate_left(game, 0.1);
+		m_rotate_left(game, 0.01);
 	display(game, 0);
 	return (0);
 }
