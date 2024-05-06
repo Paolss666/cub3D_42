@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 14:53:13 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:52:46 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	get_types(t_cube *game, int fd)
 			close(fd), clear_wrong_text(game), -1);
 }
 
-
 int	get_map(t_cube *game, int fd, char **av)
 {
 	int	rows;
@@ -83,7 +82,6 @@ int	get_map(t_cube *game, int fd, char **av)
  * 	game->rows
 */
 
-
 void	ft_count_rows(t_cube *game, int fd, int *rows)
 {
 	char	*line;
@@ -111,7 +109,6 @@ void	ft_count_rows(t_cube *game, int fd, int *rows)
 	}
 	(get_next_line(fd, 0), close(fd));
 }
-
 
 int	cpy_map_from_file(t_cube *game, char **argv, int rows)
 {
@@ -141,7 +138,6 @@ int	cpy_map_from_file(t_cube *game, char **argv, int rows)
 	return (0);
 }
 
-
 /*
  * 	sort_content
  * 	Calls get_types: we want exactly 6 types so we open the file
@@ -151,7 +147,6 @@ int	cpy_map_from_file(t_cube *game, char **argv, int rows)
  * 	stopped after the 6 types ; we then get all the rows that come
  * 	after, which correspond supposedly to the map
 */
-
 
 int	sort_content(t_cube *game, char **av)
 {

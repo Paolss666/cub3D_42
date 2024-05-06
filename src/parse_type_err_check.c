@@ -6,12 +6,11 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:14:53 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 12:41:57 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:56:48 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
 
 int	get_each_img_data(t_cube *game, t_img *img, int i)
 {
@@ -27,15 +26,14 @@ int	get_each_img_data(t_cube *game, t_img *img, int i)
 		x = 0;
 		while (x < game->tex_w)
 		{
-			game->tex[i][y * game->tex_w + x] =
-				img->full_buf[y * game->tex_w + x];
+			game->tex[i][y * game->tex_w + x]
+				= img->full_buf[y * game->tex_w + x];
 			x++;
 		}
 		y++;
 	}
 	return (0);
 }
-
 
 int	get_imgs_data_err(t_cube *game)
 {
@@ -65,7 +63,6 @@ int	check_err_types_bis_color(t_cube *game)
 		return (-1);
 	return (0);
 }
-
 
 int	check_err_types(t_cube *game)
 {

@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:16:40 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/23 14:01:17 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:53:54 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	init_mlx(t_cube *game)
 	if (!game->img->full_buf)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), (void)0);
 }
-
 
 int	init_buf(t_cube *game)
 {

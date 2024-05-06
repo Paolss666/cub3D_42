@@ -6,12 +6,11 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:19:32 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 12:44:05 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:53:36 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
 
 void	get_dir_n_s(t_cube *game, char c)
 {

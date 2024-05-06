@@ -6,12 +6,11 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:44:50 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/03 11:07:13 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:54:08 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
 
 double	clc_plyer_direction(t_cube *game)
 {

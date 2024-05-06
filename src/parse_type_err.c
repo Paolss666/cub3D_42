@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 12:41:25 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:57:23 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_nb(char *color)
 	while (color[i] && color[i] != '\n')
 	{
 		if (!(color[i] >= '0' && color[i] <= '9'))
-			return (ft_putstr_fd("Error\nBad RGB color\n", 2),-1);
+			return (ft_putstr_fd("Error\nBad RGB color\n", 2), -1);
 		i++;
 	}
 	color[i] = '\0';
@@ -48,7 +48,6 @@ int	get_nb(char *color)
 		return (ft_putstr_fd("Error\nBad RGB color\n", 2), -1);
 	return (n);
 }
-
 
 void	clear_wrong_text(t_cube *game)
 {
@@ -93,7 +92,6 @@ t_img	*xpm_img(t_cube *game, char *img_path, int w, int h)
 	}
 	return (new_img);
 }
-
 
 int	*ft_parse_for_color(char *identi, t_cube *game)
 {

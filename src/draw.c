@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 14:56:05 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:02:05 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,29 +145,46 @@ void	texture_wall_orientation(t_cube *game)
 }
 
 /*
-* si le cote de la collision avec le mur est horizontal(game->side == 0)
-calcule la position du mur sur l 'axe des x (game->wll_x) 
+* si le cote de la collision avec
+le mur est horizontal(game->side == 0)
+calcule la position du mur sur
+* l 'axe des x (game->wll_x) 
 en utilisant la position actuelle
-du jueur (game->pos_y) plus la distance perpendiculaire
-qu mur multipliee par la direction du rayon(game->raydir_y)
-Sinon, calcule la position du mur sur l'aze des y (game->wall_x);
-Normalise la position du mur pour s'assurer qu'elle est compirse entr 0 et 1;
-* game->wall_x -= floor(game->wall_X) normalise la postion du mur po 0 ou 1;
+du jueur (game->pos_y) plus
+	la distance perpendiculaire
+qu mur multipliee par la direction
+du rayon(game->raydir_y)
+Sinon, calcule la position du mur sur
+l'aze des y (game->wall_x);
+Normalise la position du mur pour s'assurer
+qu'elle est compirse entr 0 et 1;
+* game->wall_x -= floor(game->wall_X)
+* normalise la postion du mur po 0 ou 1;
 * game->tex_x = (int)(game->wall_x
-* (double)game->game->tex_w); Calcule le cordonee de texture correspondant a la posi0tion du mur,	
-* en multipliant la position normalisee du mur par la largeur de la texture;
+* (double)game->game->tex_w);
+Calcule le cordonee de texture
+correspondant a la posi0tion du mur,	
+* en multipliant la position normalisee
+du mur par la largeur de la texture;
 * game->step = 1.0 * game->tex_h
-	/ game->line_height Calcule le pas de texture par ligne de pizel pour eviter la distorsion
-* game->tex_pos = (game->draw_start - game->screen_h / 2 + game->line_height
-		/ 2) * game->step
-   initialise la posit de texture in fonction de la hauteur de la ligne actuel;
-*
+* / game->line_height
+* Calcule le pas de texture par
+* ligne de pizel pour eviter
+* la distorsion
+* game->tex_pos =
+* (game->draw_start - game->screen_h / 2
++ game->line_height/ 2) * game->step
+initialise la posit de texture in fonction
+de la hauteur de la ligne actuel;
 */
 
 /*
-* The floor() is a library function in C defined in the <math. h> header file.
-* This function returns the nearest integer value, which is less than or equal
-* to the floating point number (float or double) passed to it as an argument
+* The floor() is a library function
+* in C defined in the <math. h> header file.
+* This function returns the nearest
+* integer value, which is less than or equal
+* to the floating point number
+* (float or double) passed to it as an argument
 */
 
 void	texture(t_cube *game, int x)

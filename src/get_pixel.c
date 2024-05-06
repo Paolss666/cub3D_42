@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:58:04 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 14:11:00 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:53:03 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,3 @@ int	get_color(int *tab_c)
 	(unsigned int)tab_c[1] << 8 | (unsigned int)tab_c[2]);
 	return (hexa_color);
 }
-
-

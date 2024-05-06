@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:56:26 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 14:56:50 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:53:17 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,3 @@ int	display(t_cube *game, int x)
 	draw(game);
 	return (ft_free_bffr(game), 0);
 }
-

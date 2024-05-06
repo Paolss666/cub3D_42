@@ -6,12 +6,11 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:35:21 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 12:30:24 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:02:43 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
 
 int	check_types(char **new)
 {
@@ -47,7 +46,6 @@ int	ptr_to_swap(char *s)
 	return (-1);
 }
 
-
 int	clean_for_types(char **new)
 {
 	int		i;
@@ -73,7 +71,6 @@ int	clean_for_types(char **new)
 	return (0);
 }
 
-
 char	*init_for_trim(void)
 {
 	char	*for_trim;
@@ -88,7 +85,6 @@ char	*init_for_trim(void)
 	for_trim[4] = '\f';
 	return (for_trim);
 }
-
 
 int	found_redif_type(t_cube *game, int fd)
 {
