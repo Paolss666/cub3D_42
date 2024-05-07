@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/30 11:44:19 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:17:57 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ int	ft_check_char(t_cube *game, int x, int y)
 		if (is_perso(game->map_game, x, y) == TRUE)
 			perso--;
 		else if (game->map_game[x][y] != '1' && game->map_game[x][y] != '0'
-			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n' && game->map_game[x][y] != 'D')
+			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n' && (BONUS == 2 && (game->map_game[x][y] != 'D')))
 			return (write(1, "Error\nmap not valid : char not valid on map\n", 45),
 				clear_wrong_text(game), 1);
 		y++;

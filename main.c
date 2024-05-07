@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 15:26:02 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:27:45 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,19 @@ void	init_game(t_cube *game)
 	init_game_b(game);
 }
 
+// mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
+// function mlx pour cacher la flecce <<-------
 
 void	init_loop(t_cube *game)
 {
-	mlx_mouse_move(game->mlx_ptr, game->win_ptr,
-		game->screen_w / 2, game->screen_h / 2);
-	mlx_mouse_hook(game->win_ptr, mouse_but, game);
-	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, mouse_mov, game);
-	// mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
+	if (BONUS)
+	{
+		mlx_mouse_move(game->mlx_ptr, game->win_ptr,
+			game->screen_w / 2, game->screen_h / 2);
+		mlx_mouse_hook(game->win_ptr, mouse_but, game);
+		mlx_hook(game->win_ptr, MotionNotify,
+			PointerMotionMask, mouse_mov, game);
+	}
 	mlx_hook(game->win_ptr, 2, KeyPressMask, &esc_close, game);
 	mlx_hook(game->win_ptr, 17, NoEventMask, &close_win, game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);
