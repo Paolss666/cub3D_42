@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:50:14 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 17:34:59 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:16:52 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,12 @@ void	init_game(t_cube *game)
 	game->no = NULL;
 	game->we = NULL;
 	game->p_minimap = 0;
-	game->sprite = 0;
+	//game->sprite = 0;
 	game->n_sprite = 0;
-	init_sprite(game);
+	game->sprite1 = NULL;
+	game->sprite2 = NULL;
+	game->nm_sprite = 0;
+	//init_sprite(game);
 }
 
 
@@ -88,6 +91,7 @@ int	main(int ac, char **av)
 	init_game(game);
 	if (get_file_content(game, av) == 1)
 		return (get_next_line(fd, 1), ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
+	init_sprite(game);
 	init_mlx(game);
 	get_pos(game);
 	display(game, 0);

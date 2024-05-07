@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:52:48 by elcesped          #+#    #+#             */
-/*   Updated: 2024/05/06 17:43:13 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:00:43 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,44 @@
 
 void	init_sprite(t_cube *game)
 {
-	game->sprite1 = NULL;
-	game->sprite = 0;
-	game->map_x_sprite = 0;
-	game->map_y_sprite = 0;
-	game->side_dist_x_sprite = 0;
-	game->side_dist_y_sprite = 0;
-	game->perp_wall_dist_sprite = 0;
-	game->line_height_sprite = 0;
-	game->draw_start_sprite = 0;
-	game->draw_end_sprite = 0;
-	game->wall_x_sprite = 0;
-	game->tex_x_sprite = 0;
-	game->tex_y_sprite = 0;
-	game->step_sprite = 0;
-	game->tex_pos_sprite = 0;
+	int i = 0;
+	//game->sprite1 = NULL;
+	//game->sprite2 = NULL;
+	game->sprite_n = 0;
+	game->sprite = malloc(game->nm_sprite * sizeof(t_sprite*));
+	if (!game->sprite || ft_gbg(ADD,game->sprite, PARS))
+		return(ft_gbg(FLUSH,NULL,ALL), (void)0);
+	while(i < game->nm_sprite)
+	{
+		game->sprite[i] = (t_sprite*)malloc(sizeof(t_sprite));
+		if (!game->sprite[i] || ft_gbg(ADD,game->sprite[i], PARS))
+			return(ft_gbg(FLUSH,NULL,ALL), (void)0);
+		i++;
+	}
+	i = 0;
+	while(i < game->nm_sprite)
+	{
+		printf("game->spritenm = %d\n", game->nm_sprite);
+	//game->sprite = 0;
+		game->sprite[i]->map_x_sprite = 0;
+		game->sprite[i]->map_y_sprite = 0;
+		game->sprite[i]->side_dist_x_sprite = 0;
+		game->sprite[i]->side_dist_y_sprite = 0;
+		game->sprite[i]->perp_wall_dist_sprite = 0;
+		game->sprite[i]->line_height_sprite = 0;
+		game->sprite[i]->draw_start_sprite = 0;
+		game->sprite[i]->draw_end_sprite = 0;
+		game->sprite[i]->wall_x_sprite = 0;
+		game->sprite[i]->tex_x_sprite = 0;
+		game->sprite[i]->tex_y_sprite = 0;
+		game->sprite[i]->step_sprite = 0;
+		game->sprite[i]->tex_pos_sprite = 0;
+		i++;
+	}
 
 }
+
+
 //void	ft_init_sprite(t_cube *game)
 //{
 //	game->sprite1 = xpm_img(game, game->type[0], 32, 64);
@@ -162,59 +183,79 @@ void	init_sprite(t_cube *game)
 //	game->sprite = 0;
 //	//i = 0;
 
-void sprite_size(t_cube *game) 
+void sprite_draw(t_cube *game)
 {
-    double spriteX = (game->map_x_sprite + 0.5) - game->pos_x;
-    double spriteY = (game->map_y_sprite + 0.5) - game->pos_y;
-//ajouter une condition pour eviter d afficher le sprite si raydir de collision d un mur est avant le sprite
-//mettre aux normes
-//faire un thread pour l affichage du sprite avec un monitoring qui check si sprite ?
 
-
-    if (game->sprite == 0) {
-        return;
-    }
-	if (game->n_sprite == 0)
-		game->n_sprite = 1;
+	static int i = 0;
+	int j;
+	
+	//i = 0;
+	j = 0;
+    if (game->sprite_n == 0)
+        return ;
 	else
-		game->n_sprite = 0;
-    double invDet = 1.0 / (game->plane_x * game->dir_y - game->dir_x * game->plane_y);
-    double transformX = invDet * (game->dir_y * spriteX - game->dir_x * spriteY);
-    double transformY = invDet * (-game->plane_y * spriteX + game->plane_x * spriteY);
-    int spriteScreenX = (int)((game->screen_w / 2) * (1 + transformX / transformY));
+	{
+		while (j < game->sprite_n)
+		{
+			double spriteX = (game->sprite[j]->map_x_sprite + 0.5) - game->pos_x;
+			double spriteY = (game->sprite[j]->map_y_sprite + 0.5) - game->pos_y;
+	//ajouter une condition pour eviter d afficher le sprite si raydir de collision d un mur est avant le sprite
+	//mettre aux normes
+	//faire un thread pour l affichage du sprite avec un monitoring qui check si sprite ?
 
-    int spriteHeight = abs((int)(game->screen_h / transformY));
-    int drawStartY = -spriteHeight / 2 + game->screen_h / 2;
-    if (drawStartY < 0) 
-        drawStartY = 0;
-    int drawEndY = spriteHeight / 2 + game->screen_h / 2;
-    if (drawEndY >= game->screen_h)
-        drawEndY = game->screen_h - 1;
+			if (i > 100 && i <= 200)
+			{
+				game->n_sprite = 1;
+				i++;
+			}
+			else
+			{
+				game->n_sprite = 0;
+				i++;
+				if (i > 200)
+					i = 0;
+			}
+			
+			double invDet = 1.0 / (game->plane_x * game->dir_y - game->dir_x * game->plane_y);
+			double transformX = invDet * (game->dir_y * spriteX - game->dir_x * spriteY);
+			double transformY = invDet * (-game->plane_y * spriteX + game->plane_x * spriteY);
+			int spriteScreenX = (int)((game->screen_w / 2) * (1 + transformX / transformY));
 
-    int spriteWidth = abs((int)(game->screen_w / transformY));
-    int drawStartX = -spriteWidth / 2 + spriteScreenX;
-    if (drawStartX < 0)
-        drawStartX = 0;
-    int drawEndX = spriteWidth / 2 + spriteScreenX;
-    if (drawEndX >= game->screen_w)
-        drawEndX = game->screen_w - 1;
+			int spriteHeight = abs((int)(game->screen_h / transformY));
+			int drawStartY = -spriteHeight / 2 + game->screen_h / 2;
+			if (drawStartY < 0) 
+				drawStartY = 0;
+			int drawEndY = spriteHeight / 2 + game->screen_h / 2;
+			if (drawEndY >= game->screen_h)
+				drawEndY = game->screen_h - 1;
 
-    unsigned int color;
+			int spriteWidth = abs((int)(game->screen_w / transformY));
+			int drawStartX = -spriteWidth / 2 + spriteScreenX;
+			if (drawStartX < 0)
+				drawStartX = 0;
+			int drawEndX = spriteWidth / 2 + spriteScreenX;
+			if (drawEndX >= game->screen_w)
+				drawEndX = game->screen_w - 1;
 
-    for (int stripe = drawStartX; stripe < drawEndX; stripe++) {
-        int texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * game->tex_w / spriteWidth) / 256;
-        if (transformY > 0 && stripe > 0 && stripe < game->screen_w && transformY < game->screen_w) {
-            for (int y = drawStartY; y < drawEndY; y++) {
-                int d = (y) * 256 - game->screen_h * 128 + spriteHeight * 128;
-                int texY = ((d * game->tex_h) / spriteHeight) / 256;
-                color = game->tex[game->n_sprite + 4][game->tex_w * texY + texX];
-				if (color != 0)
-                	game->buf[y][stripe] = color;
-            }
-        }
-    }
-    game->sprite = 0;
-	usleep(1000);
+			unsigned int color;
+
+			for (int stripe = drawStartX; stripe < drawEndX; stripe++) {
+				int texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * game->tex_w / spriteWidth) / 256;
+				if (transformY > 0 && stripe > 0 && stripe < game->screen_w && transformY < game->screen_w) {
+					for (int y = drawStartY; y < drawEndY; y++) {
+						int d = (y) * 256 - game->screen_h * 128 + spriteHeight * 128;
+						int texY = ((d * game->tex_h) / spriteHeight) / 256;
+						color = game->tex[game->n_sprite + 4][game->tex_w * texY + texX];
+						if (color != 0)
+							game->buf[y][stripe] = color;
+					}
+				}
+			}
+			j++;
+		}
+	}
+    //game->sprite--;
+	//usleep(1000);
 }
 
 //}
@@ -230,48 +271,48 @@ void sprite_size(t_cube *game)
 	//if (game->draw_end_sprite >= game->screen_h)
 	//	game->draw_end_sprite = game->screen_h;
 
-void	texture_sprite(t_cube *game)
-{
-	if (game->sprite == 0)
-		return ;
-	game->tex_x_sprite = 0;
-	game->tex_y_sprite = 0;
-}
+//void	texture_sprite(t_cube *game)
+//{
+//	if (game->sprite == 0)
+//		return ;
+//	game->tex_x_sprite = 0;
+//	game->tex_y_sprite = 0;
+//}
 
-void	pxl_color_sprite(t_cube *game, int x)
-{
-	int				y;
-	unsigned int	color;
-	//int x = 0;
-	//static int i = 0;
+//void	pxl_color_sprite(t_cube *game, int x)
+//{
+//	int				y;
+//	unsigned int	color;
+//	//int x = 0;
+//	//static int i = 0;
 
-	if (game->sprite == 0)
-		return;
-	y = game->draw_start_sprite;
+//	if (game->sprite == 0)
+//		return;
+//	y = game->draw_start_sprite;
 
-	//if (game->sprite == 1)
-	//{
-	//	game->sprite = 0;
-	//	i = 1;
-	//}
+//	//if (game->sprite == 1)
+//	//{
+//	//	game->sprite = 0;
+//	//	i = 1;
+//	//}
 	
-	while (y < game->draw_end_sprite)
-	{
-		//printf("TEST1\n");	
-		game->tex_y_sprite = (int)game->tex_pos_sprite & (game->tex_h - 1);
-		game->tex_pos_sprite += game->step_sprite;
-		if (game->tex[4][game->tex_h * game->tex_y_sprite + game->tex_x_sprite] != 0)
-		{
-			color = game->tex[4][game->tex_h * game->tex_y_sprite + game->tex_x_sprite];
+//	while (y < game->draw_end_sprite)
+//	{
+//		//printf("TEST1\n");	
+//		game->tex_y_sprite = (int)game->tex_pos_sprite & (game->tex_h - 1);
+//		game->tex_pos_sprite += game->step_sprite;
+//		if (game->tex[4][game->tex_h * game->tex_y_sprite + game->tex_x_sprite] != 0)
+//		{
+//			color = game->tex[4][game->tex_h * game->tex_y_sprite + game->tex_x_sprite];
 				
-		}
-		//printf("TEST2 %d\n", game->tex_h * game->tex_y_sprite + game->tex_x_sprite);	
-		y++;
-	}
-	game->buf[y][x] = color;
-	game->sprite = 0;
-	//i = 0;
-}
+//		}
+//		//printf("TEST2 %d\n", game->tex_h * game->tex_y_sprite + game->tex_x_sprite);	
+//		y++;
+//	}
+//	game->buf[y][x] = color;
+//	game->sprite = 0;
+//	//i = 0;
+//}
 
 //int	get_each_img_data_sprite(t_cube *game, t_img *img, int i)
 //{

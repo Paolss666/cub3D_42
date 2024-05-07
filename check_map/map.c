@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/30 16:25:28 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:15:55 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,10 +165,13 @@ int	ft_check_char(t_cube *game, int x, int y)
 		}
 		if (is_perso(game->map_game, x, y) == TRUE)
 			perso--;
+
 		else if (game->map_game[x][y] != '1' && game->map_game[x][y] != '0'
 			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n' && game->map_game[x][y] != 'H')
 			return (write(1, "Error\nmap not valid : char not valid on map\n", 45),
 				clear_wrong_text(game), 1);
+		if (game->map_game[x][y] == 'H')
+			game->nm_sprite++;
 		y++;
 	}
 	if (perso != 0)

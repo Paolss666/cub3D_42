@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:56:26 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 17:15:39 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:10:59 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,36 @@ void	wall_size(t_cube *game)
 		game->draw_end = game->screen_h;
 	//sprite_size(game);
 }
-
+void	dry_da_algo_sprite(t_cube *game)
+{	
+	//stocker le Zbuffer en fonction de chaque sprite ici + faire un potentiel special hit pour les autres sprites
+	if (game->nm_sprite != 1 && game->sprite_n == game->nm_sprite)
+		return ;
+	if (game->sprite[0]->map_x_sprite == 0 || game->sprite[0]->map_y_sprite == 0)
+	{
+		printf("TEST1 = %d et %d et game->sprite = %d\n", game->map_x, game->map_y, game->sprite_n);
+		//game->sprite[game->sprite_n]->side_dist_x_sprite = game->side_dist_x;
+		game->sprite[game->sprite_n]->map_x_sprite = game->map_x;
+		//game->sprite[game->sprite_n]->side_dist_y_sprite = game->side_dist_y;
+		game->sprite[game->sprite_n]->map_y_sprite = game->map_y;
+		game->sprite_n++;
+	}
+	else if (game->sprite[game->sprite_n - 1]->map_x_sprite != game->map_x
+		|| game->sprite[game->sprite_n - 1]->map_y_sprite != game->map_y)
+	{
+		printf("TEST2 = %d et %d et game->sprite = %d\n", game->map_x, game->map_y, game->sprite_n);
+		if (game->nm_sprite == 1)
+			return ;
+		//game->sprite[game->sprite_n]->side_dist_x_sprite = game->side_dist_x;
+		game->sprite[game->sprite_n]->map_x_sprite = game->map_x;
+		//game->sprite[game->sprite_n]->side_dist_y_sprite = game->side_dist_y;
+		game->sprite[game->sprite_n]->map_y_sprite = game->map_y;
+		game->sprite_n++;
+	}
+}
 void	dry_da_algo(t_cube *game)
 {
+
 	while (game->hit == 0)
 	{
 		if (game->side_dist_x < game->side_dist_y)
@@ -47,14 +74,10 @@ void	dry_da_algo(t_cube *game)
 		if (game->map[game->map_x][game->map_y] == '1'
 			/* game->map[game->map_x][game->map_y] == 'D'  */)
 			game->hit = 1;
-		if (game->map[game->map_x][game->map_y] == 'H')
+		else if (game->map[game->map_x][game->map_y] == 'H')
 		{
-			game->side_dist_x_sprite = game->side_dist_x;
-			game->map_x_sprite = game->map_x;
-			game->side_dist_y_sprite = game->side_dist_y;
-			game->map_y_sprite = game->map_y;
-			game->sprite = 1;
-			//printf("TEST\n");
+			dry_da_algo_sprite(game);
+			//stocker les infos pour chaque sprite + stocker la distance verticale pour chaque mur
 		}
 		
 	}
@@ -124,7 +147,7 @@ int	display(t_cube *game, int x)
 			wall_size(game), texture(game, x));
 		x++;
 	}
-	sprite_size(game);
+	sprite_draw(game);
 	ft_put_minimap(game);
 	draw(game);
 	ft_free_bffr(game);
