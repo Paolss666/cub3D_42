@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/08 14:43:57 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:35:14 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ typedef struct s_cube
 }					t_cube;
 
 int				tab_size(char **tab);
-void			print_map(char **map);
+// void			print_map(char **map);
 char			**ft_split_gbg(char const *s, char c);
 int				check_file_open(char **av);
 int				get_types(t_cube *game, int fd);
@@ -179,7 +179,7 @@ int				reorder_new(char **new);
 int				found_redif_type(t_cube *game, int fd);
 int				get_file_content(t_cube *game, char **av);
 t_img			*xpm_img(t_cube *game, char *img_path, int w, int h);
-int		 		get_color(int *tab_c);
+int				get_color(int *tab_c);
 int				*ft_parse_for_color(char *identi, t_cube *game);
 int				check_chars(char *s, char c);
 int				check_err_types(t_cube *game);
@@ -206,7 +206,7 @@ void			move_down(t_cube *game);
 void			move_left(t_cube *game);
 void			move_right(t_cube *game);
 void			m_rotate_right(t_cube *game, float move_speed);
-void	 		m_rotate_left(t_cube *game, float move_speed);
+void			m_rotate_left(t_cube *game, float move_speed);
 void			door_open(t_cube *game);
 void			close_door(t_cube *game);
 void			variable_door_bonus(t_cube *game);
