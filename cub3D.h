@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/07 11:18:23 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:43:57 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,8 +212,8 @@ void			close_door(t_cube *game);
 void			variable_door_bonus(t_cube *game);
 int				mouse_mov(int x, int y, t_cube *game);
 int				mouse_but(int button, int x, int y, t_cube *game);
-// ----------------- check map --------------------- // 
 
+// ----------------- check map --------------------- // 
 void			ft_add_space(t_cube *game);
 int				ft_countrows(t_cube *game);
 int				ft_countline(t_cube *game);
@@ -221,9 +221,10 @@ void			ft_stock_map(t_cube *game);
 bool			is_perso(char **map, int x, int y);
 void			ft_check_frontier(t_cube *game, int x, int y);
 int				ft_check_char(t_cube *game, int x, int y);
+int				ft_check_char_bonus(t_cube *game, int x, int y);
 void			ft_add_wall(t_cube *game);
 int				ft_check_map(t_cube *game);
-void			ft_print_maperror(t_cube *game, char **map, int x, int y);
+// void			ft_print_maperror(t_cube *game, char **map, int x, int y);
 
 // ------------------------minimap ---------------------- //
 int				ft_put_minimap(t_cube *game);

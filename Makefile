@@ -6,12 +6,13 @@
 #    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/05/06 14:19:01 by npaolett         ###   ########.fr        #
+#    Updated: 2024/05/08 15:24:06 by npaolett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = cub3D
+BONUS = cub3D_bonus
 
 CC = cc
 
@@ -43,10 +44,35 @@ SRC = 	src/get_map.c \
 		src/door.c  \
 		src/mouse_move.c  \
 		check_map/map.c \
+		check_map/ft_check_char.c \
+		check_map/ft_check_map.c \
 		minimap/minimap.c \
 		main.c  \
 
-SRC_BONUS = 
+SRC_BONUS = src/get_map.c \
+			src/get_maps_utils.c \
+			src/parse_type.c \
+			src/parse_types2.c \
+			src/parse_type_err.c \
+			src/parse_type_utils.c \
+			src/ft_split_grb.c \
+			src/parse_type_err_check.c \
+			src/get_pos.c  \
+			src/get_pos2.c  \
+			src/event.c  \
+			src/algo.c  \
+			src/get_pixel.c  \
+			src/draw.c  \
+			src/move_algo.c  \
+			src/move_algo_rot.c  \
+			src/door.c  \
+			src/mouse_move.c  \
+			check_map/map.c \
+			check_map/ft_check_char.c \
+			check_map/ft_check_map.c \
+			minimap/minimap.c \
+			main.c  \
+ 
 
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
@@ -70,7 +96,6 @@ bonus : $(BONUS)
 
 %.o: %.c
 	cc $(INCL) $(CFLAGS) -o $@ -c $<
-
 
 mlx:
 	make -C ./mlx_linux/ all
