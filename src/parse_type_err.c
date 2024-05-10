@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 16:57:23 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:40:59 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_chars(char *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		if (!(s[i] == ',') && !(s[i] >= '0' && s[i] <= '9'))
+		if (!(s[i] == ',' || (s[i] >= '0' && s[i] <= '9')))
 			return (-1);
 		if (s[i] == c)
 			count++;

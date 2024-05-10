@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/08 16:35:14 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:23:23 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define MLX_ERROR 1
 # define SPEED 0.03
 # define DEST_MOUSE 20
-# define BONUS 0
+# define BONUS 2
 
 typedef struct s_img
 {
