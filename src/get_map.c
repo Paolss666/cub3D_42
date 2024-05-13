@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 16:52:46 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:50:48 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	get_map(t_cube *game, int fd, char **av)
 	ft_count_rows(game, fd, &rows);
 	if (game->rows <= 0)
 		return (ft_putstr_fd("Error\nInvalid map\n", 2),
-			ft_gbg(FLUSH, NULL, ALL), -1);
+			clear_wrong_text(game), -1);
 	game->map = ft_calloc(game->rows + 2, sizeof(char *));
 	if (!game->map || ft_gbg(ADD, game->map, PARS))
 		return (ft_putstr_fd("Bad malloc\n", 2), ft_gbg(FLUSH, NULL, ALL),

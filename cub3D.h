@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 13:54:05 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:44:51 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_cube
 	t_img			*we;
 	t_img			*door;
 	t_img			*spr;
-	// t_anim			*anim;
 	int				anim_flag;
 	int				*f;
 	int				*c;
@@ -116,7 +115,6 @@ typedef struct s_cube
 	int				tex_h;
 	int				nb_tex;
 	unsigned int	**tex;
-	// t_sprite		*sprite;
 	int				num_sprites;
 	double			z_buffer[SCREEN_W];
 	int				*sprite_order;
@@ -158,7 +156,6 @@ typedef struct s_cube
 }					t_cube;
 
 int				tab_size(char **tab);
-// void			print_map(char **map);
 char			**ft_split_gbg(char const *s, char c);
 int				check_file_open(char **av);
 int				get_types(t_cube *game, int fd);
@@ -224,7 +221,6 @@ int				ft_check_char(t_cube *game, int x, int y);
 int				ft_check_char_bonus(t_cube *game, int x, int y);
 void			ft_add_wall(t_cube *game);
 int				ft_check_map(t_cube *game);
-// void			ft_print_maperror(t_cube *game, char **map, int x, int y);
 
 // ------------------------minimap ---------------------- //
 int				ft_put_minimap(t_cube *game);
