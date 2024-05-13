@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 13:54:05 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:03:03 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "./libft/libft.h"
 # include "mlx_linux/mlx.h"
@@ -23,12 +23,11 @@
 # include <unistd.h>
 # include "X11/X.h"
 # include "X11/keysym.h"
-
 # define SCREEN_W  480
 # define MLX_ERROR 1
 # define SPEED 0.03
 # define DEST_MOUSE 20
-# define BONUS 0
+# define BONUS 2
 
 typedef struct s_img
 {

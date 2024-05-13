@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:38:49 by elcesped          #+#    #+#             */
-/*   Updated: 2024/04/29 15:58:07 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:00:30 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 #define WIDTH  80
 #define HEIGHT 100

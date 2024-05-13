@@ -6,7 +6,7 @@
 #    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/05/08 15:24:06 by npaolett         ###   ########.fr        #
+#    Updated: 2024/05/13 14:06:07 by npaolett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,32 +46,31 @@ SRC = 	src/get_map.c \
 		check_map/map.c \
 		check_map/ft_check_char.c \
 		check_map/ft_check_map.c \
-		minimap/minimap.c \
 		main.c  \
 
-SRC_BONUS = src/get_map.c \
-			src/get_maps_utils.c \
-			src/parse_type.c \
-			src/parse_types2.c \
-			src/parse_type_err.c \
-			src/parse_type_utils.c \
-			src/ft_split_grb.c \
-			src/parse_type_err_check.c \
-			src/get_pos.c  \
-			src/get_pos2.c  \
-			src/event.c  \
-			src/algo.c  \
-			src/get_pixel.c  \
-			src/draw.c  \
-			src/move_algo.c  \
-			src/move_algo_rot.c  \
-			src/door.c  \
-			src/mouse_move.c  \
+SRC_BONUS = src_bonus/get_map.c \
+			src_bonus/get_maps_utils.c \
+			src_bonus/parse_type.c \
+			src_bonus/parse_types2.c \
+			src_bonus/parse_type_err.c \
+			src_bonus/parse_type_utils.c \
+			src_bonus/ft_split_grb.c \
+			src_bonus/parse_type_err_check.c \
+			src_bonus/get_pos.c  \
+			src_bonus/get_pos2.c  \
+			src_bonus/event.c  \
+			src_bonus/algo.c  \
+			src_bonus/get_pixel.c  \
+			src_bonus/draw.c  \
+			src_bonus/move_algo.c  \
+			src_bonus/move_algo_rot.c  \
+			src_bonus/door.c  \
+			src_bonus/mouse_move.c  \
 			check_map/map.c \
-			check_map/ft_check_char.c \
-			check_map/ft_check_map.c \
+			check_map/ft_check_char_bonus.c \
+			check_map/ft_check_map_bonus.c \
 			minimap/minimap.c \
-			main.c  \
+			main_bonus.c  \
  
 
 OBJ = $(SRC:.c=.o)
@@ -88,7 +87,8 @@ $(NAME): $(OBJ)
 
 $(BONUS): $(OBJ_BONUS)
 		make lib
-		cc -o $(BONUS) $(OBJ_BONUS) $(LIBFT) 
+		make mlx
+		cc -o $(BONUS) $(OBJ_BONUS) $(LIBFT) $(LIBMLX) $(MLXFLAGS)
 
 all : $(NAME)
 
