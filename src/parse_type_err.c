@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_type_err.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:59:57 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/26 18:14:39 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:28:54 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ void	clear_wrong_text(t_cube *game)
 		mlx_destroy_image(game->mlx_ptr, game->ea->img_ptr);
 	if (game && game->no)
 		mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
+	if (game && game->sprite1)
+		mlx_destroy_image(game->mlx_ptr, game->sprite1->img_ptr);
+	if (game && game->sprite2)
+		mlx_destroy_image(game->mlx_ptr, game->sprite2->img_ptr);
+	if (game && game->sprite3)
+		mlx_destroy_image(game->mlx_ptr, game->sprite3->img_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	ft_gbg(FLUSH, NULL, ALL);
 	exit(123);

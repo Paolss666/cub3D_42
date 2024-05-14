@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 17:32:12 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:27:56 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	esc_close(int key, t_cube *game)
 			mlx_destroy_image(game->mlx_ptr, game->sprite1->img_ptr);
 		if (game->sprite2)
 			mlx_destroy_image(game->mlx_ptr, game->sprite2->img_ptr);
+		if (game->sprite3)
+			mlx_destroy_image(game->mlx_ptr, game->sprite3->img_ptr);
 		if (game->img->img_ptr)
 			mlx_destroy_image(game->mlx_ptr, game->img->img_ptr);
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
@@ -54,6 +56,10 @@ int	close_win(t_cube *game)
 		mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
 	if (game->sprite1)
 		mlx_destroy_image(game->mlx_ptr, game->sprite1->img_ptr);
+	if (game->sprite2)
+		mlx_destroy_image(game->mlx_ptr, game->sprite2->img_ptr);
+	if (game->sprite3)
+		mlx_destroy_image(game->mlx_ptr, game->sprite3->img_ptr);
 	if (game->img->img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->img->img_ptr);
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);

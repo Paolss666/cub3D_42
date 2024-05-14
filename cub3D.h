@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/07 16:41:40 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/14 22:05:25 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,29 +44,12 @@ typedef struct s_img
 
 typedef struct s_sprite
 {
-	int				map_x_sprite;
-	int				map_y_sprite;
+	int				map_x_s;
+	int				map_y_s;
 	double			side_dist_x_sprite;
 	double			side_dist_y_sprite;
-	double			perp_wall_dist_sprite;
-	double			perp_wall_dist_sprite_y;
-	int				line_height_sprite;
-	int				draw_start_sprite;
-	int				draw_end_sprite;
-	double			wall_x_sprite;
-	int				tex_x_sprite;
-	int				tex_y_sprite;
-	double			step_sprite;
-	double			tex_pos_sprite;
-	//double			spriteX;
-	//double			spriteY;
-	//double			invDet;
-	//double			transformX;
-	//double			transformY;
-	//int				spriteScreenX;
-	//int				
-	
-		
+	double			dist_sprite;
+	int				order;				
 }				t_sprite;
 
 typedef struct s_cube
@@ -155,25 +138,27 @@ typedef struct s_cube
 		//sprite
 	t_img			*sprite1;
 	t_img			*sprite2;
+	t_img			*sprite3;
 
 	int				sprite_n;
-	//int				num_sprites;
-	//double			z_buffer[SCREEN_W];
+	double			z_buffer[SCREEN_W * 2];
 	//int				*sprite_order;
 	//double			*sprite_distance;
-	//double			sprite_x;
-	//double			sprite_y;
+	double			sp_x;
+	double			sp_y;
 	//double			inv_det;
-	//double			transform_x;
-	//double			transform_y;
-	//int				sprite_screen_x;
-	//int				sprite_height;
-	//int				sprite_width;
+	double			tr_x;
+	double			tr_y;
+	int				s_screen_x;
+	int				s_height;
+	int				s_width;
 	//int				stripe;
-	//int				draw_start_y;
-	//int				draw_start_x;
-	//int				draw_end_y;
-	//int				draw_end_x;
+	int				draw_start_y;
+	int				draw_start_x;
+	int				draw_end_y;
+	int				draw_end_x;
+	//int				tex_x;
+	//int				tex_y;
 	//int				vmove_screen;
 
 	double			p_x;
@@ -264,19 +249,34 @@ void	ft_check_frontier(t_cube *game, int x, int y);
 int		ft_check_char(t_cube *game, int x, int y);
 void	ft_add_wall(t_cube *game);
 int		ft_check_map(t_cube *game);
-void	ft_print_maperror(t_cube *game, char **map, int x, int y); //a supprimer
+//void	ft_print_maperror(t_cube *game, char **map, int x, int y); //a supprimer
 
 // ------------------------minimap ---------------------- //
 
-int ft_put_minimap(t_cube *game);
+void	ft_color_perso(t_cube *game);
+bool	ft_bmap(t_cube *game, int c, int d, char wall);
+bool	limit(t_cube *game);
+void	ft_init_minimap(t_cube *game, int *x, int *y);
+void	ft_cal_minimap(t_cube *game, int *x, int *y);
+int		ft_put_minimap(t_cube *game);
 
 // ------------------------sprite ---------------------- //
 
-int		get_each_img_data_sprite(t_cube *game, t_img *img, int i);
 void	sprite_draw(t_cube *game);
-void	texture_sprite(t_cube *game);
-void	pxl_color_sprite(t_cube *game, int x);
 void	init_sprite(t_cube *game);
-
+void	dry_da_algo_sprite(t_cube *game);
+double	invert_neg(double number);
+double	sprite_more_far(t_cube *game, int *n);
+int		sprite_less_far(t_cube *game, double far);
+void	init_pre_sprite_map(t_cube *game);
+void	get_pos_sprite(t_cube *game, int y, int x);
+void	increm_sprite(t_cube *game);
+void	init_sprite_order(t_cube *game);
+void	init_sprite(t_cube *game);
+void	init_pre_sprite_map(t_cube *game);
+int		define_sprite_2(t_cube *game, int j, int far2);
+void	color_sprite(t_cube *game, unsigned int color);
+void	calcul_vis_sprite(t_cube *game);
+int		define_sprite(t_cube *game, int j);
 
 #endif

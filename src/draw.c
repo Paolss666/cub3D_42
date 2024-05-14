@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/07 14:43:34 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:03:24 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,12 @@ void	texture(t_cube *game, int x)
 	game->tex_pos = (game->draw_start
 			- game->screen_h / 2 + game->line_height / 2) * game->step;
 	//texture_sprite(game);
+
 	texture_wall_orientation(game);
 	pxl_color_wll(game, x);
 	pixel_color_ceiling_floor(game, x);
+	//printf("x = %d\n", x);
+	//if (x < SCREEN_W)
+	game->z_buffer[x] = game->perp_wall_dist;
 	//sprite_size(game);
 }

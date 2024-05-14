@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:50:56 by elcesped          #+#    #+#             */
-/*   Updated: 2024/05/07 16:15:55 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/14 21:59:36 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,20 @@
 
 // --------------------------------------------- POUR CHECKER LA MAP --------------------------------------------
 
-void	ft_print_maperror(t_cube *game, char **map, int x, int y) //a supprimer
-{
-	int b = 0;
-	printf("%c = %d, %d\n", map[x][y], x, y);
-	printf("gamecrow = %d\n", game->crow);
-	printf("gamel = %d\n", game->l);
-	printf("gamerownico = %d\n", game->rows);
-	printf("gamelinenico = %d\n", game->line);
-	while (b < game->l)
-	{
-		printf("%s\n", map[b]);
-		b++;
-	}
-}
-
+//void	ft_print_maperror(t_cube *game, char **map, int x, int y) //a supprimer
+//{
+//	int b = 0;
+//	printf("%c = %d, %d\n", map[x][y], x, y);
+//	printf("gamecrow = %d\n", game->crow);
+//	printf("gamel = %d\n", game->l);
+//	printf("gamerownico = %d\n", game->rows);
+//	printf("gamelinenico = %d\n", game->line);
+//	while (b < game->l)
+//	{
+//		printf("%s\n", map[b]);
+//		b++;
+//	}
+//}
 
 void	ft_add_space(t_cube *game)
 {
@@ -58,8 +57,8 @@ void	ft_add_space(t_cube *game)
 int	ft_countrows(t_cube *game)
 {
 	int	i;
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	x = 0;
@@ -69,7 +68,7 @@ int	ft_countrows(t_cube *game)
 		if (!(game->map[x][y]))
 		{
 			if (!game->map[x + 1])
-				break;
+				break ;
 			x++;
 			if (i < y)
 				i = y;
@@ -106,7 +105,7 @@ void	ft_stock_map(t_cube *game)
 	{
 		game->map_game[k] = ft_calloc(sizeof(char), game->crow + 2);
 		if (!game->map_game[k] || ft_gbg(ADD, game->map_game[k], PARS))
-			return (ft_gbg(FLUSH, NULL, ALL), exit (99), (void)0);	
+			return (ft_gbg(FLUSH, NULL, ALL), exit (99), (void)0);
 		ft_strlcpy(game->map_game[k], game->map[i], game->crow + 1);
 		i++;
 		k++;
@@ -135,7 +134,7 @@ void	ft_check_frontier(t_cube *game, int x, int y)
 			|| map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
 		{
 			write(1, "Error\nmap not valid : walls incorrect\n", 39);
-			return (clear_wrong_text(game),(void)0);
+			return (clear_wrong_text(game), (void) 0);
 		}	
 		if (x == game->l - 1 && y == game->crow)
 			break ;
@@ -144,8 +143,18 @@ void	ft_check_frontier(t_cube *game, int x, int y)
 			y = 0;
 			x++;
 		}
-		y++;
+		else
+			y++;
 	}
+}
+
+void	ft_write_er(int i)
+{
+	write(1, "Error\n", 7);
+	if (i == 1)
+		write(1, "map not valid : char not valid on map\n", 39);
+	if (i == 2)
+		write(1, "map not valid : invalid number of perso\n", 41);
 }
 
 int	ft_check_char(t_cube *game, int x, int y)
@@ -165,18 +174,15 @@ int	ft_check_char(t_cube *game, int x, int y)
 		}
 		if (is_perso(game->map_game, x, y) == TRUE)
 			perso--;
-
 		else if (game->map_game[x][y] != '1' && game->map_game[x][y] != '0'
 			&& game->map_game[x][y] != ' ' && game->map_game[x][y] != '\n' && game->map_game[x][y] != 'H')
-			return (write(1, "Error\nmap not valid : char not valid on map\n", 45),
-				clear_wrong_text(game), 1);
+			return (ft_write_er(1), clear_wrong_text(game), 1);
 		if (game->map_game[x][y] == 'H')
 			game->nm_sprite++;
 		y++;
 	}
 	if (perso != 0)
-		return (write(1, "Error\nmap not valid : invalid number of perso\n", 47),
-			clear_wrong_text(game), 1);
+		return (ft_write_er(2), clear_wrong_text(game), 1);
 	return (0);
 }
 
@@ -206,7 +212,7 @@ void	ft_add_wall(t_cube *game)
 int	ft_check_map(t_cube *game)
 {
 	game->crow = ft_countrows(game);
-	game->l = ft_countline(game);	
+	game->l = ft_countline(game);
 	ft_stock_map(game);
 	if (ft_check_char(game, 0, 0) == 1)
 	{
@@ -218,4 +224,3 @@ int	ft_check_map(t_cube *game)
 	game->map = game->map_game;
 	return (0);
 }
-
