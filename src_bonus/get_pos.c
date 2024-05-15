@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_pos.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:19:32 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 13:57:44 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:41:47 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	get_pos(t_cube *game)
 				get_dir(game, game->map[y][x]);
 				game->map[y][x] = '0';
 			}
+			if (game->map[y][x] == 'H')
+				get_pos_sprite(game, y, x);
 			x++;
 		}
 		y++;

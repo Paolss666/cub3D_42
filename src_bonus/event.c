@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:36 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 13:56:35 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:31:09 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	esc_close(int key, t_cube *game)
 {
-	int	i;
-
-	i = 4;
 	if (key == XK_Escape)
 	{
 		if (game->so)
@@ -29,12 +26,17 @@ int	esc_close(int key, t_cube *game)
 			mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
 		if (game->door)
 			mlx_destroy_image(game->mlx_ptr, game->door->img_ptr);
+		if (game->sprite1)
+			mlx_destroy_image(game->mlx_ptr, game->sprite1->img_ptr);
+		if (game->sprite2)
+			mlx_destroy_image(game->mlx_ptr, game->sprite2->img_ptr);
+		if (game->sprite3)
+			mlx_destroy_image(game->mlx_ptr, game->sprite3->img_ptr);
 		if (game->img->img_ptr)
 			mlx_destroy_image(game->mlx_ptr, game->img->img_ptr);
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 		mlx_destroy_display(game->mlx_ptr);
-		ft_gbg(FLUSH, NULL, ALL);
-		exit(99);
+		(ft_gbg(FLUSH, NULL, ALL), exit(99));
 	}
 	return (0);
 }
@@ -51,6 +53,12 @@ int	close_win(t_cube *game)
 		mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
 	if (game->door)
 		mlx_destroy_image(game->mlx_ptr, game->door->img_ptr);
+	if (game->sprite1)
+		mlx_destroy_image(game->mlx_ptr, game->sprite1->img_ptr);
+	if (game->sprite2)
+		mlx_destroy_image(game->mlx_ptr, game->sprite2->img_ptr);
+	if (game->sprite3)
+		mlx_destroy_image(game->mlx_ptr, game->sprite3->img_ptr);
 	if (game->img->img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->img->img_ptr);
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);

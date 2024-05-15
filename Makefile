@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+         #
+#    By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 16:22:18 by npaolett          #+#    #+#              #
-#    Updated: 2024/05/13 14:06:07 by npaolett         ###   ########.fr        #
+#    Updated: 2024/05/15 17:03:52 by elcesped         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,12 +70,17 @@ SRC_BONUS = src_bonus/get_map.c \
 			check_map/ft_check_char_bonus.c \
 			check_map/ft_check_map_bonus.c \
 			minimap/minimap.c \
+			minimap/minimap2.c \
+			sprite/sprite.c \
+			sprite/algo_sprite.c \
+			sprite/init_sprite.c \
 			main_bonus.c  \
  
 
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
+DEPS = $(OBJS:.o=.d)
 
 LIBFT = ./libft/libft.a
 LIBMLX = ./mlx_linux/libmlx.a
@@ -93,6 +98,8 @@ $(BONUS): $(OBJ_BONUS)
 all : $(NAME)
 
 bonus : $(BONUS)
+
+-include $(DEPS)
 
 %.o: %.c
 	cc $(INCL) $(CFLAGS) -o $@ -c $<

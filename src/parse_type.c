@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:35:21 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 16:43:42 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:29:04 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 // 		printf("%s", tab[i]);
 // 	printf("\n");
 // }
-
 
 int	check_types(char **new)
 {

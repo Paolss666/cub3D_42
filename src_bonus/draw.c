@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:54:17 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 13:56:25 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:48:39 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,4 +207,5 @@ void	texture(t_cube *game, int x)
 	texture_wall_orientation(game);
 	pxl_color_wll(game, x);
 	pixel_color_ceiling_floor(game, x);
+	game->z_buffer[x] = game->perp_wall_dist;
 }
