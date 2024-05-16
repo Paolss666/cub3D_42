@@ -6,18 +6,12 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:52:48 by elcesped          #+#    #+#             */
-/*   Updated: 2024/05/15 16:58:04 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:06:04 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D_bonus.h"
 
-//a terminer : 
-//1. booleen pour norme dans checkmap une fois qu on a la porte
-//2. creer le bon nombre de foichiers pour repartir les fonctions
-//3. modifier les allocs memoire et les n_sprite + en fonction de la porte
-//4. ajouter dans la partie sans bonus les modifs pour la checkmap et dans la partie bonus les elements modifies par Nico
-//jsp
 int	define_sprite(t_cube *game, int j)
 {
 	double	far;

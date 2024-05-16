@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 21:40:35 by elcesped          #+#    #+#             */
-/*   Updated: 2024/05/15 16:55:01 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:05:43 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void	increm_sprite(t_cube *game)
 	}
 }
 
-void display_bonus(t_cube *game)
+void	display_bonus(t_cube *game)
 {
 	sprite_draw(game);
-	ft_put_minimap(game);	
+	ft_put_minimap(game);
 }

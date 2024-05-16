@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:59:22 by npaolett          #+#    #+#             */
-/*   Updated: 2024/04/26 12:08:22 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:00:40 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*get_next_line(int fd, int frex)
 
 	if (frex == 1)
 		return (free(storage), NULL);
-	if (fd < 0 || BUFFER_SIZE < 1 /* || fd > 1024 */)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (0);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!(buf))

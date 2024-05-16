@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_maps_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 14:13:54 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/06 15:31:52 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/16 19:27:29 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,13 @@ int	check_file_open(char **av)
 	if (fd == -1)
 	{
 		ft_putstr_fd("Error\n", 2);
-		perror("Wrong extension");
+		perror("Open failed");
 		return (-1);
 	}
 	if (check_if_exection(av) == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
-		ft_putstr_fd("Open failed\n", 2);
+		ft_putstr_fd("Wrong extension\n", 2);
 		return (-1);
 	}
 	return (fd);

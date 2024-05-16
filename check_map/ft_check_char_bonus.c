@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:05:28 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/15 16:14:47 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:16:46 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,17 @@ bool	is_wall_espace_zero_endl(t_cube *game, int x, int y)
 
 void	ft_write_er(int i)
 {
-	write(1, "Error\n", 7);
+	write(2, "Error\n", 7);
 	if (i == 1)
-		write(1, "map not valid : char not valid on map\n", 39);
+		write(2, "map not valid : char not valid on map\n", 39);
 	if (i == 2)
-		write(1, "map not valid : invalid number of perso\n", 41);
+		write(2, "map not valid : invalid number of perso\n", 41);
 	if (i == 3)
-		write(1, "map not valid : walls incorrect\n", 33);
+		write(2, "map not valid : walls incorrect\n", 33);
+	if (i == 4)
+		write(2, "Empty file\n", 12);
+	if (i == 5)
+		write(2, "Invalid numbers of types\n", 26);
 }
 
 int	ft_check_char(t_cube *game, int x, int y)
@@ -91,6 +95,5 @@ int	ft_check_char_bonus(t_cube *game, int x, int y)
 	}
 	if (perso != 0)
 		return (ft_write_er(2), clear_wrong_text(game), 1);
-	
 	return (0);
 }

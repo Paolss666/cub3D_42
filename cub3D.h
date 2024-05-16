@@ -6,7 +6,7 @@
 /*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:39:59 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/15 17:01:10 by elcesped         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:15:58 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,6 @@ typedef struct s_cube
 	int				draw_start_x;
 	int				draw_end_y;
 	int				draw_end_x;
-	
 }					t_cube;
 
 int				tab_size(char **tab);
@@ -237,32 +236,30 @@ int				ft_check_map(t_cube *game);
 void			ft_write_er(int i);
 
 // ------------------------minimap ---------------------- //
-void	ft_color_perso(t_cube *game);
-bool	ft_bmap(t_cube *game, int c, int d, char wall);
-bool	limit(t_cube *game);
-void	ft_init_minimap(t_cube *game, int *x, int *y);
-void	ft_cal_minimap(t_cube *game, int *x, int *y);
-int		ft_put_minimap(t_cube *game);
-
-void	display_bonus(t_cube *game);
+void			ft_color_perso(t_cube *game);
+bool			ft_bmap(t_cube *game, int c, int d, char wall);
+bool			limit(t_cube *game);
+void			ft_init_minimap(t_cube *game, int *x, int *y);
+void			ft_cal_minimap(t_cube *game, int *x, int *y);
+int				ft_put_minimap(t_cube *game);
 
 // ------------------------sprite ---------------------- //
-
-void	sprite_draw(t_cube *game);
-void	init_sprite(t_cube *game);
-void	dry_da_algo_sprite(t_cube *game);
-double	invert_neg(double number);
-double	sprite_more_far(t_cube *game, int *n);
-int		sprite_less_far(t_cube *game, double far);
-void	init_pre_sprite_map(t_cube *game);
-void	get_pos_sprite(t_cube *game, int y, int x);
-void	increm_sprite(t_cube *game);
-void	init_sprite_order(t_cube *game);
-void	init_sprite(t_cube *game);
-void	init_pre_sprite_map(t_cube *game);
-int		define_sprite_2(t_cube *game, int j, int far2);
-void	color_sprite(t_cube *game, unsigned int color);
-void	calcul_vis_sprite(t_cube *game);
-int		define_sprite(t_cube *game, int j);
+void			sprite_draw(t_cube *game);
+void			init_sprite(t_cube *game);
+void			dry_da_algo_sprite(t_cube *game);
+double			invert_neg(double number);
+double			sprite_more_far(t_cube *game, int *n);
+int				sprite_less_far(t_cube *game, double far);
+void			init_pre_sprite_map(t_cube *game);
+void			get_pos_sprite(t_cube *game, int y, int x);
+void			increm_sprite(t_cube *game);
+void			init_sprite_order(t_cube *game);
+void			init_sprite(t_cube *game);
+void			init_pre_sprite_map(t_cube *game);
+int				define_sprite_2(t_cube *game, int j, int far2);
+void			color_sprite(t_cube *game, unsigned int color);
+void			calcul_vis_sprite(t_cube *game);
+int				define_sprite(t_cube *game, int j);
+void			display_bonus(t_cube *game);
 
 #endif
