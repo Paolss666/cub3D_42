@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:54:40 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 16:47:35 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/14 08:57:13 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	check_alltypes(char **new)
 		return (-1);
 	return (0);
 }
-
 
 int	reorder_new(char **new)
 {

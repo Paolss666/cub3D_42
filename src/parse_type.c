@@ -6,20 +6,11 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:35:21 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 16:43:42 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/14 08:56:51 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-// static void	print_tab(char **tab)
-// {
-// 	int i = -1;
-// 	while (tab[++i])
-// 		printf("%s", tab[i]);
-// 	printf("\n");
-// }
-
 
 int	check_types(char **new)
 {
