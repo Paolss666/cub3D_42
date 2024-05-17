@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:09:10 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/08 15:56:27 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:58:50 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ void	ft_check_frontier(t_cube *game, int x, int y)
 			|| y == 0 || x == game->l - 1 || y == game->crow
 			|| (map[x - 1][y] == ' ' || map[x][y + 1] == ' '
 			|| map[x][y - 1] == ' ' || map[x + 1][y] == ' ')))
-		{
-			write(1, "Error\nmap not valid : walls incorrect\n", 39);
-			return (clear_wrong_text(game), (void)0);
-		}	
+			return (ft_write_er(3), clear_wrong_text(game), (void)0);
 		if (x == game->l - 1 && y == game->crow)
 			break ;
 		if (y == game->crow)
@@ -42,7 +39,8 @@ void	ft_check_frontier(t_cube *game, int x, int y)
 			y = 0;
 			x++;
 		}
-		y++;
+		else
+			y++;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:56:26 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 13:56:03 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:54:40 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	dry_da_algo(t_cube *game)
 		if (game->map[game->map_x][game->map_y] == '1'
 			|| game->map[game->map_x][game->map_y] == 'D' )
 			game->hit = 1;
+		else if (game->map[game->map_x][game->map_y] == 'H')
+			dry_da_algo_sprite(game);
 	}
 }
 
@@ -116,6 +118,6 @@ int	display(t_cube *game, int x)
 		x++;
 	}
 	if (BONUS == 2)
-		ft_put_minimap(game);
+		display_bonus(game);
 	return (draw(game), ft_free_bffr(game), 0);
 }

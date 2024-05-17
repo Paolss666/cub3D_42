@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:38 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 16:50:48 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:08:15 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ int	get_types(t_cube *game, int fd)
 	}
 	if (count == 6)
 		return (fd);
+	if (game->rows == 0)
+		return (ft_write_er(4), close(fd), clear_wrong_text(game), -1);
 	else
-		return (ft_putstr_fd("Error\nInvalid numbers of types\n", 2),
-			close(fd), clear_wrong_text(game), -1);
+		return (ft_write_er(5), close(fd), clear_wrong_text(game), -1);
 }
 
 int	get_map(t_cube *game, int fd, char **av)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:38:49 by elcesped          #+#    #+#             */
-/*   Updated: 2024/05/13 14:00:30 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:03:43 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,32 +37,6 @@ void	ft_color_perso(t_cube *game)
 	game->buf[x - 2][y + 2] = 16711680;
 	game->buf[x + 1][y - 1] = 16711680;
 	game->buf[x + 2][y - 2] = 16711680;
-}
-
-//bool	ft_virg(int x, int y, int a_virg, int b_virg)
-//{
-//	b_virg = b_virg % 10;
-//	a_virg = a_virg % 10;
-//	if ((x + b_virg) % 10 == 0 || (y + a_virg) % 10 == 0)
-//		return (TRUE);
-//	return (FALSE);
-//}
-
-bool	ft_bmap(t_cube *game, int c, int d, char wall)
-{
-	if (game->map[c][d] && game->map[c][d] == wall)
-		return (TRUE);
-	return (FALSE);
-}
-
-bool	limit(t_cube *game)
-{
-	if (game->p_c < 0 || game->p_d < 0 || game->p_d >= game->crow
-		|| game->p_c >= game->l)
-		return (TRUE);
-	if (ft_bmap(game, game->p_c, game->p_d, '1') == TRUE)
-		return (TRUE);
-	return (FALSE);
 }
 
 void	ft_init_minimap(t_cube *game, int *x, int *y)

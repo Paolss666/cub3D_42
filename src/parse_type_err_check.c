@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_type_err_check.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:14:53 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 12:17:16 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:29:29 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	check_err_types(t_cube *game)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
 	if (check_chars((game->type[4]), ',') != 2
 		||check_chars((game->type[5]), ',') != 2)
-		return (ft_putstr_fd("Error\nInvalid type of format\n", 2),
+		return (ft_putstr_fd("Error\nInvalid type of RGB info\n", 2),
 			clear_wrong_text(game), -1);
 	return (check_err_types_bis_color(game));
 }

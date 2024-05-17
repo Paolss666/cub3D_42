@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:55:22 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 13:55:54 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:07:38 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_game_b(t_cube *game)
 	game->door = NULL;
 	game->p_minimap = 0;
 	game->click = -1;
+	init_pre_sprite_map(game);
 }
 
 void	init_game(t_cube *game)
@@ -109,6 +110,7 @@ int	main(int ac, char **av)
 	if (get_file_content(game, av) == 1)
 		return (get_next_line(fd, 1), ft_gbg(FLUSH, NULL, ALL), exit(99), 1);
 	init_mlx(game);
+	init_sprite(game);
 	get_pos(game);
 	display(game, 0);
 	init_loop(game);

@@ -6,7 +6,7 @@
 /*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:54:40 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/14 08:57:13 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/17 09:59:29 by npaolett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	reorder_new(char **new)
 	{
 		swap_val = ptr_to_swap(new[i]);
 		if (swap_val == -1)
-			return (ft_putstr_fd("Error\nInvalid type swap\n", 2), -1);
+			return (ft_putstr_fd("Error\nInvalid type\n", 2), -1);
 		if (swap_val != i)
 			swap_ptrs(&new[i], &new[swap_val]);
 		else

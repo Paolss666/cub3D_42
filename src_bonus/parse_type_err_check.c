@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_type_err_check.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npaolett <npaolett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elcesped <elcesped@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:14:53 by npaolett          #+#    #+#             */
-/*   Updated: 2024/05/13 12:17:16 by npaolett         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:30:13 by elcesped         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 int	get_each_img_data(t_cube *game, t_img *img, int i)
 {
@@ -37,7 +37,7 @@ int	get_each_img_data(t_cube *game, t_img *img, int i)
 
 int	get_imgs_data_err(t_cube *game)
 {
-	game->tex = ft_calloc(5, sizeof(int *));
+	game->tex = ft_calloc(8, sizeof(int *));
 	if (!game->tex || ft_gbg(ADD, game->tex, EX))
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
 	if (get_each_img_data(game, game->no, 0) != 0)
@@ -50,6 +50,12 @@ int	get_imgs_data_err(t_cube *game)
 		return (-1);
 	if (get_each_img_data(game, game->door, 4) != 0)
 		return (-1);
+	if (get_each_img_data(game, game->sprite1, 5) != 0)
+		return (-1);
+	if (get_each_img_data(game, game->sprite2, 6) != 0)
+		return (-1);
+	if (get_each_img_data(game, game->sprite3, 7) != 0)
+		return (-1);
 	return (0);
 }
 
@@ -60,6 +66,23 @@ int	check_err_types_bis_color(t_cube *game)
 		return (-1);
 	game->c = ft_parse_for_color(game->type[5], game);
 	if (!game->c)
+		return (-1);
+	return (0);
+}
+
+int	check_err_types_bonus(t_cube *game)
+{
+	game->door = xpm_img(game, "./img/door2.xpm", 64, 64);
+	if (!game->door)
+		return (-1);
+	game->sprite1 = xpm_img(game, "./img/bon_sprite/Remisada.xpm", 64, 64);
+	if (!game->sprite1)
+		return (-1);
+	game->sprite2 = xpm_img(game, "./img/bon_sprite/remy42.xpm", 64, 64);
+	if (!game->sprite2)
+		return (-1);
+	game->sprite3 = xpm_img(game, "./img/bon_sprite/remyS.xpm", 64, 64);
+	if (!game->sprite3)
 		return (-1);
 	return (0);
 }
@@ -78,14 +101,13 @@ int	check_err_types(t_cube *game)
 	game->ea = xpm_img(game, game->type[3], 64, 64);
 	if (!game->ea)
 		return (-1);
-	game->door = xpm_img(game, "./img/door2.xpm", 64, 64);
-	if (!game->door)
+	if (check_err_types_bonus(game) == -1)
 		return (-1);
 	if (get_imgs_data_err(game) != 0)
 		return (ft_gbg(FLUSH, NULL, ALL), exit(99), -1);
 	if (check_chars((game->type[4]), ',') != 2
 		||check_chars((game->type[5]), ',') != 2)
-		return (ft_putstr_fd("Error\nInvalid type of format\n", 2),
+		return (ft_putstr_fd("Error\nInvalid type of RGB info\n", 2),
 			clear_wrong_text(game), -1);
 	return (check_err_types_bis_color(game));
 }
